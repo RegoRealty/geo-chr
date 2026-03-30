@@ -1,0 +1,3002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEO Portal - Corcoran Horizon Realty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Avenir', 'Avenir Next', 'Inter', sans-serif;
+            background-color: #F7F8FA;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ══════════════════════════════════════════════
+           TOP BAR
+           ══════════════════════════════════════════════ */
+        .top-bar {
+            background-color: #1B2A4A;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar-left {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .top-bar-right {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .user-email {
+            font-size: 0.95rem;
+        }
+
+        .sign-out-btn {
+            background-color: #2A7F8E;
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+
+        .sign-out-btn:hover {
+            background-color: #1f5a68;
+        }
+
+        /* ══════════════════════════════════════════════
+           MAIN CONTAINER
+           ══════════════════════════════════════════════ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ══════════════════════════════════════════════
+           AUTH SCREEN
+           ══════════════════════════════════════════════ */
+        #auth-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1B2A4A 0%, #2A7F8E 100%);
+            color: white;
+        }
+
+        .auth-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .auth-card h1 {
+            color: #1B2A4A;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .auth-card p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .google-signin-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: box-shadow 0.2s, border-color 0.2s;
+            width: 100%;
+        }
+
+        .google-signin-btn:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-color: #ccc;
+        }
+
+        .google-signin-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ══════════════════════════════════════════════
+           CARDS & SECTIONS
+           ══════════════════════════════════════════════ */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            color: #1B2A4A;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .card h3 {
+            color: #1B2A4A;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            color: #555;
+            margin-bottom: 0.8rem;
+        }
+
+        /* ══════════════════════════════════════════════
+           WELCOME & STATUS
+           ══════════════════════════════════════════════ */
+        .welcome-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .welcome-title {
+            font-size: 1.8rem;
+            color: #1B2A4A;
+            font-weight: 700;
+        }
+
+        .status-banner {
+            background-color: #FFF3CD;
+            border-left: 4px solid #D4A843;
+            padding: 1rem;
+            border-radius: 6px;
+            color: #333;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+
+        .status-badge.pending {
+            background-color: #D4A843;
+            color: white;
+        }
+
+        .status-badge.approved {
+            background-color: #2EAD6D;
+            color: white;
+        }
+
+        .status-badge.edits {
+            background-color: #E8685A;
+            color: white;
+        }
+
+        /* ══════════════════════════════════════════════
+           COLLAPSIBLE
+           ══════════════════════════════════════════════ */
+        .collapsible-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            user-select: none;
+        }
+
+        .collapsible-header h2 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .collapsible-toggle {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            transition: transform 0.2s;
+            color: #2A7F8E;
+            font-weight: bold;
+        }
+
+        .collapsible-toggle.closed {
+            transform: rotate(-90deg);
+        }
+
+        .collapsible-content {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .collapsible-content.closed {
+            max-height: 0;
+            margin-top: 0;
+        }
+
+        /* ══════════════════════════════════════════════
+           BIO COMPARISON
+           ══════════════════════════════════════════════ */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .bio-column {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .bio-header {
+            padding: 0.75rem 1rem;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .bio-header.before {
+            background-color: #999;
+        }
+
+        .bio-header.after {
+            background-color: #2EAD6D;
+        }
+
+        .bio-content {
+            padding: 1.5rem;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .bio-column.before .bio-content {
+            background-color: #F5F5F5;
+        }
+
+        .bio-column.after .bio-content {
+            background-color: #F0F8F3;
+        }
+
+        .bio-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #2EAD6D;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #209852;
+        }
+
+        .btn-secondary {
+            background-color: #D4A843;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #b68b35;
+        }
+
+        .btn-outline {
+            background-color: white;
+            border: 2px solid #E8685A;
+            color: #E8685A;
+        }
+
+        .btn-outline:hover {
+            background-color: #fff5f3;
+        }
+
+        .btn-info {
+            background-color: #3366CC;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background-color: #1a47a3;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* ══════════════════════════════════════════════
+           MODAL
+           ══════════════════════════════════════════════ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal h2 {
+            color: #1B2A4A;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1B2A4A;
+            font-weight: 500;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2A7F8E;
+            box-shadow: 0 0 0 3px rgba(42, 127, 142, 0.1);
+        }
+
+        .warning-tip {
+            background-color: #FFF3CD;
+            border-left: 4px solid #D4A843;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* ══════════════════════════════════════════════
+           ACCORDION (PLATFORMS)
+           ══════════════════════════════════════════════ */
+        .accordion {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+
+        .accordion-header:hover {
+            background-color: #f0f0f0;
+        }
+
+        .accordion-header-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 600;
+            color: #1B2A4A;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .platform-badge.you-update {
+            background-color: #3366CC;
+        }
+
+        .platform-badge.chelsea-handles {
+            background-color: #9C27B0;
+        }
+
+        .accordion-toggle {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            transition: transform 0.2s;
+            color: #2A7F8E;
+            font-weight: bold;
+        }
+
+        .accordion-toggle.closed {
+            transform: rotate(-90deg);
+        }
+
+        .accordion-content {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.closed {
+            max-height: 0;
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+            background-color: #fafafa;
+        }
+
+        .platform-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .platform-section h4 {
+            color: #1B2A4A;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .bio-text-box {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.6;
+            word-break: break-word;
+            position: relative;
+        }
+
+        .copy-btn {
+            background-color: #2A7F8E;
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background-color: #1f5a68;
+        }
+
+        .copy-btn.copied {
+            background-color: #2EAD6D;
+        }
+
+        .platform-steps {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .platform-steps ol {
+            margin-left: 1.5rem;
+            color: #333;
+        }
+
+        .platform-steps li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .platform-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .platform-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .platform-checkbox label {
+            cursor: pointer;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        /* ══════════════════════════════════════════════
+           TIMELINE
+           ══════════════════════════════════════════════ */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            background-color: #F0F8F3;
+            border-left: 4px solid #2EAD6D;
+            padding: 1.5rem;
+            border-radius: 6px;
+        }
+
+        .timeline-item h4 {
+            color: #1B2A4A;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .timeline-item p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* ══════════════════════════════════════════════
+           ADMIN DASHBOARD
+           ══════════════════════════════════════════════ */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .admin-header h1 {
+            color: #1B2A4A;
+            font-size: 2rem;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2A7F8E;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .agent-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .agent-table thead {
+            background-color: #1B2A4A;
+            color: white;
+        }
+
+        .agent-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border: none;
+        }
+
+        .agent-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .agent-table tbody tr {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .agent-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .agent-table tbody tr.expanded {
+            background-color: #f0f8f3;
+        }
+
+        .agent-details {
+            display: none;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border-top: 2px solid #2EAD6D;
+        }
+
+        .agent-details.expanded {
+            display: block;
+        }
+
+        .agent-details h3 {
+            color: #1B2A4A;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .agent-details h3:first-child {
+            margin-top: 0;
+        }
+
+        .details-bio {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ══════════════════════════════════════════════
+           GEO AUDIT FEATURE
+           ══════════════════════════════════════════════ */
+        .geo-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .geo-tab-btn {
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .geo-tab-btn.active {
+            color: #2A7F8E;
+            border-bottom-color: #2A7F8E;
+        }
+
+        .geo-tab-btn:hover {
+            color: #1B2A4A;
+        }
+
+        .geo-tab-content {
+            display: none;
+        }
+
+        .geo-tab-content.active {
+            display: block;
+        }
+
+        .geo-score-ring {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            margin: 1rem auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .geo-score-ring.grade-a {
+            background: linear-gradient(135deg, #2EAD6D 0%, #20b063 100%);
+        }
+
+        .geo-score-ring.grade-b {
+            background: linear-gradient(135deg, #2A9EBD 0%, #2A7F8E 100%);
+        }
+
+        .geo-score-ring.grade-c {
+            background: linear-gradient(135deg, #FFC857 0%, #FFB627 100%);
+        }
+
+        .geo-score-ring.grade-d,
+        .geo-score-ring.grade-f {
+            background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+        }
+
+        .geo-score-number {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .geo-score-grade {
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        .geo-check-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .geo-check-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .geo-check-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .geo-check-btn {
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .geo-check-btn.selected {
+            background-color: #2A7F8E;
+            color: white;
+            border-color: #2A7F8E;
+        }
+
+        .geo-check-btn.selected.status-found {
+            background-color: #2EAD6D;
+            border-color: #2EAD6D;
+        }
+
+        .geo-check-btn.selected.status-outdated {
+            background-color: #FFC857;
+            border-color: #FFC857;
+            color: #333;
+        }
+
+        .geo-check-btn.selected.status-notfound {
+            background-color: #E74C3C;
+            border-color: #E74C3C;
+        }
+
+        .geo-check-label {
+            flex-grow: 1;
+            font-weight: 500;
+            color: #1B2A4A;
+        }
+
+        .geo-consistency-header {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .geo-consistency-score {
+            font-size: 1.2rem;
+            color: #2A7F8E;
+            font-weight: bold;
+        }
+
+        .geo-section {
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .geo-section h4 {
+            color: #1B2A4A;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #2A7F8E;
+            padding-bottom: 0.5rem;
+        }
+
+        .geo-test-row {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+        }
+
+        .geo-test-row label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #1B2A4A;
+        }
+
+        .geo-test-row input[type="text"],
+        .geo-test-row select {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            box-sizing: border-box;
+        }
+
+        .geo-test-row input[type="text"]:disabled {
+            background-color: #eee;
+            cursor: not-allowed;
+        }
+
+        .geo-audit-notes {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+
+        .geo-save-btn {
+            background-color: #2A7F8E;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .geo-save-btn:hover {
+            background-color: #1f5a68;
+        }
+
+        .geo-save-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* ══════════════════════════════════════════════
+           ERROR MESSAGE
+           ══════════════════════════════════════════════ */
+        .setup-message {
+            background-color: #FFF3CD;
+            border: 2px solid #D4A843;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: #333;
+            margin: 3rem auto;
+            max-width: 600px;
+        }
+
+        .setup-message h3 {
+            color: #1B2A4A;
+            margin-bottom: 1rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .alert.error {
+            background-color: #F8D7DA;
+            border: 1px solid #F5C6CB;
+            color: #721C24;
+            display: block;
+        }
+
+        .alert.success {
+            background-color: #D4EDDA;
+            border: 1px solid #C3E6CB;
+            color: #155724;
+            display: block;
+        }
+
+        /* ══════════════════════════════════════════════
+           MOBILE RESPONSIVE
+           ══════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .top-bar-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .bio-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .timeline-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .agent-table {
+                font-size: 0.85rem;
+            }
+
+            .agent-table th,
+            .agent-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .modal {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-card {
+                padding: 1.5rem;
+            }
+
+            .welcome-title {
+                font-size: 1.4rem;
+            }
+
+            .card h2 {
+                font-size: 1.2rem;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ══════════════════════════════════════════════
+           APPROVED BADGE
+           ══════════════════════════════════════════════ */
+        .approved-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #D4EDDA;
+            color: #155724;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .success-message {
+            background-color: #D4EDDA;
+            border: 1px solid #C3E6CB;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        /* ══════════════════════════════════════════════
+           HEADSHOT SECTION
+           ══════════════════════════════════════════════ */
+        .headshot-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .headshot-preview {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #ddd;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #ccc;
+        }
+
+        .headshot-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .headshot-input {
+            display: none;
+        }
+
+        .upload-btn {
+            background-color: #2A7F8E;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+
+        .upload-btn:hover {
+            background-color: #1f5a68;
+        }
+
+        .headshot-note {
+            background-color: #f0f8f3;
+            border-left: 4px solid #2A7F8E;
+            padding: 1rem;
+            border-radius: 4px;
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ══════════════════════════════════════════════
+           CONTACT & SOCIALS SECTION
+           ══════════════════════════════════════════════ */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .form-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+        }
+
+        .contact-form input {
+            flex: 1;
+            border: none;
+            border-bottom: 2px solid #e0e0e0;
+            padding: 0.8rem 0;
+            font-size: 0.95rem;
+            color: #333;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .contact-form input:focus {
+            outline: none;
+            border-bottom-color: #2A7F8E;
+        }
+
+        .contact-form input::placeholder {
+            color: #999;
+        }
+
+        .edit-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2A7F8E;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .edit-icon:hover {
+            opacity: 0.7;
+        }
+
+        .contact-note {
+            background-color: #f0f8f3;
+            border-left: 4px solid #2A7F8E;
+            padding: 1rem;
+            border-radius: 4px;
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .save-contact-btn {
+            background-color: #2A7F8E;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+            align-self: flex-start;
+        }
+
+        .save-contact-btn:hover {
+            background-color: #1f5a68;
+        }
+
+        .contact-saved-confirmation {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #D4EDDA;
+            color: #155724;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .admin-headshot-thumbnail {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .admin-headshot-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .admin-contact-info {
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .admin-contact-info-label {
+            font-weight: 600;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- AUTH SCREEN -->
+    <div id="auth-screen" class="hidden">
+        <div class="auth-card">
+            <h1>GEO Portal</h1>
+            <p>Corcoran Horizon Realty</p>
+            <button class="google-signin-btn" id="google-signin-btn">
+                Sign in with Google
+            </button>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 1rem;">
+                Access restricted to @regoteam.com and authorized Corcoran Horizon accounts
+            </p>
+        </div>
+    </div>
+
+    <!-- TOP BAR -->
+    <div id="top-bar" class="top-bar hidden">
+        <div class="top-bar-left">CORCORAN HORIZON REALTY</div>
+        <div class="top-bar-right">
+            <div class="user-email" id="user-email"></div>
+            <button class="sign-out-btn" id="sign-out-btn">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div id="main-container" class="container hidden">
+        <!-- ALERT MESSAGES -->
+        <div id="alert" class="alert"></div>
+
+        <!-- AGENT VIEW -->
+        <div id="agent-view" class="hidden">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h1 class="welcome-title">Welcome, <span id="agent-first-name"></span></h1>
+                <div class="status-banner" id="status-banner">
+                    <span class="status-badge" id="status-badge"></span>
+                    <span id="status-text"></span>
+                </div>
+            </div>
+
+            <!-- What Is This -->
+            <div class="card">
+                <div class="collapsible-header" id="what-is-this-header">
+                    <h2>
+                        <span class="collapsible-toggle"></span>
+                        What Is This?
+                    </h2>
+                </div>
+                <div class="collapsible-content" id="what-is-this-content">
+                    <p><strong>AI Search Engines Are Here</strong></p>
+                    <p>ChatGPT, Gemini, Perplexity, and other AI search engines now recommend real estate agents based on online bios. They're not searching your MLS — they're searching the web for agent profiles.</p>
+                    <p><strong>Your Bio Just Got Optimized</strong></p>
+                    <p>We've rewritten your bio to be GEO-optimized (Generative Engine Optimized). That means we've structured it so that when someone asks an AI "Who's a good real estate agent in Kitchener?" or "Find me a rural property specialist," the AI finds <em>you</em> and recommends you. It's the new SEO.</p>
+                    <p><strong>Your Job: Approve & Update Your Platforms</strong></p>
+                    <p>We've created your optimized bio below. Review it, approve it, then copy-paste it into your platforms (Realtor.ca, LinkedIn, Instagram, Facebook, Google Business, etc.). Chelsea handles your website and DASH — you focus on the platforms you control. Together, we make sure the AI knows who you are.</p>
+                </div>
+            </div>
+
+            <!-- Bio Card -->
+            <div class="card">
+                <h2>Your Bio — Before & After</h2>
+                <div class="bio-grid">
+                    <div class="bio-column before">
+                        <div class="bio-header before">Current Bio</div>
+                        <div class="bio-content" id="agent-bio-before"></div>
+                    </div>
+                    <div class="bio-column after">
+                        <div class="bio-header after">GEO-Optimized Bio</div>
+                        <div class="bio-content" id="agent-bio-after"></div>
+                    </div>
+                </div>
+                <div class="bio-actions" id="bio-actions">
+                    <button class="btn btn-primary" id="approve-btn">✓ Approve Bio</button>
+                    <button class="btn btn-secondary" id="request-edits-btn">✎ Request Edits</button>
+                    <button class="btn btn-outline" id="decline-btn">Decline</button>
+                </div>
+                <div id="approved-message" class="approved-badge hidden">
+                    ✓ Approved
+                </div>
+            </div>
+
+            <!-- Headshot Upload -->
+            <div class="card">
+                <h2>Your Headshot</h2>
+                <div class="headshot-container">
+                    <div class="headshot-preview" id="headshot-preview">👤</div>
+                    <button class="upload-btn" id="upload-headshot-btn">Upload New Headshot</button>
+                    <input type="file" id="headshot-input" class="headshot-input" accept="image/*">
+                    <div class="headshot-note">
+                        Make sure your headshot is professional, recent (within 2 years), and high quality. This same photo should be used across all your platforms for consistency.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact & Socials -->
+            <div class="card">
+                <h2>Your Contact & Social Info</h2>
+                <div class="contact-note">
+                    We need your current social handles and contact info to ensure everything is consistent across platforms. Please fill in or confirm the info below.
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group-row">
+                        <label for="phone">Phone</label>
+                        <div class="form-input-wrapper">
+                            <input type="text" id="phone" placeholder="(519) 555-0000">
+                            <span class="edit-icon">✎</span>
+                        </div>
+                    </div>
+                    <div class="form-group-row">
+                        <label for="email">Email</label>
+                        <div class="form-input-wrapper">
+                            <input type="email" id="email" placeholder="you@regoteam.com">
+                            <span class="edit-icon">✎</span>
+                        </div>
+                    </div>
+                    <div class="form-group-row">
+                        <label for="instagram">Instagram Handle</label>
+                        <div class="form-input-wrapper">
+                            <input type="text" id="instagram" placeholder="@yourhandle">
+                            <span class="edit-icon">✎</span>
+                        </div>
+                    </div>
+                    <div class="form-group-row">
+                        <label for="linkedin">LinkedIn URL</label>
+                        <div class="form-input-wrapper">
+                            <input type="url" id="linkedin" placeholder="linkedin.com/in/yourname">
+                            <span class="edit-icon">✎</span>
+                        </div>
+                    </div>
+                    <div class="form-group-row">
+                        <label for="facebook">Facebook Page URL</label>
+                        <div class="form-input-wrapper">
+                            <input type="url" id="facebook" placeholder="facebook.com/yourpage">
+                            <span class="edit-icon">✎</span>
+                        </div>
+                    </div>
+                    <button type="button" class="save-contact-btn" id="save-contact-btn">Save Contact Info</button>
+                    <div id="contact-saved-message" class="contact-saved-confirmation hidden">
+                        ✓ Saved!
+                    </div>
+                </form>
+            </div>
+
+            <!-- Platform Checklist -->
+            <div class="card">
+                <h2>Platform-by-Platform Checklist</h2>
+                <p style="color: #666; margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    Once you approve your bio, copy-paste it into these platforms. Track your progress below.
+                </p>
+                <div id="platform-checklist-message" class="alert"></div>
+                <div class="accordion" id="platforms-accordion"></div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="card">
+                <h2>Timeline</h2>
+                <div class="timeline-grid">
+                    <div class="timeline-item">
+                        <h4>By April 6</h4>
+                        <p>Approve your bio</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>By April 10</h4>
+                        <p>Update Realtor.ca & LinkedIn (highest impact)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>By April 13</h4>
+                        <p>Update all other platforms</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Chelsea Handles</h4>
+                        <p>Website & DASH updates</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Help -->
+            <div class="card">
+                <h2>Need Help?</h2>
+                <p>Contact Chelsea Lahey at <strong>clahey@corcoranhorizon.com</strong></p>
+            </div>
+        </div>
+
+        <!-- ADMIN VIEW -->
+        <div id="admin-view" class="hidden">
+            <div class="admin-header">
+                <h1>Agent Dashboard</h1>
+                <button class="btn btn-info" id="seed-db-btn">Seed Database</button>
+            </div>
+
+            <div class="stats-bar" id="stats-bar"></div>
+
+            <!-- GEO AUDIT TABS -->
+            <div class="geo-tabs">
+                <button class="geo-tab-btn active" data-tab="agents-tab">Agents</button>
+                <button class="geo-tab-btn" data-tab="geo-audit-tab">GEO Audit</button>
+            </div>
+
+            <!-- AGENTS TAB -->
+            <div id="agents-tab" class="geo-tab-content active">
+                <div class="card">
+                    <table class="agent-table" id="agent-table">
+                        <thead>
+                            <tr>
+                                <th>Agent Name</th>
+                                <th>Bio Status</th>
+                                <th>Platform Progress</th>
+                                <th>GEO Score</th>
+                                <th>Last Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody id="agent-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- GEO AUDIT TAB -->
+            <div id="geo-audit-tab" class="geo-tab-content">
+                <div class="card">
+                    <h2>GEO Audit Tool</h2>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Select an agent to run a GEO audit and verify their web presence and consistency across platforms.</p>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="geo-agent-select" style="font-weight: 500; margin-bottom: 0.5rem; display: block;">Select Agent:</label>
+                        <select id="geo-agent-select" style="width: 100%; padding: 0.7rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                            <option value="">-- Choose an agent --</option>
+                        </select>
+                    </div>
+
+                    <div id="geo-audit-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT REQUEST MODAL -->
+    <div class="modal-overlay" id="edit-modal-overlay">
+        <div class="modal" id="edit-modal">
+            <h2>Request Edits to Your Bio</h2>
+            <div class="modal-body">
+                <div class="warning-tip">
+                    <strong>💡 Tip:</strong> Keep the keywords and structure. Tell us what you'd like changed in tone, details, or focus.
+                </div>
+                <div class="form-group">
+                    <label for="edit-textarea">Your Edit Request</label>
+                    <textarea id="edit-textarea" placeholder="e.g., 'Please emphasize my luxury home experience more' or 'Add my certification detail'"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="edit-cancel-btn">Cancel</button>
+                <button class="btn btn-primary" id="edit-submit-btn">Submit Request</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DECLINE MODAL -->
+    <div class="modal-overlay" id="decline-modal-overlay">
+        <div class="modal" id="decline-modal">
+            <h2>Decline Bio</h2>
+            <div class="modal-body">
+                <p style="margin-bottom: 1rem;">Help us understand what didn't work. Your feedback helps us refine the approach.</p>
+                <div class="form-group">
+                    <label for="decline-textarea">Tell us why</label>
+                    <textarea id="decline-textarea" placeholder="e.g., 'Doesn't match my approach' or 'Misses key details about my background'"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="decline-cancel-btn">Cancel</button>
+                <button class="btn btn-outline" id="decline-submit-btn">Submit Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FIREBASE SCRIPTS -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-storage-compat.js"></script>
+
+    <script>
+        // ══════════════════════════════════════════════
+        // FIREBASE CONFIG — Chelsea: Replace with your Firebase project config
+        // Go to Firebase Console > Project Settings > Your apps > Config
+        // ══════════════════════════════════════════════
+        const firebaseConfig = {
+            apiKey: "AIzaSyBRPQqtpuEEbaUbvaBGFdjLTfZ9Ff1oBlk",
+            authDomain: "geo-chr.firebaseapp.com",
+            projectId: "geo-chr",
+            storageBucket: "geo-chr.firebasestorage.app",
+            messagingSenderId: "1053943051436",
+            appId: "1:1053943051436:web:de93be44a806f005249b09"
+        };
+
+        // Admin emails — these users see the admin dashboard
+        const ADMIN_EMAILS = ["clahey@corcoranhorizon.com"];
+        // Allowed login domains
+        const ALLOWED_DOMAINS = ["regoteam.com", "corcoranhorizon.com"];
+
+        // ══════════════════════════════════════════════
+        // AGENT SEED DATA
+        // ══════════════════════════════════════════════
+        const AGENT_SEED_DATA = {
+            "sandra-koller": {
+                name: "Sandra Koller",
+                hasBio: true,
+                before: "Sandra Koller believes real estate is about far more than buying and selling homes. It's about helping people find a place of safety, stability, and belonging. Known for her honest, clear, and supportive approach, Sandra guides her clients through every step of the process with care, ensuring they feel informed, confident, and supported from start to finish. With over six years of experience, Sandra specializes in residential, rural, and countryside properties, with a strong focus on new construction and lifestyle-driven moves across Waterloo Region, Stratford, and surrounding Southwestern Ontario. Living on a farm and operating a family-run ranch, she brings firsthand insight into rural living and land considerations. Sandra holds an Honours BA in Legal Studies with a Minor in Management Studies, is fluent in English, Croatian, and Rusyn, and is a licensed REALTOR®. As part of Corcoran Horizon Realty and the Rego Team, she pairs local expertise with the reach of a globally recognized brand to deliver thoughtful, well-supported outcomes for her clients.",
+                after: "Sandra Koller is a licensed REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in residential, rural, and new construction properties across Waterloo Region, Stratford, and Southwestern Ontario. With over six years of real estate experience, Sandra helps buyers and sellers navigate countryside properties, hobby farms, and lifestyle-driven moves with a clear, supportive approach. She lives on a working farm and operates a family-run ranch, giving her firsthand expertise in rural land considerations, zoning, and agricultural properties. Sandra holds an Honours BA in Legal Studies with a Minor in Management Studies and is fluent in English, Croatian, and Rusyn — making her an ideal choice for multilingual clients in the KW region. Whether you are purchasing your first rural property, building new construction, or selling a countryside home in Southwestern Ontario, Sandra combines local market knowledge with the global reach of Corcoran to deliver confident, informed results.",
+                instagram: "Sandra Koller | REALTOR®\n🏡 Rural, Countryside & New Construction\n📍 Waterloo Region • Stratford • SW Ontario\n🌾 Farm owner | Trilingual: EN/HR/RU\n@corcoranhorizon | Rego Team",
+                linkedin_headline: "Rural & New Construction REALTOR® | Corcoran Horizon Realty | Waterloo Region, Stratford & Southwestern Ontario",
+                keywords: ["rural real estate", "countryside properties", "new construction", "hobby farms", "Waterloo Region", "Stratford", "Southwestern Ontario"]
+            },
+            "linda-cabral": {
+                name: "Linda Cabral",
+                hasBio: true,
+                before: "Linda Cabral brings a wealth of knowledge and a background in management, having served as a General Manager for Homeoutfitters for 13 years. Her extensive experience in both real estate and management positions her as a professional who understands the nuances of the market and is dedicated to exceeding clients' expectations. Linda's area of expertise primarily focuses on the resale and condominium markets, serving the vibrant communities of KW, Cambridge, and Brantford.",
+                after: "Linda Cabral is a bilingual (Portuguese and English) REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in resale homes and condominiums across Kitchener-Waterloo, Cambridge, and Brantford. She brings 13 years of management experience as a former General Manager at Homeoutfitters, giving her strong negotiation, client service, and organizational skills that translate directly into real estate. Linda works with first-time homebuyers, condo buyers, and real estate investors looking for properties in the KW and Cambridge markets. Her hands-on approach includes guiding clients from initial search through closing, and connecting them with trusted mortgage brokers, home inspectors, and tradespeople. Fluent in Portuguese, Linda is a go-to agent for the Portuguese-speaking community across Southwestern Ontario. Contact Linda at linda@regoteam.com or 519-590-6571.",
+                instagram: "Linda Cabral | REALTOR®\n🏠 Resale & Condos | KW • Cambridge • Brantford\n🇵🇹 Fala Português!\n@corcoranhorizon | Rego Team\n📩 linda@regoteam.com",
+                linkedin_headline: "Bilingual (Portuguese/English) REALTOR® | Resale & Condos | Corcoran Horizon Realty | Kitchener-Waterloo, Cambridge & Brantford",
+                keywords: ["Portuguese-speaking realtor", "condominiums KW", "resale homes", "first-time homebuyers", "Kitchener-Waterloo", "Cambridge", "Brantford"]
+            },
+            "william-forbes": {
+                name: "William Forbes",
+                hasBio: true,
+                before: "William Forbes stands out as a real estate agent at Corcoran Horizon Realty - Rego Team, not just for his exceptional service but for his unwavering dedication to educating and guiding his clients through every step of their real estate journey. Specializing in the Kitchener-Waterloo area, William is particularly passionate about assisting investors and individuals looking to downsize.",
+                after: "William Forbes is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in investment properties and downsizing in the Kitchener-Waterloo and Cambridge markets. He has 8 years of hands-on experience owning and operating mid-term rental properties, making him a trusted advisor for real estate investors, landlords, and newcomers to Canada seeking temporary housing. Born and raised in Kitchener and a lifelong Cambridge resident, William has deep local market knowledge across both cities. His background includes active investments in Canadian start-ups, and he achieved financial independence by age 25 through strategic real estate and business investing. William is fluent in Arabic and English, making him an excellent resource for Arabic-speaking buyers and sellers in the KW region. Whether you are purchasing your first rental property, exploring downsizing options, or building a real estate investment portfolio in Kitchener-Waterloo, William combines investor-level expertise with Corcoran's global brand reach.",
+                instagram: "William Forbes | REALTOR®\n💼 Investment Properties & Downsizing\n📍 Kitchener-Waterloo • Cambridge\n🏘 8yrs rental property owner\n🌍 Arabic & English\n@corcoranhorizon | Rego Team",
+                linkedin_headline: "Investment Property & Downsizing REALTOR® | Rental Property Owner | Corcoran Horizon Realty | Kitchener-Waterloo & Cambridge",
+                keywords: ["investment properties KW", "rental property", "downsizing", "Arabic-speaking realtor", "Kitchener-Waterloo", "Cambridge", "mid-term rentals"]
+            },
+            "patricia-inacio": {
+                name: "Patricia Inacio",
+                hasBio: true,
+                before: "",
+                after: "Patricia Inacio is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in pre-construction homes, luxury properties, and resale real estate across Kitchener-Waterloo and surrounding areas. As a member of the New Homes Team, Patricia has in-depth knowledge of upcoming pre-construction developments, builder incentives, and new community launches in the KW region. Before real estate, Patricia spent years as an Elementary School teacher — a background that sharpened her communication, patience, and ability to guide clients through complex decisions. She works with first-time buyers exploring pre-construction, luxury home seekers, and investors looking for resale opportunities in Southwestern Ontario.",
+                instagram: "Patricia Inacio | REALTOR®\n🏗 Pre-Construction & Luxury Homes\n📍 Kitchener-Waterloo & Surrounding Areas\n🎓 Former Teacher → New Homes Specialist\n@corcoranhorizon | Rego Team",
+                linkedin_headline: "Pre-Construction & Luxury REALTOR® | New Homes Team | Corcoran Horizon Realty | Kitchener-Waterloo",
+                keywords: ["pre-construction homes KW", "luxury real estate", "new homes", "builder incentives", "Kitchener-Waterloo"]
+            },
+            "natalie-lloyd": {
+                name: "Natalie Lloyd",
+                hasBio: true,
+                before: "",
+                after: "Natalie Lloyd is a REALTOR® with Corcoran Horizon Realty and the Rego Team, serving buyers, sellers, renters, and investors across Guelph, Waterloo, and Kitchener. With a background in retail management, Natalie brings strong client-service skills, active listening, and personalized guidance to every transaction. She has hands-on renovation experience from her own home projects, giving her a sharp eye for property potential, fixer-upper value, and renovation-ready homes.",
+                instagram: "Natalie Lloyd | REALTOR®\n🏠 Resale & Renovation-Ready Homes\n📍 Guelph • Waterloo • Kitchener\n🔨 Reno enthusiast | Eye for potential\n@corcoranhorizon | Rego Team",
+                linkedin_headline: "REALTOR® | Renovation-Ready Homes & Resale | Corcoran Horizon Realty | Guelph, Waterloo & Kitchener",
+                keywords: ["fixer-upper homes", "renovation-ready", "Guelph real estate", "Waterloo", "Kitchener", "first-time buyers"]
+            },
+            "rosie-tran-bennett": {
+                name: "Rosie Tran-Bennett",
+                hasBio: true,
+                before: "",
+                after: "Rosie Tran-Bennett is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in luxury homes and resale properties in the Kitchener-Waterloo region. Rosie guides buyers and sellers through every step of the transaction with a collaborative, transparent approach grounded in current market data. She works with move-up buyers, luxury home seekers, and sellers looking to maximize their property's value in today's market.",
+                instagram: "Rosie Tran-Bennett | REALTOR®\n✨ Luxury & Resale Homes\n📍 Kitchener-Waterloo Region\n🤝 Client-first, data-driven\n@corcoranhorizon | Rego Team",
+                linkedin_headline: "Luxury & Resale REALTOR® | Corcoran Horizon Realty | Kitchener-Waterloo",
+                keywords: ["luxury homes KW", "resale properties", "move-up buyers", "Kitchener-Waterloo"]
+            },
+            "sy-williams": {
+                name: "Sy Williams",
+                hasBio: true,
+                before: "",
+                after: "Sy Williams is a commercial real estate specialist with Corcoran Horizon Realty and the Rego Team, with over $100 million in completed commercial transactions since joining the team in 2015. He specializes in commercial properties, land acquisition for development, leasing, investment properties, and luxury real estate across Kitchener-Waterloo, Guelph, and as far as Ottawa, Ontario.",
+                instagram: "Sy Williams | Commercial REALTOR®\n🏢 $100M+ in Commercial Transactions\n📍 KW • Guelph • Ottawa\n📊 Land • Leasing • Investment\n@corcoranhorizon | Rego Team",
+                linkedin_headline: "Commercial Real Estate Specialist | $100M+ Transactions | Corcoran Horizon Realty | Kitchener-Waterloo, Guelph & Ottawa",
+                keywords: ["commercial real estate KW", "land acquisition", "commercial leasing", "$100 million", "Kitchener-Waterloo", "Guelph"]
+            },
+            "ben-dobrocky": {
+                name: "Ben Dobrocky",
+                hasBio: true,
+                before: "",
+                after: "Benjamin Dobrocky is a New Home Sales Specialist with Corcoran Horizon Realty and the Rego Team, bringing 10 years of experience and hundreds of successful new home sales across Southern Ontario. He serves buyers and developers in Hamilton, Niagara, Norfolk County, Kitchener-Waterloo, and London, specializing in pre-construction purchases, floor plan selection, and new community launches.",
+                instagram: "Ben Dobrocky | New Home Specialist\n🏗 10yrs • Hundreds of New Homes Sold\n📍 Hamilton • Niagara • KW • London\n📊 Accounting background\n@corcoranhorizon | Rego Team",
+                linkedin_headline: "New Home Sales Specialist | 10 Years, Hundreds of Sales | Corcoran Horizon Realty | Hamilton, Niagara, KW & London",
+                keywords: ["pre-construction homes", "new home sales", "floor plan selection", "Hamilton", "Niagara", "Kitchener-Waterloo", "London Ontario"]
+            },
+            "jillian-leclair": {
+                name: "Jillian Leclair",
+                hasBio: true,
+                before: "",
+                after: "Jillian Leclair is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in residential properties across Waterloo Region with a focus on architecture, design potential, and lifestyle-driven purchases. Born and raised in the region with time spent living in France, Jillian brings a European eye for design and quality to every property tour. She is fluent in French and conversational in Spanish, making her an excellent choice for francophone and multilingual clients in Southwestern Ontario. Before real estate, Jillian spent over 20 years as a high school languages teacher and was a top national sales representative for Stella & Dot.",
+                instagram: "Jillian Leclair | REALTOR®\n🏡 Architecture • Design • Lifestyle\n📍 Waterloo Region\n🇫🇷 Fluent in French | Conversational Spanish\n@corcoranhorizon | Rego Team",
+                linkedin_headline: "Residential REALTOR® | Architecture & Design Focus | French-Speaking | Corcoran Horizon Realty | Waterloo Region",
+                keywords: ["French-speaking realtor", "architecture", "design potential", "Waterloo Region", "multilingual"]
+            },
+            "oben-necip": {
+                name: "Oben Necip",
+                hasBio: true,
+                before: "",
+                after: "Oben Necip is a registered real estate broker and Vice President of Sales and New Developments at Corcoran Horizon Realty, with over $1 billion in pre-construction home sales completed in the past three years. A second-generation real estate professional, Oben specializes in new developments, pre-construction sales, land acquisitions, luxury estates, and real estate investment strategy. He works with developers, builders, first-time homebuyers, and seasoned investors across Southwestern Ontario. Contact Oben at oben@corcoranhorizon.com or 289-925-7317.",
+                instagram: "Oben Necip | Broker & VP Sales\n🏗 $1B+ in Pre-Construction Sales\n📍 Southwestern Ontario\n💼 New Developments • Land • Luxury\n@corcoranhorizon",
+                linkedin_headline: "Registered Broker & VP of Sales | $1B+ Pre-Construction Sales | Corcoran Horizon Realty | Southwestern Ontario",
+                keywords: ["pre-construction sales", "$1 billion", "new developments", "land acquisitions", "luxury estates", "real estate broker"]
+            },
+            "lloyd-cruz": {
+                name: "Lloyd Cruz",
+                hasBio: false
+            },
+            "nick-klassen": {
+                name: "Nick Klassen",
+                hasBio: false
+            },
+            "humberto-pereira": {
+                name: "Humberto Pereira",
+                hasBio: false
+            },
+            "chanel-silva": {
+                name: "Chanel Silva",
+                hasBio: false
+            },
+            "nareg-vartanian": {
+                name: "Nareg Vartanian",
+                hasBio: false
+            },
+            "shivdeep-walia": {
+                name: "Shivdeep Walia",
+                hasBio: false
+            },
+            "jennifer-rose": {
+                name: "Jennifer Rose",
+                hasBio: false
+            }
+        };
+
+        // ══════════════════════════════════════════════
+        // PLATFORM DEFINITIONS
+        // ══════════════════════════════════════════════
+        const PLATFORMS = [
+            {
+                id: "realtor_ca",
+                name: "Realtor.ca",
+                badge: "You Update",
+                badgeType: "you-update",
+                bioType: "full",
+                steps: [
+                    "Log in to your Realtor.ca account",
+                    "Go to your Agent Profile",
+                    "Replace your bio with the text provided",
+                    "Add these service cities (full names): Waterloo Region, Stratford, Kitchener, Cambridge, Guelph, and any others you serve",
+                    "Update your Specialties with your keywords",
+                    "Add all languages you speak",
+                    "Save and publish"
+                ]
+            },
+            {
+                id: "linkedin",
+                name: "LinkedIn",
+                badge: "You Update",
+                badgeType: "you-update",
+                bioType: "linkedin",
+                steps: [
+                    "Log in to LinkedIn",
+                    "Click your profile photo > View profile",
+                    "Click the pencil icon to edit your headline",
+                    "Replace with the suggested headline below",
+                    "Scroll down to About section and click Edit",
+                    "Replace with the bio below",
+                    "Update your Experience to show Corcoran Horizon Realty",
+                    "Add past career experience",
+                    "Add matching skills from your keywords",
+                    "Save changes"
+                ]
+            },
+            {
+                id: "instagram",
+                name: "Instagram",
+                badge: "You Update",
+                badgeType: "you-update",
+                bioType: "instagram",
+                steps: [
+                    "Open Instagram and go to your profile",
+                    "Click Edit Profile",
+                    "Replace your bio with the text provided",
+                    "Switch to a Business Account (if not already)",
+                    "Create an 'About Me' Story Highlight",
+                    "Save and publish"
+                ]
+            },
+            {
+                id: "facebook",
+                name: "Facebook",
+                badge: "You Update",
+                badgeType: "you-update",
+                bioType: "full",
+                steps: [
+                    "Go to your Business Page",
+                    "Click About (left sidebar)",
+                    "Click Edit",
+                    "Replace the description with your bio",
+                    "Set your category to 'Real Estate Agent'",
+                    "Verify and update your contact information",
+                    "Save changes"
+                ]
+            },
+            {
+                id: "google_business",
+                name: "Google Business Profile",
+                badge: "You Update",
+                badgeType: "you-update",
+                bioType: "full",
+                steps: [
+                    "Go to business.google.com",
+                    "Sign in and select your business",
+                    "Click Edit profile",
+                    "Paste your bio into the Description field",
+                    "Set your category to 'Real Estate Agent'",
+                    "Add your service areas (spell out full city names)",
+                    "Add all languages you speak",
+                    "Post an update or story this week (keeps profile active)",
+                    "Save changes"
+                ]
+            },
+            {
+                id: "activepipe",
+                name: "ActivePipe",
+                badge: "You Update",
+                badgeType: "you-update",
+                bioType: "none",
+                steps: [
+                    "Log in to ActivePipe",
+                    "Go to your Profile",
+                    "Update your agent bio with highlights from your GEO-optimized bio",
+                    "Update your email signature with a one-liner about your specialty",
+                    "Review your automated templates and ensure they reflect your brand",
+                    "Save changes"
+                ]
+            },
+            {
+                id: "presentations",
+                name: "Presentations (presentations.corcoran.com)",
+                badge: "You Update",
+                badgeType: "you-update",
+                bioType: "none",
+                steps: [
+                    "Log in to presentations.corcoran.com",
+                    "Find your Listing Presentation template",
+                    "Update the 'About You' or bio slide with your GEO-optimized bio",
+                    "Update your Buyer Guide agent section",
+                    "Update your CMA (Comparative Market Analysis) bio",
+                    "Save as your defaults",
+                    "Sync across all presentations"
+                ]
+            },
+            {
+                id: "marketing_centre",
+                name: "Marketing Centre (MyCorcoran)",
+                badge: "You Update",
+                badgeType: "you-update",
+                bioType: "none",
+                steps: [
+                    "Log in to MyCorcoran",
+                    "Go to Marketing Centre",
+                    "Update your profile bio (this auto-populates into your flyers, postcards, and emails)",
+                    "Regenerate your saved templates (flyers, postcards, e-signatures)",
+                    "Save and sync across all marketing materials"
+                ]
+            },
+            {
+                id: "website",
+                name: "CorcHorizon.com & Corcoran.com/DASH",
+                badge: "Chelsea Handles",
+                badgeType: "chelsea-handles",
+                bioType: "none",
+                steps: [
+                    "Chelsea will update your bio on the main website and DASH directory.",
+                    "No action needed from you.",
+                    "Just make sure your bio is approved above!"
+                ]
+            }
+        ];
+
+        // ══════════════════════════════════════════════
+        // APP STATE
+        // ══════════════════════════════════════════════
+        let db, auth;
+        let currentUser = null;
+        let currentAgent = null;
+        let isAdmin = false;
+
+        // ══════════════════════════════════════════════
+        // FIREBASE INIT
+        // ══════════════════════════════════════════════
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.firestore();
+        auth = firebase.auth();
+        storage = firebase.storage();
+
+        // ══════════════════════════════════════════════
+        // UTILITY FUNCTIONS
+        // ══════════════════════════════════════════════
+        function showAlert(message, type) {
+            const alertEl = document.getElementById("alert");
+            alertEl.textContent = message;
+            alertEl.className = `alert ${type}`;
+            setTimeout(() => {
+                alertEl.className = "alert";
+            }, 5000);
+        }
+
+        function emailToName(email) {
+            const part = email.split("@")[0];
+            const parts = part.split(/[._]/);
+            const name = parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(" ");
+            return name;
+        }
+
+        function slugify(str) {
+            return str.toLowerCase().replace(/\s+/g, "-").replace(/[^\w-]/g, "");
+        }
+
+        function getFirstName(fullName) {
+            return fullName.split(" ")[0];
+        }
+
+        function findAgentByEmail(email) {
+            const name = emailToName(email);
+            for (const slug in AGENT_SEED_DATA) {
+                const agent = AGENT_SEED_DATA[slug];
+                if (agent.name.toLowerCase() === name.toLowerCase()) {
+                    return agent;
+                }
+            }
+            return null;
+        }
+
+        function getAgentSlug(name) {
+            return slugify(name);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Feedback handled by caller
+            }).catch(err => {
+                console.error("Copy failed:", err);
+            });
+        }
+
+        // ══════════════════════════════════════════════
+        // AUTH LISTENERS
+        // ══════════════════════════════════════════════
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                // Check domain
+                const email = user.email;
+                const domain = email.split("@")[1];
+                const isAllowed = ALLOWED_DOMAINS.includes(domain);
+
+                if (!isAllowed && !ADMIN_EMAILS.includes(email)) {
+                    await auth.signOut();
+                    showAlert("Access denied. Please use an authorized email address.", "error");
+                    document.getElementById("auth-screen").classList.remove("hidden");
+                    document.getElementById("main-container").classList.add("hidden");
+                    return;
+                }
+
+                currentUser = user;
+                isAdmin = ADMIN_EMAILS.includes(email);
+                document.getElementById("auth-screen").classList.add("hidden");
+                document.getElementById("top-bar").classList.remove("hidden");
+                document.getElementById("main-container").classList.remove("hidden");
+                document.getElementById("user-email").textContent = email;
+
+                if (isAdmin) {
+                    showAdminView();
+                } else {
+                    showAgentView();
+                }
+            } else {
+                currentUser = null;
+                document.getElementById("auth-screen").classList.remove("hidden");
+                document.getElementById("top-bar").classList.add("hidden");
+                document.getElementById("main-container").classList.add("hidden");
+            }
+        });
+
+        // ══════════════════════════════════════════════
+        // AGENT VIEW
+        // ══════════════════════════════════════════════
+        async function showAgentView() {
+            document.getElementById("agent-view").classList.remove("hidden");
+            document.getElementById("admin-view").classList.add("hidden");
+
+            const agent = findAgentByEmail(currentUser.email);
+
+            if (!agent) {
+                document.getElementById("agent-view").innerHTML = `
+                    <div class="setup-message">
+                        <h3>We're setting up your profile</h3>
+                        <p>Contact Chelsea Lahey at <strong>clahey@corcoranhorizon.com</strong> to get started.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            currentAgent = agent;
+            const slug = getAgentSlug(agent.name);
+
+            // Load or create agent record in Firestore
+            let agentDoc = null;
+            try {
+                const snap = await db.collection("agents").doc(slug).get();
+                agentDoc = snap.data();
+            } catch (err) {
+                console.error("Error loading agent doc:", err);
+            }
+
+            // Merge with seed data
+            const agentData = {
+                ...agent,
+                status: agentDoc?.status || "pending",
+                editNotes: agentDoc?.editNotes || "",
+                platformProgress: agentDoc?.platformProgress || Object.fromEntries(PLATFORMS.map(p => [p.id, false])),
+                approvedAt: agentDoc?.approvedAt,
+                updatedAt: agentDoc?.updatedAt
+            };
+
+            // Render welcome
+            document.getElementById("agent-first-name").textContent = getFirstName(agent.name);
+
+            // Render status
+            const statusBadge = document.getElementById("status-badge");
+            const statusText = document.getElementById("status-text");
+            if (agentData.status === "approved") {
+                statusBadge.textContent = "✓ Approved";
+                statusBadge.className = "status-badge approved";
+                statusText.textContent = "Your bio has been approved! Now update your platforms (due April 13).";
+            } else if (agentData.status === "edits_requested") {
+                statusBadge.textContent = "✎ Edits Submitted";
+                statusBadge.className = "status-badge edits";
+                statusText.textContent = `Your edit request was submitted. Chelsea will revise your bio.`;
+            } else if (agentData.status === "declined") {
+                statusBadge.textContent = "Declined";
+                statusBadge.className = "status-badge edits";
+                statusText.textContent = "You declined this bio. Chelsea will reach out to discuss next steps.";
+            } else {
+                statusBadge.textContent = "Pending Approval";
+                statusBadge.className = "status-badge pending";
+                statusText.textContent = "Please review your bio below and approve or request edits by April 6.";
+            }
+
+            // Render what is this collapsible
+            const whatHeader = document.getElementById("what-is-this-header");
+            const whatContent = document.getElementById("what-is-this-content");
+            whatHeader.addEventListener("click", () => {
+                const toggle = whatHeader.querySelector(".collapsible-toggle");
+                whatContent.classList.toggle("closed");
+                toggle.classList.toggle("closed");
+            });
+
+            // Render bios
+            document.getElementById("agent-bio-before").textContent = agent.before || "(No previous bio on file)";
+            document.getElementById("agent-bio-after").textContent = agent.after;
+
+            // Render actions
+            const bioActions = document.getElementById("bio-actions");
+            const approvedMessage = document.getElementById("approved-message");
+
+            if (agentData.status === "approved") {
+                bioActions.classList.add("hidden");
+                approvedMessage.classList.remove("hidden");
+            } else {
+                bioActions.classList.remove("hidden");
+                approvedMessage.classList.add("hidden");
+
+                document.getElementById("approve-btn").onclick = approveBio;
+                document.getElementById("request-edits-btn").onclick = () => {
+                    document.getElementById("edit-modal-overlay").classList.add("active");
+                };
+                document.getElementById("decline-btn").onclick = () => {
+                    document.getElementById("decline-modal-overlay").classList.add("active");
+                };
+            }
+
+            // Modal controls
+            document.getElementById("edit-cancel-btn").onclick = () => {
+                document.getElementById("edit-modal-overlay").classList.remove("active");
+            };
+            document.getElementById("edit-submit-btn").onclick = submitEditRequest;
+
+            document.getElementById("decline-cancel-btn").onclick = () => {
+                document.getElementById("decline-modal-overlay").classList.remove("active");
+            };
+            document.getElementById("decline-submit-btn").onclick = submitDecline;
+
+            // Render platforms
+            renderPlatformsAccordion(agentData);
+
+            // Load headshot and contact info
+            loadHeadshotPreview(agentData);
+            initHeadshotUploadHandler();
+            loadContactInfo(agentData);
+            initContactFormHandlers();
+        }
+
+        async function approveBio() {
+            try {
+                const slug = getAgentSlug(currentAgent.name);
+                await db.collection("agents").doc(slug).set({
+                    name: currentAgent.name,
+                    hasBio: currentAgent.hasBio,
+                    before: currentAgent.before,
+                    after: currentAgent.after,
+                    instagram: currentAgent.instagram || "",
+                    linkedin_headline: currentAgent.linkedin_headline || "",
+                    keywords: currentAgent.keywords || [],
+                    status: "approved",
+                    platformProgress: Object.fromEntries(PLATFORMS.map(p => [p.id, false])),
+                    approvedAt: new Date(),
+                    updatedAt: new Date()
+                }, { merge: true });
+
+                showAlert("Bio approved! You can now update your platforms.", "success");
+                showAgentView();
+            } catch (err) {
+                console.error("Error approving bio:", err);
+                showAlert("Error approving bio. Please try again.", "error");
+            }
+        }
+
+        async function submitEditRequest() {
+            const notes = document.getElementById("edit-textarea").value.trim();
+            if (!notes) {
+                showAlert("Please provide edit feedback.", "error");
+                return;
+            }
+
+            try {
+                const slug = getAgentSlug(currentAgent.name);
+                await db.collection("agents").doc(slug).set({
+                    name: currentAgent.name,
+                    status: "edits_requested",
+                    editNotes: notes,
+                    updatedAt: new Date()
+                }, { merge: true });
+
+                showAlert("Edit request submitted. Chelsea will revise your bio.", "success");
+                document.getElementById("edit-modal-overlay").classList.remove("active");
+                document.getElementById("edit-textarea").value = "";
+                showAgentView();
+            } catch (err) {
+                console.error("Error submitting edits:", err);
+                showAlert("Error submitting request. Please try again.", "error");
+            }
+        }
+
+        async function submitDecline() {
+            const reason = document.getElementById("decline-textarea").value.trim();
+
+            try {
+                const slug = getAgentSlug(currentAgent.name);
+                await db.collection("agents").doc(slug).set({
+                    name: currentAgent.name,
+                    status: "declined",
+                    editNotes: reason,
+                    updatedAt: new Date()
+                }, { merge: true });
+
+                showAlert("Bio declined. Chelsea will follow up with you.", "success");
+                document.getElementById("decline-modal-overlay").classList.remove("active");
+                document.getElementById("decline-textarea").value = "";
+                showAgentView();
+            } catch (err) {
+                console.error("Error declining bio:", err);
+                showAlert("Error declining bio. Please try again.", "error");
+            }
+        }
+
+        function renderPlatformsAccordion(agentData) {
+            if (agentData.status !== "approved") {
+                document.getElementById("platform-checklist-message").innerHTML = `
+                    <p style="color: #E8685A;">Please approve your bio first to unlock platform instructions.</p>
+                `;
+                document.getElementById("platforms-accordion").innerHTML = "";
+                return;
+            }
+
+            document.getElementById("platform-checklist-message").innerHTML = "";
+            const accordion = document.getElementById("platforms-accordion");
+            accordion.innerHTML = "";
+
+            PLATFORMS.forEach((platform) => {
+                const isChecked = agentData.platformProgress[platform.id] || false;
+                let bioContent = "";
+
+                if (platform.bioType === "full") {
+                    bioContent = `
+                        <div class="platform-section">
+                            <h4>Bio to Copy & Paste</h4>
+                            <div class="bio-text-box" style="position: relative;">
+                                ${agentData.after}
+                                <button class="copy-btn" onclick="copyAndFeedback(this, \`${agentData.after.replace(/`/g, "\\`")}\`)">Copy</button>
+                            </div>
+                        </div>
+                    `;
+                } else if (platform.bioType === "linkedin") {
+                    const headline = agentData.linkedin_headline || "Your LinkedIn Headline";
+                    bioContent = `
+                        <div class="platform-section">
+                            <h4>Suggested Headline</h4>
+                            <div class="bio-text-box" style="position: relative;">
+                                ${headline}
+                                <button class="copy-btn" onclick="copyAndFeedback(this, \`${headline.replace(/`/g, "\\`")}\`)">Copy</button>
+                            </div>
+                        </div>
+                        <div class="platform-section">
+                            <h4>Bio for About Section</h4>
+                            <div class="bio-text-box" style="position: relative;">
+                                ${agentData.after}
+                                <button class="copy-btn" onclick="copyAndFeedback(this, \`${agentData.after.replace(/`/g, "\\`")}\`)">Copy</button>
+                            </div>
+                        </div>
+                    `;
+                } else if (platform.bioType === "instagram") {
+                    const instaBio = agentData.instagram || "Your Instagram bio";
+                    bioContent = `
+                        <div class="platform-section">
+                            <h4>Bio to Paste</h4>
+                            <div class="bio-text-box" style="position: relative; white-space: pre-wrap;">
+                                ${instaBio}
+                                <button class="copy-btn" onclick="copyAndFeedback(this, \`${instaBio.replace(/`/g, "\\`")}\`)">Copy</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                const stepsHTML = platform.steps
+                    .map(step => `<li>${step}</li>`)
+                    .join("");
+
+                const item = document.createElement("div");
+                item.className = "accordion-item";
+                item.innerHTML = `
+                    <div class="accordion-header">
+                        <div class="accordion-header-title">
+                            <span class="accordion-toggle"></span>
+                            <span>${platform.name}</span>
+                            <span class="platform-badge ${platform.badgeType}">${platform.badge}</span>
+                        </div>
+                    </div>
+                    <div class="accordion-content closed">
+                        <div class="accordion-body">
+                            ${bioContent}
+                            <div class="platform-section">
+                                <h4>Steps</h4>
+                                <div class="platform-steps">
+                                    <ol>${stepsHTML}</ol>
+                                </div>
+                            </div>
+                            <div class="platform-checkbox">
+                                <input type="checkbox" id="platform-${platform.id}" ${isChecked ? "checked" : ""} onchange="updatePlatformProgress('${platform.id}', this.checked)">
+                                <label for="platform-${platform.id}">I've updated this platform</label>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                accordion.appendChild(item);
+
+                // Toggle handler
+                const header = item.querySelector(".accordion-header");
+                const content = item.querySelector(".accordion-content");
+                const toggle = item.querySelector(".accordion-toggle");
+
+                header.addEventListener("click", () => {
+                    content.classList.toggle("closed");
+                    toggle.classList.toggle("closed");
+                });
+            });
+        }
+
+        window.copyAndFeedback = function(btn, text) {
+            copyToClipboard(text);
+            const originalText = btn.textContent;
+            btn.textContent = "Copied!";
+            btn.classList.add("copied");
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.classList.remove("copied");
+            }, 2000);
+        };
+
+        window.updatePlatformProgress = async function(platformId, isChecked) {
+            try {
+                const slug = getAgentSlug(currentAgent.name);
+                const snap = await db.collection("agents").doc(slug).get();
+                const progress = snap.data()?.platformProgress || {};
+                progress[platformId] = isChecked;
+
+                await db.collection("agents").doc(slug).set({
+                    platformProgress: progress,
+                    updatedAt: new Date()
+                }, { merge: true });
+            } catch (err) {
+                console.error("Error updating platform progress:", err);
+            }
+        };
+
+        // ══════════════════════════════════════════════
+        // HEADSHOT UPLOAD
+        // ══════════════════════════════════════════════
+        function loadHeadshotPreview(agentData) {
+            const preview = document.getElementById("headshot-preview");
+            if (agentData.headshotUrl) {
+                preview.innerHTML = `<img src="${agentData.headshotUrl}" alt="Headshot">`;
+            }
+        }
+
+        function initHeadshotUploadHandler() {
+            const uploadBtn = document.getElementById("upload-headshot-btn");
+            const fileInput = document.getElementById("headshot-input");
+            const preview = document.getElementById("headshot-preview");
+
+            uploadBtn.addEventListener("click", () => {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener("change", async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                // Validate file is an image
+                if (!file.type.startsWith("image/")) {
+                    showAlert("Please select an image file.", "error");
+                    return;
+                }
+
+                try {
+                    uploadBtn.disabled = true;
+                    uploadBtn.textContent = "Uploading...";
+
+                    const slug = getAgentSlug(currentAgent.name);
+                    const storageRef = firebase.storage().ref(`headshots/${slug}.jpg`);
+
+                    // Upload to Firebase Storage
+                    const snapshot = await storageRef.put(file);
+                    const downloadURL = await snapshot.ref.getDownloadURL();
+
+                    // Save URL to Firestore
+                    await db.collection("agents").doc(slug).set({
+                        headshotUrl: downloadURL,
+                        updatedAt: new Date()
+                    }, { merge: true });
+
+                    // Update preview
+                    preview.innerHTML = `<img src="${downloadURL}" alt="Headshot">`;
+
+                    showAlert("Headshot uploaded successfully!", "success");
+                    uploadBtn.disabled = false;
+                    uploadBtn.textContent = "Upload New Headshot";
+                    fileInput.value = "";
+                } catch (err) {
+                    console.error("Error uploading headshot:", err);
+                    showAlert("Error uploading headshot. Please try again.", "error");
+                    uploadBtn.disabled = false;
+                    uploadBtn.textContent = "Upload New Headshot";
+                }
+            });
+        }
+
+        // ══════════════════════════════════════════════
+        // CONTACT & SOCIALS FORM
+        // ══════════════════════════════════════════════
+        function loadContactInfo(agentData) {
+            if (agentData.phone) document.getElementById("phone").value = agentData.phone;
+            if (agentData.email) document.getElementById("email").value = agentData.email;
+            if (agentData.instagramHandle) document.getElementById("instagram").value = agentData.instagramHandle;
+            if (agentData.linkedinUrl) document.getElementById("linkedin").value = agentData.linkedinUrl;
+            if (agentData.facebookUrl) document.getElementById("facebook").value = agentData.facebookUrl;
+        }
+
+        function initContactFormHandlers() {
+            const saveBtn = document.getElementById("save-contact-btn");
+            const confirmationMsg = document.getElementById("contact-saved-message");
+
+            saveBtn.addEventListener("click", async () => {
+                const phone = document.getElementById("phone").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const instagram = document.getElementById("instagram").value.trim();
+                const linkedin = document.getElementById("linkedin").value.trim();
+                const facebook = document.getElementById("facebook").value.trim();
+
+                try {
+                    const slug = getAgentSlug(currentAgent.name);
+                    await db.collection("agents").doc(slug).set({
+                        phone: phone || null,
+                        email: email || null,
+                        instagramHandle: instagram || null,
+                        linkedinUrl: linkedin || null,
+                        facebookUrl: facebook || null,
+                        updatedAt: new Date()
+                    }, { merge: true });
+
+                    // Show confirmation
+                    confirmationMsg.classList.remove("hidden");
+                    setTimeout(() => {
+                        confirmationMsg.classList.add("hidden");
+                    }, 3000);
+
+                    showAlert("Contact info saved successfully!", "success");
+                } catch (err) {
+                    console.error("Error saving contact info:", err);
+                    showAlert("Error saving contact info. Please try again.", "error");
+                }
+            });
+        }
+
+        // ══════════════════════════════════════════════
+        // ADMIN VIEW
+        // ══════════════════════════════════════════════
+        function showAdminView() {
+            document.getElementById("agent-view").classList.add("hidden");
+            document.getElementById("admin-view").classList.remove("hidden");
+
+            loadAdminDashboard();
+        }
+
+        async function loadAdminDashboard() {
+            try {
+                let agents = [];
+
+                // Try to load from Firestore
+                const snap = await db.collection("agents").get();
+                snap.forEach(doc => {
+                    agents.push({ id: doc.id, ...doc.data() });
+                });
+
+                // If empty, use seed data
+                if (agents.length === 0) {
+                    for (const slug in AGENT_SEED_DATA) {
+                        const agent = AGENT_SEED_DATA[slug];
+                        agents.push({
+                            id: slug,
+                            ...agent,
+                            status: "pending",
+                            platformProgress: Object.fromEntries(PLATFORMS.map(p => [p.id, false])),
+                            updatedAt: null
+                        });
+                    }
+                }
+
+                allAgents = agents;
+                renderAdminStats(agents);
+                renderAdminTable(agents);
+            } catch (err) {
+                console.error("Error loading dashboard:", err);
+                showAlert("Error loading dashboard.", "error");
+            }
+        }
+
+        function renderAdminStats(agents) {
+            const stats = {
+                total: agents.length,
+                approved: agents.filter(a => a.status === "approved").length,
+                pending: agents.filter(a => a.status === "pending").length,
+                edits: agents.filter(a => a.status === "edits_requested").length,
+                noBio: agents.filter(a => !a.hasBio).length
+            };
+
+            const statsBar = document.getElementById("stats-bar");
+            statsBar.innerHTML = `
+                <div class="stat-card">
+                    <div class="number">${stats.total}</div>
+                    <div class="label">Total Agents</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${stats.approved}</div>
+                    <div class="label">Bios Approved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${stats.pending}</div>
+                    <div class="label">Pending</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${stats.edits}</div>
+                    <div class="label">Edits Requested</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${stats.noBio}</div>
+                    <div class="label">No Bio on File</div>
+                </div>
+            `;
+        }
+
+        function renderAdminTable(agents) {
+            const tbody = document.getElementById("agent-table-body");
+            tbody.innerHTML = "";
+
+            agents.forEach((agent) => {
+                const platformCount = Object.values(agent.platformProgress || {}).filter(Boolean).length;
+                const platformTotal = PLATFORMS.length;
+                const progressText = `${platformCount}/${platformTotal} complete`;
+
+                const row = document.createElement("tr");
+                row.className = "agent-row";
+                const geoScore = agent.geoAudit?.overallScore ?? "—";
+                const geoGrade = agent.geoAudit?.grade ?? "";
+                const geoDisplay = geoScore !== "—" ? `<strong>${geoScore}</strong> <span style="font-size: 0.8rem; color: #666;">(${geoGrade})</span>` : "—";
+                row.innerHTML = `
+                    <td><strong>${agent.name}</strong></td>
+                    <td><span class="status-badge ${getStatusClass(agent.status)}">${getStatusLabel(agent.status)}</span></td>
+                    <td>${agent.hasBio ? progressText : "N/A"}</td>
+                    <td>${geoDisplay}</td>
+                    <td>${agent.updatedAt ? new Date(agent.updatedAt.toDate()).toLocaleDateString() : "—"}</td>
+                `;
+
+                row.onclick = (e) => {
+                    e.stopPropagation();
+                    const details = document.getElementById(`details-${agent.id}`);
+                    const isExpanded = details?.classList.contains("expanded");
+                    document.querySelectorAll(".agent-details").forEach(d => d.classList.remove("expanded"));
+                    document.querySelectorAll(".agent-row").forEach(r => r.classList.remove("expanded"));
+                    if (!isExpanded && details) {
+                        details.classList.add("expanded");
+                        row.classList.add("expanded");
+                    }
+                };
+
+                tbody.appendChild(row);
+
+                // Details row
+                const detailsRow = document.createElement("tr");
+                detailsRow.innerHTML = `<td colspan="4"><div class="agent-details" id="details-${agent.id}"></div></td>`;
+                tbody.appendChild(detailsRow);
+
+                const detailsDiv = detailsRow.querySelector(".agent-details");
+                renderAgentDetails(agent, detailsDiv);
+            });
+        }
+
+        function renderAgentDetails(agent, container) {
+            if (!agent.hasBio) {
+                container.innerHTML = `<p style="color: #999;">No bio on file for this agent.</p>`;
+                return;
+            }
+
+            let html = `<h3>Bio Status</h3>`;
+
+            if (agent.status === "approved") {
+                html += `<div class="success-message">✓ Bio Approved on ${new Date(agent.approvedAt.toDate()).toLocaleDateString()}</div>`;
+            } else if (agent.status === "edits_requested") {
+                html += `
+                    <h3>Edit Request</h3>
+                    <div class="details-bio">${agent.editNotes}</div>
+                `;
+            } else if (agent.status === "declined") {
+                html += `
+                    <h3>Decline Reason</h3>
+                    <div class="details-bio">${agent.editNotes || "(No reason provided)"}</div>
+                `;
+            }
+
+            html += `
+                <h3>Approved Bio</h3>
+                <div class="details-bio">${agent.after}</div>
+                <h3>Platform Progress</h3>
+            `;
+
+            const progress = agent.platformProgress || {};
+            const platformList = PLATFORMS.map(p => {
+                const isChecked = progress[p.id];
+                return `<div><input type="checkbox" ${isChecked ? "checked" : ""} disabled> ${p.name}</div>`;
+            }).join("");
+
+            html += `<div style="display: flex; flex-direction: column; gap: 0.5rem;">${platformList}</div>`;
+
+            // Headshot
+            html += `<h3>Headshot</h3>`;
+            if (agent.headshotUrl) {
+                html += `<div class="admin-headshot-thumbnail"><img src="${agent.headshotUrl}" alt="Headshot"></div>`;
+            } else {
+                html += `<p style="color: #999;">No headshot uploaded</p>`;
+            }
+
+            // Contact & Social Info
+            html += `<h3>Contact & Social Info</h3>`;
+            if (agent.phone || agent.email || agent.instagramHandle || agent.linkedinUrl || agent.facebookUrl) {
+                html += `<div class="admin-contact-info">`;
+                if (agent.phone) html += `<div><span class="admin-contact-info-label">Phone:</span> ${agent.phone}</div>`;
+                if (agent.email) html += `<div><span class="admin-contact-info-label">Email:</span> ${agent.email}</div>`;
+                if (agent.instagramHandle) html += `<div><span class="admin-contact-info-label">Instagram:</span> ${agent.instagramHandle}</div>`;
+                if (agent.linkedinUrl) html += `<div><span class="admin-contact-info-label">LinkedIn:</span> ${agent.linkedinUrl}</div>`;
+                if (agent.facebookUrl) html += `<div><span class="admin-contact-info-label">Facebook:</span> ${agent.facebookUrl}</div>`;
+                html += `</div>`;
+            } else {
+                html += `<p style="color: #999;">No contact info provided</p>`;
+            }
+
+            html += `<div style="margin-top: 1.5rem;"><button class="btn btn-info" onclick="viewAsAgent('${agent.id}')">View as Agent</button></div>`;
+
+            container.innerHTML = html;
+        }
+
+        function getStatusClass(status) {
+            if (status === "approved") return "approved";
+            if (status === "edits_requested") return "edits";
+            if (status === "declined") return "edits";
+            return "pending";
+        }
+
+        function getStatusLabel(status) {
+            if (status === "edits_requested") return "Edits Requested";
+            if (status === "no_bio") return "No Bio";
+            return status.charAt(0).toUpperCase() + status.slice(1);
+        }
+
+        window.viewAsAgent = function(agentId) {
+            const agent = AGENT_SEED_DATA[agentId];
+            if (agent) {
+                currentAgent = agent;
+                document.getElementById("admin-view").classList.add("hidden");
+                document.getElementById("agent-view").classList.remove("hidden");
+                showAgentView();
+            }
+        };
+
+        // ══════════════════════════════════════════════
+        // GEO AUDIT FEATURE
+        // ══════════════════════════════════════════════
+        const PLATFORMS_FOR_GEO = {
+            realtor_ca: "Realtor.ca",
+            corcoran_com: "Corcoran.com",
+            corcohorizon_com: "CorcorHorizon.com",
+            regoteam_com: "RegoTeam.com",
+            google_business: "Google Business Profile",
+            linkedin: "LinkedIn",
+            instagram: "Instagram",
+            facebook: "Facebook"
+        };
+
+        let allAgents = [];
+
+        // Tab switching
+        document.querySelectorAll(".geo-tab-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const tabName = e.target.dataset.tab;
+                document.querySelectorAll(".geo-tab-btn").forEach(b => b.classList.remove("active"));
+                document.querySelectorAll(".geo-tab-content").forEach(t => t.classList.remove("active"));
+                e.target.classList.add("active");
+                document.getElementById(tabName).classList.add("active");
+
+                if (tabName === "geo-audit-tab") {
+                    populateGeoAgentSelect();
+                }
+            });
+        });
+
+        async function populateGeoAgentSelect() {
+            const select = document.getElementById("geo-agent-select");
+            select.innerHTML = '<option value="">-- Choose an agent --</option>';
+
+            allAgents.forEach(agent => {
+                const option = document.createElement("option");
+                option.value = agent.id;
+                option.textContent = agent.name;
+                select.appendChild(option);
+            });
+
+            select.addEventListener("change", (e) => {
+                if (e.target.value) {
+                    const agent = allAgents.find(a => a.id === e.target.value);
+                    renderGeoAuditForm(agent);
+                } else {
+                    document.getElementById("geo-audit-container").innerHTML = "";
+                }
+            });
+        }
+
+        function generatePrefilledQueries(agent) {
+            const queries = [];
+            const keywords = agent.keywords || [];
+            const city = keywords.find(k => ["waterloo", "kitchener", "cambridge", "guelph", "brantford", "stratford", "ontario", "kw", "sw ontario"].some(c => k.toLowerCase().includes(c)));
+            const lang = keywords.find(k => ["french", "portuguese", "arabic", "spanish", "mandarin"].some(l => k.toLowerCase().includes(l)));
+
+            if (lang) {
+                queries.push(`${lang} speaking realtor ${city || "Waterloo Region"}`);
+            }
+            if (keywords.length > 0) {
+                queries.push(`${keywords[0]} ${city || "Waterloo"}`);
+            }
+            queries.push(`${agent.name} Corcoran Horizon Realty`);
+            if (lang) {
+                queries.push(`${lang} agent ${city || "KW"}`);
+            }
+
+            return queries.slice(0, 4);
+        }
+
+        function calculateGeoScores(audit) {
+            if (!audit) return { overall: 0, grade: "F" };
+
+            const platformChecks = audit.platformChecks || {};
+            let platformScore = 0;
+            const platformWeights = { found_matches: 2, found_outdated: 1, not_found: 0 };
+
+            for (const key in platformChecks) {
+                const check = platformChecks[key];
+                if (check.found && check.matches) platformScore += 2;
+                else if (check.found && !check.matches) platformScore += 1;
+            }
+
+            const maxPlatformScore = Object.keys(platformChecks).length * 2;
+            const platformPercent = maxPlatformScore > 0 ? (platformScore / maxPlatformScore) * 100 : 0;
+
+            const searchTests = audit.searchTests || [];
+            let searchScore = 0;
+            searchTests.forEach(test => {
+                if (test.result === "agent_page1") searchScore += 2;
+                else if (test.result === "agent_page2plus") searchScore += 1;
+            });
+            const maxSearchScore = Math.max(searchTests.length * 2, 1);
+            const searchPercent = (searchScore / maxSearchScore) * 100;
+
+            const aiTests = audit.aiTests || [];
+            let aiScore = 0;
+            aiTests.forEach(test => {
+                if (test.result === "recommended") aiScore += 2;
+                else if (test.result === "mentioned") aiScore += 1;
+            });
+            const maxAiScore = Math.max(aiTests.length * 2, 1);
+            const aiPercent = (aiScore / maxAiScore) * 100;
+
+            const overall = (platformPercent * 0.4) + (searchPercent * 0.35) + (aiPercent * 0.25);
+
+            let grade = "F";
+            if (overall >= 80) grade = "A";
+            else if (overall >= 70) grade = "B";
+            else if (overall >= 60) grade = "C";
+            else if (overall >= 50) grade = "D";
+
+            return { overall: Math.round(overall), grade };
+        }
+
+        function renderGeoAuditForm(agent) {
+            const audit = agent.geoAudit || {};
+            const scores = calculateGeoScores(audit);
+            const prefilledQueries = generatePrefilledQueries(agent);
+
+            let html = `<div style="margin-bottom: 2rem;">
+                <h3>${agent.name} - GEO Audit</h3>
+                <div style="text-align: center; margin: 1.5rem 0;">
+                    <div class="geo-score-ring grade-${scores.grade.toLowerCase()}">
+                        <div class="geo-score-number">${scores.overall}</div>
+                        <div class="geo-score-grade">${scores.grade}</div>
+                    </div>
+                </div>`;
+
+            if (audit.auditDate) {
+                html += `<p style="text-align: center; color: #666; margin-bottom: 1rem;">Last audited: ${new Date(audit.auditDate).toLocaleDateString()} by ${audit.auditedBy || "Unknown"}</p>`;
+            }
+
+            html += `</div>`;
+
+            // Platform Presence Checklist
+            html += `<div class="geo-section">
+                <h4>Platform Presence Checklist</h4>
+                <div class="geo-consistency-header">
+                    <div>Consistency Score: <span class="geo-consistency-score">${audit.platformChecks ? (Object.values(audit.platformChecks).filter(p => p.found && p.matches).length * 2 + Object.values(audit.platformChecks).filter(p => p.found && !p.matches).length) : 0}/${Object.keys(PLATFORMS_FOR_GEO).length * 2}</span></div>
+                </div>`;
+
+            for (const key in PLATFORMS_FOR_GEO) {
+                const check = audit.platformChecks?.[key] || { found: false, matches: false, notes: "" };
+                const found = check.found || false;
+                const matches = check.matches || false;
+                const notes = check.notes || "";
+
+                let statusClass = "notfound";
+                if (found && matches) statusClass = "found";
+                else if (found && !matches) statusClass = "outdated";
+
+                html += `<div class="geo-check-item">
+                    <div class="geo-check-label">${PLATFORMS_FOR_GEO[key]}</div>
+                    <div class="geo-check-toggle">
+                        <button class="geo-check-btn ${!found && !matches ? 'selected' : ''}" data-platform="${key}" data-status="notfound" onclick="updateGeoCheck(this, '${agent.id}', '${key}', false, false)">❌ Not Found</button>
+                        <button class="geo-check-btn ${found && !matches ? 'selected status-outdated' : ''}" data-platform="${key}" data-status="outdated" onclick="updateGeoCheck(this, '${agent.id}', '${key}', true, false)">⚠️ Outdated</button>
+                        <button class="geo-check-btn ${found && matches ? 'selected status-found' : ''}" data-platform="${key}" data-status="found" onclick="updateGeoCheck(this, '${agent.id}', '${key}', true, true)">✅ Matches</button>
+                    </div>
+                </div>`;
+
+                if (notes) {
+                    html += `<div style="margin-left: 1rem; margin-bottom: 0.5rem;"><small style="color: #666;">Notes: ${notes}</small></div>`;
+                }
+            }
+
+            html += `</div>`;
+
+            // Search Visibility Tests
+            html += `<div class="geo-section">
+                <h4>Search Visibility Tests</h4>
+                <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">Enter search results after testing each query on Google or your preferred search engine.</p>`;
+
+            const searchTests = audit.searchTests || [];
+            for (let i = 0; i < 4; i++) {
+                const test = searchTests[i] || { query: prefilledQueries[i] || "", result: "not_found", notes: "" };
+                html += `<div class="geo-test-row">
+                    <label>Query ${i + 1}</label>
+                    <input type="text" id="search-query-${i}" value="${test.query || ""}" placeholder="Enter search query">
+                    <select id="search-result-${i}" data-test="${i}" onchange="updateSearchTest('${agent.id}', ${i}, this.value)">
+                        <option value="not_found" ${test.result === "not_found" ? "selected" : ""}>Not Found</option>
+                        <option value="agent_page2plus" ${test.result === "agent_page2plus" ? "selected" : ""}>Found (Page 2+)</option>
+                        <option value="agent_page1" ${test.result === "agent_page1" ? "selected" : ""}>Found (Page 1)</option>
+                        <option value="competitor_found" ${test.result === "competitor_found" ? "selected" : ""}>Competitor Found Instead</option>
+                    </select>
+                    <textarea id="search-notes-${i}" class="geo-audit-notes" placeholder="Optional notes..." onchange="updateSearchNote('${agent.id}', ${i}, this.value)">${test.notes || ""}</textarea>
+                </div>`;
+            }
+
+            html += `</div>`;
+
+            // AI Recommendation Tests
+            html += `<div class="geo-section">
+                <h4>AI Recommendation Tests</h4>
+                <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">Ask each AI the same search query and record if the agent was recommended in the top results.</p>`;
+
+            const aiTests = audit.aiTests || [];
+            const aiEngines = ["ChatGPT", "Gemini", "Perplexity"];
+
+            aiEngines.forEach((engine, idx) => {
+                const test = aiTests.find(t => t.engine === engine) || { engine, query: prefilledQueries[0] || "", result: "not_recommended", notes: "" };
+                html += `<div class="geo-test-row">
+                    <label>${engine}</label>
+                    <input type="text" id="ai-query-${idx}" value="${test.query || ""}" placeholder="Query asked to ${engine}">
+                    <select id="ai-result-${idx}" onchange="updateAiTest('${agent.id}', '${engine}', this.value)">
+                        <option value="not_recommended" ${test.result === "not_recommended" ? "selected" : ""}>Not Recommended</option>
+                        <option value="mentioned" ${test.result === "mentioned" ? "selected" : ""}>Mentioned</option>
+                        <option value="recommended" ${test.result === "recommended" ? "selected" : ""}>Recommended</option>
+                    </select>
+                </div>`;
+            });
+
+            html += `</div>`;
+
+            // Save Button
+            html += `<button class="geo-save-btn" onclick="saveGeoAudit('${agent.id}')">Save GEO Audit</button>`;
+
+            document.getElementById("geo-audit-container").innerHTML = html;
+        }
+
+        window.updateGeoCheck = function(btn, agentId, platformKey, found, matches) {
+            document.querySelectorAll(`[data-platform="${platformKey}"]`).forEach(b => {
+                b.classList.remove("selected", "status-found", "status-outdated", "status-notfound");
+            });
+            btn.classList.add("selected");
+            if (found && matches) btn.classList.add("status-found");
+            else if (found && !matches) btn.classList.add("status-outdated");
+            else btn.classList.add("status-notfound");
+        };
+
+        window.updateSearchTest = function(agentId, testIdx, result) {
+            // Called on change, will be saved with saveGeoAudit
+        };
+
+        window.updateSearchNote = function(agentId, testIdx, note) {
+            // Called on change, will be saved with saveGeoAudit
+        };
+
+        window.updateAiTest = function(agentId, engine, result) {
+            // Called on change, will be saved with saveGeoAudit
+        };
+
+        window.saveGeoAudit = async function(agentId) {
+            try {
+                const agent = allAgents.find(a => a.id === agentId);
+                if (!agent) return showAlert("Agent not found", "error");
+
+                // Collect platform checks
+                const platformChecks = {};
+                for (const key in PLATFORMS_FOR_GEO) {
+                    const foundBtn = document.querySelector(`[data-platform="${key}"][data-status="found"]`);
+                    const outdatedBtn = document.querySelector(`[data-platform="${key}"][data-status="outdated"]`);
+                    const found = foundBtn?.classList.contains("selected") || outdatedBtn?.classList.contains("selected");
+                    const matches = foundBtn?.classList.contains("selected");
+                    platformChecks[key] = { found, matches, notes: "" };
+                }
+
+                // Collect search tests
+                const searchTests = [];
+                for (let i = 0; i < 4; i++) {
+                    const query = document.getElementById(`search-query-${i}`)?.value || "";
+                    const result = document.getElementById(`search-result-${i}`)?.value || "not_found";
+                    const notes = document.getElementById(`search-notes-${i}`)?.value || "";
+                    if (query) {
+                        searchTests.push({ query, result, notes });
+                    }
+                }
+
+                // Collect AI tests
+                const aiTests = [];
+                const aiEngines = ["ChatGPT", "Gemini", "Perplexity"];
+                aiEngines.forEach((engine, idx) => {
+                    const query = document.getElementById(`ai-query-${idx}`)?.value || "";
+                    const result = document.getElementById(`ai-result-${idx}`)?.value || "not_recommended";
+                    if (query) {
+                        aiTests.push({ engine, query, result });
+                    }
+                });
+
+                // Calculate scores
+                const scores = calculateGeoScores({ platformChecks, searchTests, aiTests });
+
+                // Save to Firestore
+                const geoAudit = {
+                    platformChecks,
+                    searchTests,
+                    aiTests,
+                    overallScore: scores.overall,
+                    grade: scores.grade,
+                    auditDate: new Date(),
+                    auditedBy: auth.currentUser?.email || "Unknown"
+                };
+
+                await db.collection("agents").doc(agentId).update({ geoAudit });
+                showAlert("GEO Audit saved successfully!", "success");
+
+                // Reload dashboard
+                loadAdminDashboard();
+                populateGeoAgentSelect();
+            } catch (err) {
+                console.error("Error saving GEO audit:", err);
+                showAlert("Error saving GEO audit.", "error");
+            }
+        };
+
+        // ══════════════════════════════════════════════
+        // SEED DATABASE
+        // ══════════════════════════════════════════════
+        document.getElementById("seed-db-btn").addEventListener("click", seedDatabase);
+
+        async function seedDatabase() {
+            if (!confirm("This will overwrite all agent data. Continue?")) return;
+
+            try {
+                for (const slug in AGENT_SEED_DATA) {
+                    const agent = AGENT_SEED_DATA[slug];
+                    await db.collection("agents").doc(slug).set({
+                        name: agent.name,
+                        hasBio: agent.hasBio,
+                        before: agent.before || "",
+                        after: agent.after || "",
+                        instagram: agent.instagram || "",
+                        linkedin_headline: agent.linkedin_headline || "",
+                        keywords: agent.keywords || [],
+                        status: agent.hasBio ? "pending" : "no_bio",
+                        platformProgress: Object.fromEntries(PLATFORMS.map(p => [p.id, false])),
+                        updatedAt: new Date()
+                    });
+                }
+                showAlert("Database seeded successfully!", "success");
+                loadAdminDashboard();
+            } catch (err) {
+                console.error("Error seeding database:", err);
+                showAlert("Error seeding database.", "error");
+            }
+        }
+
+        // ══════════════════════════════════════════════
+        // SIGN OUT
+        // ══════════════════════════════════════════════
+        document.getElementById("sign-out-btn").addEventListener("click", () => {
+            auth.signOut();
+        });
+
+        // ══════════════════════════════════════════════
+        // GOOGLE SIGN IN
+        // ══════════════════════════════════════════════
+        document.getElementById("google-signin-btn").addEventListener("click", () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider).catch(err => {
+                console.error("Sign in error:", err);
+                showAlert("Sign in failed. Please try again.", "error");
+            });
+        });
+    </script>
+</body>
+</html>
