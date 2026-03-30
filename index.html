@@ -1326,6 +1326,223 @@
             font-weight: 600;
             color: #333;
         }
+
+        /* ══════════════════════════════════════════════
+           BIO BUILDER WIZARD
+           ══════════════════════════════════════════════ */
+        .bio-builder {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .bio-builder-intro {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .bio-builder-intro h2 {
+            color: #1B2A4A;
+            margin-bottom: 0.5rem;
+        }
+
+        .bio-builder-intro p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .bio-builder-progress {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: background 0.3s;
+        }
+
+        .progress-dot.active {
+            background: #2A7F8E;
+        }
+
+        .progress-dot.completed {
+            background: #2EAD6D;
+        }
+
+        .bio-builder-step {
+            display: none;
+        }
+
+        .bio-builder-step.active {
+            display: block;
+        }
+
+        .bio-builder-step h3 {
+            color: #1B2A4A;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .bio-builder-step .step-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-builder-step label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .bio-builder-step input[type="text"],
+        .bio-builder-step textarea,
+        .bio-builder-step select {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .bio-builder-step input[type="text"]:focus,
+        .bio-builder-step textarea:focus,
+        .bio-builder-step select:focus {
+            outline: none;
+            border-color: #2A7F8E;
+        }
+
+        .bio-builder-step textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .bb-chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .bb-chip {
+            padding: 0.4rem 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .bb-chip:hover {
+            border-color: #2A7F8E;
+        }
+
+        .bb-chip.selected {
+            background: #2A7F8E;
+            color: white;
+            border-color: #2A7F8E;
+        }
+
+        .bio-builder-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .bio-builder-nav button {
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .bb-btn-back {
+            background: #e8e8e8;
+            color: #333;
+        }
+
+        .bb-btn-back:hover {
+            background: #ddd;
+        }
+
+        .bb-btn-next {
+            background: #2A7F8E;
+            color: white;
+        }
+
+        .bb-btn-next:hover {
+            background: #1f5a68;
+        }
+
+        .bb-btn-generate {
+            background: #2EAD6D;
+            color: white;
+            font-size: 1rem;
+            padding: 0.8rem 2rem;
+        }
+
+        .bb-btn-generate:hover {
+            background: #259a5c;
+        }
+
+        .bio-builder-preview {
+            background: #f0faf4;
+            border: 2px solid #2EAD6D;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            line-height: 1.7;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .bio-builder-preview-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .bb-generating {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .bb-generating .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e8e8e8;
+            border-top: 4px solid #2A7F8E;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .bb-field-hint {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: -0.7rem;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -1365,6 +1582,144 @@
                 <div class="status-banner" id="status-banner">
                     <span class="status-badge" id="status-badge"></span>
                     <span id="status-text"></span>
+                </div>
+            </div>
+
+            <!-- BIO BUILDER (for agents without a bio) -->
+            <div id="bio-builder-section" class="hidden">
+                <div class="card bio-builder">
+                    <div class="bio-builder-intro">
+                        <h2>Build Your GEO-Optimized Bio</h2>
+                        <p>Answer a few quick questions and we'll generate a professional, AI-search-optimized bio for you.</p>
+                    </div>
+
+                    <div class="bio-builder-progress" id="bb-progress"></div>
+
+                    <!-- Step 1: Basics -->
+                    <div class="bio-builder-step active" id="bb-step-1">
+                        <h3>Step 1: The Basics</h3>
+                        <p class="step-subtitle">Let's start with who you are and what you do.</p>
+
+                        <label for="bb-title">Your title / role</label>
+                        <select id="bb-title">
+                            <option value="">Select...</option>
+                            <option value="REALTOR®">REALTOR®</option>
+                            <option value="Broker">Broker</option>
+                            <option value="Sales Representative">Sales Representative</option>
+                            <option value="New Home Sales Specialist">New Home Sales Specialist</option>
+                            <option value="Commercial REALTOR®">Commercial REALTOR®</option>
+                        </select>
+
+                        <label for="bb-years">Years in real estate</label>
+                        <input type="text" id="bb-years" placeholder="e.g., 5, 10+, 15">
+
+                        <label>What do you specialize in? (select all that apply)</label>
+                        <div class="bb-chip-group" id="bb-specialties">
+                            <div class="bb-chip" data-val="Resale Homes">Resale Homes</div>
+                            <div class="bb-chip" data-val="Condominiums">Condos</div>
+                            <div class="bb-chip" data-val="Pre-Construction">Pre-Construction</div>
+                            <div class="bb-chip" data-val="Luxury Homes">Luxury Homes</div>
+                            <div class="bb-chip" data-val="Investment Properties">Investment Properties</div>
+                            <div class="bb-chip" data-val="Commercial">Commercial</div>
+                            <div class="bb-chip" data-val="Rural/Countryside">Rural / Countryside</div>
+                            <div class="bb-chip" data-val="New Construction">New Construction</div>
+                            <div class="bb-chip" data-val="First-Time Buyers">First-Time Buyers</div>
+                            <div class="bb-chip" data-val="Downsizing">Downsizing</div>
+                            <div class="bb-chip" data-val="Land/Development">Land / Development</div>
+                            <div class="bb-chip" data-val="Rentals">Rentals</div>
+                        </div>
+
+                        <label for="bb-other-specialty">Other specialty (optional)</label>
+                        <input type="text" id="bb-other-specialty" placeholder="e.g., Waterfront, Fixer-uppers, Student housing">
+                    </div>
+
+                    <!-- Step 2: Areas & Clients -->
+                    <div class="bio-builder-step" id="bb-step-2">
+                        <h3>Step 2: Your Market</h3>
+                        <p class="step-subtitle">Where do you work and who do you serve?</p>
+
+                        <label for="bb-areas">Areas you serve</label>
+                        <input type="text" id="bb-areas" placeholder="e.g., Kitchener-Waterloo, Cambridge, Guelph">
+                        <div class="bb-field-hint">Separate multiple areas with commas</div>
+
+                        <label>Who are your typical clients? (select all that apply)</label>
+                        <div class="bb-chip-group" id="bb-clients">
+                            <div class="bb-chip" data-val="First-time homebuyers">First-time buyers</div>
+                            <div class="bb-chip" data-val="Move-up buyers">Move-up buyers</div>
+                            <div class="bb-chip" data-val="Investors">Investors</div>
+                            <div class="bb-chip" data-val="Sellers">Sellers</div>
+                            <div class="bb-chip" data-val="Developers">Developers</div>
+                            <div class="bb-chip" data-val="Newcomers to Canada">Newcomers to Canada</div>
+                            <div class="bb-chip" data-val="Downsizers">Downsizers</div>
+                            <div class="bb-chip" data-val="Luxury home seekers">Luxury buyers</div>
+                            <div class="bb-chip" data-val="Commercial tenants/buyers">Commercial clients</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Background & Languages -->
+                    <div class="bio-builder-step" id="bb-step-3">
+                        <h3>Step 3: Your Background</h3>
+                        <p class="step-subtitle">What makes you unique? This is what helps AI recommend YOU over other agents.</p>
+
+                        <label for="bb-background">Previous career or relevant experience</label>
+                        <textarea id="bb-background" placeholder="e.g., 'Former accountant with 10 years in finance' or 'Managed a construction company for 8 years'"></textarea>
+
+                        <label for="bb-languages">Languages spoken (besides English)</label>
+                        <input type="text" id="bb-languages" placeholder="e.g., Portuguese, French, Arabic, Spanish">
+                        <div class="bb-field-hint">Leave blank if English only</div>
+
+                        <label for="bb-credentials">Designations or certifications (optional)</label>
+                        <input type="text" id="bb-credentials" placeholder="e.g., SRS, ABR, Certified Luxury Home Marketing Specialist">
+
+                        <label for="bb-highlight">Anything else that sets you apart?</label>
+                        <textarea id="bb-highlight" placeholder="e.g., 'I own rental properties myself' or 'Born and raised in KW' or 'I've completed $50M in sales'"></textarea>
+                    </div>
+
+                    <!-- Step 4: Contact -->
+                    <div class="bio-builder-step" id="bb-step-4">
+                        <h3>Step 4: Contact Info</h3>
+                        <p class="step-subtitle">Optional — we can include your contact details in the bio for maximum discoverability.</p>
+
+                        <label for="bb-email">Your email</label>
+                        <input type="text" id="bb-email" placeholder="you@regoteam.com">
+
+                        <label for="bb-phone">Your phone</label>
+                        <input type="text" id="bb-phone" placeholder="(519) 555-0000">
+                    </div>
+
+                    <!-- Step 5: Preview -->
+                    <div class="bio-builder-step" id="bb-step-5">
+                        <h3>Your GEO-Optimized Bio</h3>
+                        <p class="step-subtitle">Here's what we generated. Review it, then approve or regenerate.</p>
+
+                        <div class="bb-generating hidden" id="bb-generating">
+                            <div class="spinner"></div>
+                            <p>Generating your GEO-optimized bio...</p>
+                        </div>
+
+                        <div class="bio-builder-preview" id="bb-preview-text"></div>
+
+                        <div id="bb-extras" class="hidden" style="margin-top: 1.5rem;">
+                            <h3 style="margin-top: 1rem;">Instagram Bio</h3>
+                            <div class="bio-builder-preview" id="bb-preview-instagram" style="white-space: pre-line;"></div>
+
+                            <h3 style="margin-top: 1rem;">LinkedIn Headline</h3>
+                            <div class="bio-builder-preview" id="bb-preview-linkedin"></div>
+                        </div>
+
+                        <div class="bio-builder-preview-actions">
+                            <button class="btn btn-primary bb-btn-next" id="bb-approve-bio">Approve & Save Bio</button>
+                            <button class="btn btn-secondary bb-btn-back" id="bb-regenerate">Regenerate</button>
+                            <button class="btn btn-outline bb-btn-back" id="bb-edit-answers">Edit My Answers</button>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="bio-builder-nav" id="bb-nav">
+                        <button class="bb-btn-back hidden" id="bb-back-btn">Back</button>
+                        <div style="flex:1"></div>
+                        <button class="bb-btn-next" id="bb-next-btn">Next</button>
+                    </div>
                 </div>
             </div>
 
@@ -2004,11 +2359,11 @@
         // ══════════════════════════════════════════════
         // AGENT VIEW
         // ══════════════════════════════════════════════
-        async function showAgentView() {
+        async function showAgentView(overrideAgent) {
             document.getElementById("agent-view").classList.remove("hidden");
             document.getElementById("admin-view").classList.add("hidden");
 
-            const agent = findAgentByEmail(currentUser.email);
+            const agent = overrideAgent || findAgentByEmail(currentUser.email);
 
             if (!agent) {
                 document.getElementById("agent-view").innerHTML = `
@@ -2032,9 +2387,22 @@
                 console.error("Error loading agent doc:", err);
             }
 
-            // Merge with seed data
-            const agentData = {
+            // Check if Firestore has a generated bio (agent may have built one via Bio Builder)
+            const hasGeneratedBio = agentDoc?.after && agentDoc?.hasBio === true;
+
+            // Merge with seed data — prefer Firestore bio if generated
+            const effectiveAgent = hasGeneratedBio ? {
                 ...agent,
+                hasBio: true,
+                before: agentDoc.before || "",
+                after: agentDoc.after,
+                instagram: agentDoc.instagram || "",
+                linkedin_headline: agentDoc.linkedin_headline || "",
+                keywords: agentDoc.keywords || []
+            } : agent;
+
+            const agentData = {
+                ...effectiveAgent,
                 status: agentDoc?.status || "pending",
                 editNotes: agentDoc?.editNotes || "",
                 platformProgress: agentDoc?.platformProgress || Object.fromEntries(PLATFORMS.map(p => [p.id, false])),
@@ -2042,8 +2410,27 @@
                 updatedAt: agentDoc?.updatedAt
             };
 
+            // Update currentAgent to reflect effective data
+            currentAgent = effectiveAgent;
+
             // Render welcome
             document.getElementById("agent-first-name").textContent = getFirstName(agent.name);
+
+            // If no bio and no generated bio, show Bio Builder
+            if (!effectiveAgent.hasBio) {
+                document.getElementById("bio-builder-section").classList.remove("hidden");
+                // Hide all the normal agent content cards
+                document.querySelectorAll("#agent-view > .card").forEach(c => c.classList.add("hidden"));
+                document.getElementById("status-badge").textContent = "No Bio Yet";
+                document.getElementById("status-badge").className = "status-badge pending";
+                document.getElementById("status-text").textContent = "You don't have a GEO bio yet. Use the Bio Builder below to create one in minutes.";
+                initBioBuilder(agent);
+                return;
+            }
+
+            // Has bio — hide bio builder and show normal view
+            document.getElementById("bio-builder-section").classList.add("hidden");
+            document.querySelectorAll("#agent-view > .card").forEach(c => c.classList.remove("hidden"));
 
             // Render status
             const statusBadge = document.getElementById("status-badge");
@@ -2076,8 +2463,8 @@
             });
 
             // Render bios
-            document.getElementById("agent-bio-before").textContent = agent.before || "(No previous bio on file)";
-            document.getElementById("agent-bio-after").textContent = agent.after;
+            document.getElementById("agent-bio-before").textContent = effectiveAgent.before || "(No previous bio on file)";
+            document.getElementById("agent-bio-after").textContent = effectiveAgent.after;
 
             // Render actions
             const bioActions = document.getElementById("bio-actions");
@@ -2190,6 +2577,312 @@
             } catch (err) {
                 console.error("Error declining bio:", err);
                 showAlert("Error declining bio. Please try again.", "error");
+            }
+        }
+
+        // ══════════════════════════════════════════════
+        // BIO BUILDER WIZARD
+        // ══════════════════════════════════════════════
+        let bbCurrentStep = 1;
+        const BB_TOTAL_STEPS = 5;
+        let bbAgent = null;
+
+        function initBioBuilder(agent) {
+            bbAgent = agent;
+            bbCurrentStep = 1;
+
+            // Init chip toggles
+            document.querySelectorAll(".bb-chip").forEach(chip => {
+                chip.onclick = () => chip.classList.toggle("selected");
+            });
+
+            // Render progress dots
+            renderBBProgress();
+
+            // Show step 1
+            showBBStep(1);
+
+            // Nav buttons
+            document.getElementById("bb-back-btn").onclick = () => {
+                if (bbCurrentStep > 1) {
+                    bbCurrentStep--;
+                    showBBStep(bbCurrentStep);
+                }
+            };
+
+            document.getElementById("bb-next-btn").onclick = () => {
+                if (bbCurrentStep < BB_TOTAL_STEPS - 1) {
+                    // Validate current step
+                    if (bbCurrentStep === 1 && !validateBBStep1()) return;
+                    if (bbCurrentStep === 2 && !validateBBStep2()) return;
+
+                    bbCurrentStep++;
+                    showBBStep(bbCurrentStep);
+                } else if (bbCurrentStep === BB_TOTAL_STEPS - 1) {
+                    // Generate bio
+                    bbCurrentStep = BB_TOTAL_STEPS;
+                    showBBStep(bbCurrentStep);
+                    generateBio();
+                }
+            };
+
+            // Preview actions
+            document.getElementById("bb-approve-bio").onclick = saveBioFromBuilder;
+            document.getElementById("bb-regenerate").onclick = () => generateBio();
+            document.getElementById("bb-edit-answers").onclick = () => {
+                bbCurrentStep = 1;
+                showBBStep(1);
+            };
+        }
+
+        function renderBBProgress() {
+            const container = document.getElementById("bb-progress");
+            container.innerHTML = "";
+            for (let i = 1; i <= BB_TOTAL_STEPS; i++) {
+                const dot = document.createElement("div");
+                dot.className = "progress-dot" + (i === bbCurrentStep ? " active" : "") + (i < bbCurrentStep ? " completed" : "");
+                container.appendChild(dot);
+            }
+        }
+
+        function showBBStep(step) {
+            bbCurrentStep = step;
+            for (let i = 1; i <= BB_TOTAL_STEPS; i++) {
+                const el = document.getElementById(`bb-step-${i}`);
+                if (el) el.classList.toggle("active", i === step);
+            }
+            renderBBProgress();
+
+            const backBtn = document.getElementById("bb-back-btn");
+            const nextBtn = document.getElementById("bb-next-btn");
+            const nav = document.getElementById("bb-nav");
+
+            if (step === BB_TOTAL_STEPS) {
+                nav.classList.add("hidden");
+            } else {
+                nav.classList.remove("hidden");
+                backBtn.classList.toggle("hidden", step === 1);
+                if (step === BB_TOTAL_STEPS - 1) {
+                    nextBtn.textContent = "Generate My Bio";
+                    nextBtn.className = "bb-btn-generate";
+                } else {
+                    nextBtn.textContent = "Next";
+                    nextBtn.className = "bb-btn-next";
+                }
+            }
+        }
+
+        function validateBBStep1() {
+            const title = document.getElementById("bb-title").value;
+            const selectedSpecs = document.querySelectorAll("#bb-specialties .bb-chip.selected");
+            if (!title) {
+                showAlert("Please select your title/role.", "error");
+                return false;
+            }
+            if (selectedSpecs.length === 0) {
+                showAlert("Please select at least one specialty.", "error");
+                return false;
+            }
+            return true;
+        }
+
+        function validateBBStep2() {
+            const areas = document.getElementById("bb-areas").value.trim();
+            if (!areas) {
+                showAlert("Please enter the areas you serve.", "error");
+                return false;
+            }
+            return true;
+        }
+
+        function getSelectedChips(containerId) {
+            return Array.from(document.querySelectorAll(`#${containerId} .bb-chip.selected`)).map(c => c.dataset.val);
+        }
+
+        function generateBio() {
+            const previewText = document.getElementById("bb-preview-text");
+            const generating = document.getElementById("bb-generating");
+            const extras = document.getElementById("bb-extras");
+
+            previewText.style.display = "none";
+            extras.classList.add("hidden");
+            generating.classList.remove("hidden");
+
+            // Gather all answers
+            const data = {
+                name: bbAgent.name,
+                title: document.getElementById("bb-title").value,
+                years: document.getElementById("bb-years").value.trim(),
+                specialties: getSelectedChips("bb-specialties"),
+                otherSpecialty: document.getElementById("bb-other-specialty").value.trim(),
+                areas: document.getElementById("bb-areas").value.trim(),
+                clients: getSelectedChips("bb-clients"),
+                background: document.getElementById("bb-background").value.trim(),
+                languages: document.getElementById("bb-languages").value.trim(),
+                credentials: document.getElementById("bb-credentials").value.trim(),
+                highlight: document.getElementById("bb-highlight").value.trim(),
+                email: document.getElementById("bb-email").value.trim(),
+                phone: document.getElementById("bb-phone").value.trim()
+            };
+
+            // Simulate generation delay for UX
+            setTimeout(() => {
+                const bio = buildGEOBio(data);
+                const insta = buildInstagramBio(data);
+                const linkedin = buildLinkedInHeadline(data);
+
+                previewText.textContent = bio;
+                document.getElementById("bb-preview-instagram").textContent = insta;
+                document.getElementById("bb-preview-linkedin").textContent = linkedin;
+
+                generating.classList.add("hidden");
+                previewText.style.display = "block";
+                extras.classList.remove("hidden");
+
+                // Store for save
+                bbGeneratedData = { bio, insta, linkedin, data };
+            }, 1500);
+        }
+
+        let bbGeneratedData = null;
+
+        function buildGEOBio(d) {
+            const firstName = d.name.split(" ")[0];
+            const allSpecs = [...d.specialties];
+            if (d.otherSpecialty) allSpecs.push(d.otherSpecialty);
+            const specList = allSpecs.join(", ").toLowerCase();
+
+            // Parse areas into a clean list
+            const areaList = d.areas.split(",").map(a => a.trim()).filter(Boolean);
+            const areaText = areaList.length > 2
+                ? areaList.slice(0, -1).join(", ") + ", and " + areaList[areaList.length - 1]
+                : areaList.join(" and ");
+
+            // Build sentences
+            let sentences = [];
+
+            // Sentence 1: Name, title, brokerage, specialties, areas
+            let s1 = `${d.name} is a ${d.title} with Corcoran Horizon Realty and the Rego Team`;
+            if (allSpecs.length > 0) {
+                s1 += `, specializing in ${specList}`;
+            }
+            s1 += ` across ${areaText}.`;
+            sentences.push(s1);
+
+            // Sentence 2: Experience
+            if (d.years) {
+                sentences.push(`With ${d.years} years of real estate experience, ${firstName} helps ${d.clients.length > 0 ? d.clients.map(c => c.toLowerCase()).join(", ") : "buyers and sellers"} navigate the ${areaList[0] || "local"} market with confidence.`);
+            } else if (d.clients.length > 0) {
+                sentences.push(`${firstName} works with ${d.clients.map(c => c.toLowerCase()).join(", ")} looking for properties in ${areaText}.`);
+            }
+
+            // Sentence 3: Background
+            if (d.background) {
+                sentences.push(`Before real estate, ${firstName} built a career in ${d.background}, bringing transferable skills in negotiation, client service, and market analysis to every transaction.`);
+            }
+
+            // Sentence 4: Languages
+            if (d.languages) {
+                const langs = d.languages.split(",").map(l => l.trim()).filter(Boolean);
+                if (langs.length === 1) {
+                    sentences.push(`Fluent in ${langs[0]} and English, ${firstName} is an excellent resource for ${langs[0]}-speaking buyers and sellers in the region.`);
+                } else if (langs.length > 1) {
+                    const langText = langs.slice(0, -1).join(", ") + " and " + langs[langs.length - 1];
+                    sentences.push(`${firstName} speaks ${langText} in addition to English, making them an ideal choice for multilingual clients.`);
+                }
+            }
+
+            // Sentence 5: Credentials
+            if (d.credentials) {
+                sentences.push(`${firstName} holds the ${d.credentials} designation${d.credentials.includes(",") ? "s" : ""}, reflecting a commitment to professional excellence and specialized knowledge.`);
+            }
+
+            // Sentence 6: Highlight / differentiator
+            if (d.highlight) {
+                sentences.push(`${d.highlight.endsWith(".") ? d.highlight : d.highlight + "."}`);
+            }
+
+            // Sentence 7: CTA with contact
+            let cta = `Whether you are buying, selling, or investing in ${areaList[0] || "the local market"}, ${firstName} combines local expertise with the global reach of Corcoran to deliver results.`;
+            if (d.email || d.phone) {
+                cta += ` Contact ${firstName}`;
+                if (d.email) cta += ` at ${d.email}`;
+                if (d.email && d.phone) cta += ` or`;
+                if (d.phone) cta += ` ${d.phone}`;
+                cta += ".";
+            }
+            sentences.push(cta);
+
+            return sentences.join(" ");
+        }
+
+        function buildInstagramBio(d) {
+            const allSpecs = [...d.specialties];
+            if (d.otherSpecialty) allSpecs.push(d.otherSpecialty);
+            const topSpecs = allSpecs.slice(0, 3).join(" | ");
+            const areaList = d.areas.split(",").map(a => a.trim()).filter(Boolean);
+            const topAreas = areaList.slice(0, 3).join(" \u2022 ");
+
+            let lines = [];
+            lines.push(`${d.name} | ${d.title}`);
+            if (topSpecs) lines.push(topSpecs);
+            if (topAreas) lines.push(`\uD83D\uDCCD ${topAreas}`);
+            if (d.languages) lines.push(`\uD83C\uDF0D ${d.languages} & English`);
+            lines.push("@corcoranhorizon | Rego Team");
+
+            return lines.join("\n");
+        }
+
+        function buildLinkedInHeadline(d) {
+            const allSpecs = [...d.specialties];
+            if (d.otherSpecialty) allSpecs.push(d.otherSpecialty);
+            const topSpecs = allSpecs.slice(0, 2).join(" & ");
+            const areaList = d.areas.split(",").map(a => a.trim()).filter(Boolean);
+            const topAreas = areaList.slice(0, 2).join(" & ");
+
+            return `${topSpecs} ${d.title} | Corcoran Horizon Realty | ${topAreas}`;
+        }
+
+        async function saveBioFromBuilder() {
+            if (!bbGeneratedData || !bbAgent) return;
+
+            const slug = getAgentSlug(bbAgent.name);
+            const d = bbGeneratedData.data;
+            const allSpecs = [...d.specialties];
+            if (d.otherSpecialty) allSpecs.push(d.otherSpecialty);
+
+            try {
+                await db.collection("agents").doc(slug).set({
+                    name: bbAgent.name,
+                    hasBio: true,
+                    before: "",
+                    after: bbGeneratedData.bio,
+                    instagram: bbGeneratedData.insta,
+                    linkedin_headline: bbGeneratedData.linkedin,
+                    keywords: allSpecs.map(s => s.toLowerCase()),
+                    status: "pending",
+                    bioBuilderAnswers: d,
+                    platformProgress: Object.fromEntries(PLATFORMS.map(p => [p.id, false])),
+                    generatedAt: new Date(),
+                    updatedAt: new Date()
+                }, { merge: true });
+
+                // Update seed data in memory so the view refreshes correctly
+                AGENT_SEED_DATA[slug] = {
+                    ...bbAgent,
+                    hasBio: true,
+                    before: "",
+                    after: bbGeneratedData.bio,
+                    instagram: bbGeneratedData.insta,
+                    linkedin_headline: bbGeneratedData.linkedin,
+                    keywords: allSpecs.map(s => s.toLowerCase())
+                };
+
+                showAlert("Bio saved! You can now review and approve it.", "success");
+                showAgentView(); // Refresh to show normal agent view with the new bio
+            } catch (err) {
+                console.error("Error saving bio:", err);
+                showAlert("Error saving bio. Please try again.", "error");
             }
         }
 
@@ -2557,7 +3250,11 @@
 
         function renderAgentDetails(agent, container) {
             if (!agent.hasBio) {
-                container.innerHTML = `<p style="color: #999;">No bio on file for this agent.</p>`;
+                container.innerHTML = `
+                    <p style="color: #999; margin-bottom: 1rem;">No bio on file for this agent.</p>
+                    <p style="color: #666; font-size: 0.9rem;">When this agent logs in, they'll see a <strong>Bio Builder</strong> that walks them through a questionnaire to auto-generate their GEO bio.</p>
+                    <div style="margin-top: 1rem;"><button class="btn btn-info" onclick="viewAsAgent('${agent.id}')">View as Agent</button></div>
+                `;
                 return;
             }
 
@@ -2637,7 +3334,7 @@
                 currentAgent = agent;
                 document.getElementById("admin-view").classList.add("hidden");
                 document.getElementById("agent-view").classList.remove("hidden");
-                showAgentView();
+                showAgentView(agent);
             }
         };
 
