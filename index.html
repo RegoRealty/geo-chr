@@ -774,6 +774,241 @@
             line-height: 1.6;
         }
 
+
+        /* ══════════════════════════════════════════════
+           HEADSHOT AUDIT FEATURE
+           ══════════════════════════════════════════════ */
+        .headshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .headshot-item {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .headshot-item:hover {
+            transform: scale(1.05);
+        }
+
+        .headshot-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 3px solid transparent;
+            transition: border-color 0.3s ease;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+            font-size: 0.8rem;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .headshot-item.selected .headshot-image {
+            border-color: #2EAD6D;
+            box-shadow: 0 0 0 2px white, 0 0 0 4px #2EAD6D;
+        }
+
+        .headshot-item.unavailable .headshot-image {
+            background: #e0e0e0;
+            color: #999;
+        }
+
+        .headshot-label {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 0.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        /* Preferred Selection */
+        .preferred-selector {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 4px;
+            border-left: 3px solid #2EAD6D;
+            margin-bottom: 1rem;
+        }
+
+        .preferred-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .preferred-display {
+            font-size: 1rem;
+            color: #2EAD6D;
+            font-weight: 600;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+
+        /* Update Checklist */
+        .update-checklist {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-radius: 4px;
+            border-left: 3px solid #2A7F8E;
+            margin-top: 1rem;
+        }
+
+        .checklist-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1B2A4A;
+            margin-bottom: 0.75rem;
+        }
+
+        .checklist-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+            color: #333;
+        }
+
+        .checklist-item input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        /* Bio Section Styling */
+        .bio-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .bio-tab {
+            padding: 0.6rem 1rem;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px 4px 0 0;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .bio-tab.active {
+            background: white;
+            color: #2A7F8E;
+            border-bottom: 2px solid #2A7F8E;
+        }
+
+        .bio-tab.before-tab {
+            border-left: 3px solid #e67e22;
+        }
+
+        .bio-tab.before-tab.active {
+            color: #e67e22;
+            border-bottom: 2px solid #e67e22;
+        }
+
+        .bio-tab.after-tab {
+            border-left: 3px solid #2EAD6D;
+        }
+
+        .bio-tab.after-tab.active {
+            color: #2EAD6D;
+            border-bottom: 2px solid #2EAD6D;
+        }
+
+        .bio-content {
+            background: white;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0 4px 4px 4px;
+            display: none;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .bio-content.before-bio {
+            border-left: 4px solid #e67e22;
+            background: #fef9f3;
+        }
+
+        .bio-content.after-bio {
+            border-left: 4px solid #2EAD6D;
+            background: #f0faf4;
+        }
+
+        .bio-content.active {
+            display: block;
+        }
+
+        .brand-consistency-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            margin-bottom: 2rem;
+        }
+
+        .brand-consistency-section h3 {
+            color: #1B2A4A;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #2A7F8E;
+            padding-bottom: 0.5rem;
+        }
+
+        .realtor-ca-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background-color: #2A7F8E;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .realtor-ca-link:hover {
+            background-color: #1f5a68;
+        }
+
         /* ══════════════════════════════════════════════
            GEO AUDIT FEATURE
            ══════════════════════════════════════════════ */
@@ -1785,6 +2020,21 @@
                 </div>
             </div>
 
+
+            <!-- Brand Consistency Audit -->
+            <div class="card brand-consistency-section" id="headshot-audit-section">
+                <h3>Brand Consistency Audit - Headshots</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Ensure your headshot is consistent across all platforms. Compare your headshots on Rego Team, Corcoran Horizon, and Corcoran.com below.</p>
+                
+                <div class="headshot-grid" id="headshot-comparison-grid"></div>
+                
+                <div class="preferred-selector" id="preferred-selector-container"></div>
+                
+                <div class="update-checklist" id="headshot-checklist-container" style="display: none;"></div>
+                
+                <a href="https://www.realtor.ca" target="_blank" class="realtor-ca-link">Check Realtor.ca Headshot</a>
+            </div>
+
             <!-- Headshot Upload -->
             <div class="card">
                 <h2>Your Headshot</h2>
@@ -2009,6 +2259,8 @@
             "sandra-koller": {
                 name: "Sandra Koller",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f9693546f_Sandra%20Koller.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697247e5ef48d52b1d85b73e_Cambridge%20Agent%20Headshots%20(15).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/fit-in/500x500/AgentApi/Realogy/5DD4B8E5-C89A-4858-B6EE-A1E18C2050D1/470C5758-4E71-46FA-AD88-1D92A8EB6C4B",
                 phone: "+15197296525",
                 email: "sandra@regoteam.com",
                 hasBio: true,
@@ -2023,6 +2275,8 @@
             "linda-cabral": {
                 name: "Linda Cabral",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f96935430_Linda%20Cabral.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723de22906f86c2487db56_Cambridge%20Agent%20Headshots%20(6).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/6820F7A3-0A04-4714-8B6D-C40BBC6AC10F/D8E02695-570A-4BC1-AECD-55BC360A4A1F",
                 phone: "+15195906571",
                 email: "lindac@regoteam.com",
                 hasBio: true,
@@ -2037,6 +2291,8 @@
             "william-forbes": {
                 name: "William Forbes",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354fb_William%20Forbes.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697248a81d2cc689fbe1cb08_Cambridge%20Agent%20Headshots%20(18).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/E068FA0D-5765-4AD2-8B59-91DCED5A5CB3/8B2D6B0F-2B4E-4D79-AE6F-53A780D9AA57",
                 phone: "+15198419098",
                 email: "william@regoteam.com",
                 hasBio: true,
@@ -2051,6 +2307,8 @@
             "patricia-inacio": {
                 name: "Patricia Inacio",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65f9d17c2e24b546dc792aee_3167AA79-866C-46F7-A5E1-7FA296E4C74A.JPG",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697241e2b837f6717afdf8a1_Cambridge%20Agent%20Headshots%20(13).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/08D39BA5-8E9F-4C52-A9C1-8F54E0E0B9E9/191B6AB2-3724-4C00-0000-000000000000",
                 phone: "+15197165040",
                 email: "patricia@regoteam.com",
                 hasBio: true,
@@ -2065,6 +2323,8 @@
             "natalie-lloyd": {
                 name: "Natalie Lloyd",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354fa_Natalie%20(2).jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697240900d5364dd45922737_Cambridge%20Agent%20Headshots%20(9).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/5C52307D-BCF3-45F2-85C5-BE2B4F001A70/45078CB6-289C-4F29-B96E-88161BDE182B",
                 phone: "+15194043479",
                 email: "natalie@regoteam.com",
                 hasBio: true,
@@ -2079,6 +2339,8 @@
             "rosie-tran-bennett": {
                 name: "Rosie Tran-Bennett",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f96935431_Rosie%20Tran-Bennett_.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/6972474c2bd79e4aca88dc35_Cambridge%20Agent%20Headshots%20(14).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/80E79149-A459-4CC5-B741-A86A4A5C2D8C/128014B0-2A52-4D34-A5C2-2373E0F58564",
                 phone: "+12263392125",
                 email: "rosie@regoteam.com",
                 hasBio: true,
@@ -2093,6 +2355,8 @@
             "sy-williams": {
                 name: "Sy Williams",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354d8_Sy%20Williams.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69724844ef6ac87b683b1d92_Cambridge%20Agent%20Headshots%20(17).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/FD9F91F0-6D75-44F2-8EE4-09A499173FA2/B1EBA4E1-5466-4908-9B95-B6DDE3CF519E",
                 phone: "+12262185947",
                 email: "sy@regoteam.com",
                 hasBio: true,
@@ -2107,6 +2371,8 @@
             "jillian-leclair": {
                 name: "Jillian Leclair",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/66e48dbd812667c4593c9c49_Jillian_Headshot_2024.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723d797d110d44d20c75be_Cambridge%20Agent%20Headshots%20(5).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/3A2F7B8C-1234-4567-ABCD-000000000000/placeholder",
                 phone: "+15192772580",
                 email: "jillian@regoteam.com",
                 hasBio: true,
@@ -2121,6 +2387,8 @@
             "oben-necip": {
                 name: "Oben Necip",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f96935483_Oben%20Necip.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697241f0a041dbd9c164a6ba_Cambridge%20Agent%20Headshots%20(12).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/A1B2C3D4-5678-9012-ABCD-000000000000/placeholder",
                 phone: "289-925-7317",
                 email: "oben@corcoranhorizon.com",
                 hasBio: true,
@@ -2135,6 +2403,8 @@
             "lloyd-cruz": {
                 name: "Lloyd Cruz",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/6931eec1802e79501db81a41_CHR%20Website%20Headshots%20(2).png",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723dd010a135fb3ca014a0_Cambridge%20Agent%20Headshots%20(7).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/5AB6AF71-68A2-493F-A3E8-4EB012F735CD/FAB8F620-12D3-4627-9DE4-20566E9CE829",
                 phone: "+15195898788",
                 email: "lloyd@regoteam.com",
                 hasBio: false
@@ -2142,6 +2412,8 @@
             "nick-klassen": {
                 name: "Nick Klassen",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354e1_Nick.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697240814b592be5fa84a297_Cambridge%20Agent%20Headshots%20(10).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/NICK-PLACEHOLDER/NICK-PLACEHOLDER",
                 phone: "+15195895862",
                 email: "nick@regoteam.com",
                 hasBio: false
@@ -2149,6 +2421,8 @@
             "humberto-pereira": {
                 name: "Humberto Pereira",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/6931edf72a30b5f135818af9_CHR%20Website%20Headshots.png",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723caa0caf4b1af9f78cb2_Cambridge%20Agent%20Headshots%20(3).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/B0E20D98-2EC3-4D82-A50D-906933762216/F03D3918-AED2-42EC-A84C-CAC7796DC69D",
                 phone: "+15195004653",
                 email: "humberto@regoteam.com",
                 hasBio: false
@@ -2156,6 +2430,8 @@
             "chanel-silva": {
                 name: "Chanel Silva",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354f5_Chanel.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723c278db818ab4691586e_Cambridge%20Agent%20Headshots%20(1).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/CHANEL-PLACEHOLDER/CHANEL-PLACEHOLDER",
                 phone: "+15199984423",
                 email: "chanel@regorealty.ca",
                 hasBio: true,
@@ -2170,6 +2446,8 @@
             "nareg-vartanian": {
                 name: "Nareg Vartanian",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354f0_DSC05463.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/6972401da041dbd9c16409b3_Cambridge%20Agent%20Headshots%20(8).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/4256D999-CB17-4C94-B282-B582020F9308/7E5FB167-9604-46EC-83E6-F15111E5D6C3",
                 phone: "+15192409270",
                 email: "nareg@yproperty.ca",
                 hasBio: false
@@ -2177,6 +2455,8 @@
             "shivdeep-walia": {
                 name: "Shivdeep Walia",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354da_Shivdeep.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69724811a2cd0efcc84851aa_Cambridge%20Agent%20Headshots%20(16).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/EDC3F7F5-2180-4BE5-B4FF-435A20BBA771/A2A059A1-2900-4D71-A087-5B161C4B8A7F",
                 phone: "+15194973297",
                 email: "shivdeep@regoteam.com",
                 hasBio: false
@@ -2184,6 +2464,8 @@
             "jennifer-rose": {
                 name: "Jennifer Rose",
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f96935433_Jen.jpg",
+                chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723d24ee724132867dc6cc_Cambridge%20Agent%20Headshots%20(4).png",
+                corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/JEN-PLACEHOLDER/JEN-PLACEHOLDER",
                 phone: "",
                 email: "jennifer@regoteam.com",
                 hasBio: false
@@ -3192,11 +3474,113 @@
         // ══════════════════════════════════════════════
         // HEADSHOT UPLOAD
         // ══════════════════════════════════════════════
+
+        function findAgentByName(agentName) {
+            for (const slug in AGENT_SEED_DATA) {
+                if (AGENT_SEED_DATA[slug].name === agentName) {
+                    return AGENT_SEED_DATA[slug];
+                }
+            }
+            return null;
+        }
+
         function loadHeadshotPreview(agentData) {
             const preview = document.getElementById("headshot-preview");
             if (agentData.headshotUrl) {
                 preview.innerHTML = `<img src="${agentData.headshotUrl}" alt="Headshot">`;
             }
+            
+            // Load headshot audit
+            displayHeadshotAudit(agentData);
+        }
+        
+        function displayHeadshotAudit(agent) {
+            const grid = document.getElementById("headshot-comparison-grid");
+            const preferredContainer = document.getElementById("preferred-selector-container");
+            const checklistContainer = document.getElementById("headshot-checklist-container");
+            
+            if (!grid || !agent) return;
+            
+            const platforms = [
+                { name: "Rego Team", url: agent.headshotUrl || "", key: "regoteam" },
+                { name: "Corcoran Horizon", url: agent.chrHeadshotUrl || "", key: "chr" },
+                { name: "Corcoran.com", url: agent.corcoranHeadshotUrl || "", key: "corcoran" }
+            ];
+            
+            let gridHTML = '';
+            const mismatches = [];
+            
+            platforms.forEach((platform, idx) => {
+                const isUnavailable = !platform.url || platform.url.includes('placeholder') || platform.url.includes('PLACEHOLDER');
+                const isSelected = localStorage.getItem(`preferred_headshot_${agent.name}`) === platform.key;
+                
+                if (isUnavailable) {
+                    mismatches.push(platform.name);
+                }
+                
+                gridHTML += `
+                    <div class="headshot-item ${isSelected ? 'selected' : ''} ${isUnavailable ? 'unavailable' : ''}" 
+                         onclick="setPreferredHeadshot('${agent.name}', '${platform.key}')">
+                        <div class="headshot-image">
+                            ${isUnavailable ? 'Not Available' : `<img src="${platform.url}" alt="${platform.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">`}
+                        </div>
+                        <div class="headshot-label">${platform.name}</div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = gridHTML;
+            
+            // Preferred selector
+            const preferred = localStorage.getItem(`preferred_headshot_${agent.name}`) || 'regoteam';
+            const preferredPlatform = platforms.find(p => p.key === preferred);
+            const preferredName = preferredPlatform ? preferredPlatform.name : 'Rego Team';
+            
+            preferredContainer.innerHTML = `
+                <div class="preferred-label">Preferred Headshot</div>
+                <div class="preferred-display">${preferredName}</div>
+            `;
+            
+            // Checklist for mismatches
+            if (mismatches.length > 0) {
+                checklistContainer.style.display = 'block';
+                let checklistHTML = `
+                    <div class="checklist-title">Update these platforms:</div>
+                    <div class="checklist-items">
+                `;
+                
+                mismatches.forEach(platform => {
+                    const storageKey = `headshot_checklist_${agent.name}_${platform}`;
+                    const isChecked = localStorage.getItem(storageKey) === 'true';
+                    
+                    checklistHTML += `
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check_${agent.name}_${platform}"
+                                   ${isChecked ? 'checked' : ''}
+                                   onchange="saveHeadshotChecklist('${agent.name}', '${platform}', this.checked)">
+                            <label for="check_${agent.name}_${platform}">${platform}</label>
+                        </div>
+                    `;
+                });
+                
+                checklistHTML += `</div>`;
+                checklistContainer.innerHTML = checklistHTML;
+            } else {
+                checklistContainer.style.display = 'none';
+            }
+        }
+        
+        function setPreferredHeadshot(agentName, platformKey) {
+            localStorage.setItem(`preferred_headshot_${agentName}`, platformKey);
+            const agent = findAgentByName(agentName);
+            if (agent) {
+                displayHeadshotAudit(agent);
+            }
+        }
+        
+        function saveHeadshotChecklist(agentName, platform, isChecked) {
+            const storageKey = `headshot_checklist_${agentName}_${platform}`;
+            localStorage.setItem(storageKey, isChecked ? 'true' : 'false');
         }
 
         function initHeadshotUploadHandler() {
