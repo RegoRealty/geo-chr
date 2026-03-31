@@ -2679,10 +2679,24 @@
         }
 
         function findAgentByEmail(email) {
+            // First try direct email match
+            for (const slug in AGENT_SEED_DATA) {
+                const agent = AGENT_SEED_DATA[slug];
+                if (agent.email && agent.email.toLowerCase() === email.toLowerCase()) {
+                    return agent;
+                }
+            }
+            // Then try matching by first name from email prefix
             const name = emailToName(email);
             for (const slug in AGENT_SEED_DATA) {
                 const agent = AGENT_SEED_DATA[slug];
                 if (agent.name.toLowerCase() === name.toLowerCase()) {
+                    return agent;
+                }
+                // Also check if agent's first name matches email prefix
+                const firstName = agent.name.split(" ")[0].toLowerCase();
+                const emailPrefix = email.split("@")[0].toLowerCase();
+                if (firstName === emailPrefix) {
                     return agent;
                 }
             }
