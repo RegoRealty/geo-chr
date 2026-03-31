@@ -1613,9 +1613,6 @@
                             <option value="">Select...</option>
                             <option value="REALTOR®">REALTOR®</option>
                             <option value="Broker">Broker</option>
-                            <option value="Leasing Agent">Leasing Agent</option>
-                            <option value="New Home Sales Specialist">New Home Sales Specialist</option>
-                            <option value="Commercial REALTOR®">Commercial REALTOR®</option>
                         </select>
 
                         <label for="bb-years">Years in real estate</label>
@@ -1641,9 +1638,6 @@
                         <label for="bb-other-specialty">Other specialty (optional)</label>
                         <input type="text" id="bb-other-specialty" placeholder="e.g., Waterfront, Fixer-uppers, Student housing">
 
-                        <label for="bb-location">Where do you specialize?</label>
-                        <input type="text" id="bb-location" placeholder="e.g., Downtown Kitchener, Uptown Waterloo, South Cambridge">
-                        <div class="bb-field-hint">Specific neighbourhoods, communities, or sub-markets you focus on</div>
                     </div>
 
                     <!-- Step 2: Areas & Clients -->
@@ -1654,6 +1648,10 @@
                         <label for="bb-areas">Areas you serve</label>
                         <input type="text" id="bb-areas" placeholder="e.g., Kitchener-Waterloo, Cambridge, Guelph">
                         <div class="bb-field-hint">Separate multiple areas with commas</div>
+
+                        <label for="bb-location">Where do you specialize?</label>
+                        <input type="text" id="bb-location" placeholder="e.g., Downtown Kitchener, Uptown Waterloo, South Cambridge">
+                        <div class="bb-field-hint">Specific neighbourhoods, communities, or sub-markets you focus on</div>
 
                         <label>Who are your typical clients? (select all that apply)</label>
                         <div class="bb-chip-group" id="bb-clients">
@@ -1719,6 +1717,12 @@
                         <div id="bb-extras" class="hidden" style="margin-top: 1.5rem;">
                             <h3 style="margin-top: 1rem;">Instagram Bio</h3>
                             <div class="bio-builder-preview" id="bb-preview-instagram" style="white-space: pre-line;"></div>
+
+                            <h3 style="margin-top: 1rem;">Facebook Page Bio</h3>
+                            <div class="bio-builder-preview" id="bb-preview-facebook"></div>
+
+                            <h3 style="margin-top: 1rem;">TikTok Bio</h3>
+                            <div class="bio-builder-preview" id="bb-preview-tiktok" style="white-space: pre-wrap;"></div>
 
                             <h3 style="margin-top: 1rem;">LinkedIn Headline</h3>
                             <div class="bio-builder-preview" id="bb-preview-linkedin"></div>
@@ -2012,6 +2016,8 @@
                 after: "Sandra Koller is a licensed REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in residential, rural, and new construction properties across Waterloo Region, Stratford, and Southwestern Ontario. With over six years of real estate experience, Sandra helps buyers and sellers navigate countryside properties, hobby farms, and lifestyle-driven moves with a clear, supportive approach. She lives on a working farm and operates a family-run ranch, giving her firsthand expertise in rural land considerations, zoning, and agricultural properties. Sandra holds an Honours BA in Legal Studies with a Minor in Management Studies and is fluent in English, Croatian, and Rusyn — making her an ideal choice for multilingual clients in the KW region. Whether you are purchasing your first rural property, building new construction, or selling a countryside home in Southwestern Ontario, Sandra combines local market knowledge with the global reach of Corcoran to deliver confident, informed results.",
                 instagram: "Sandra Koller | REALTOR®\n🏡 Rural, Countryside & New Construction\n📍 Waterloo Region • Stratford • SW Ontario\n🌾 Farm owner | Trilingual: EN/HR/RU\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Rural & New Construction REALTOR® | Corcoran Horizon Realty | Waterloo Region, Stratford & Southwestern Ontario",
+                facebook_bio: "Sandra Koller is a REALTOR® with Corcoran Horizon Realty specializing in rural, countryside, and new construction properties across Waterloo Region, Stratford, and Southwestern Ontario. With 6+ years of experience and firsthand expertise as a farm owner, Sandra helps buyers and sellers navigate hobby farms, lifestyle properties, and agricultural considerations. She's fluent in English, Croatian, and Rusyn. Contact Sandra today to find your perfect rural or countryside home.",
+                tiktok_bio: "Sandra Koller | REALTOR®\n🏡 Rural & New Construction\n📍 SW Ontario\n@corcoranhorizon | Rego Team",
                 keywords: ["rural real estate", "countryside properties", "new construction", "hobby farms", "Waterloo Region", "Stratford", "Southwestern Ontario"]
             },
             "linda-cabral": {
@@ -2024,6 +2030,8 @@
                 after: "Linda Cabral is a bilingual (Portuguese and English) REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in resale homes and condominiums across Kitchener-Waterloo, Cambridge, and Brantford. She brings 13 years of management experience as a former General Manager at Homeoutfitters, giving her strong negotiation, client service, and organizational skills that translate directly into real estate. Linda works with first-time homebuyers, condo buyers, and real estate investors looking for properties in the KW and Cambridge markets. Her hands-on approach includes guiding clients from initial search through closing, and connecting them with trusted mortgage brokers, home inspectors, and tradespeople. Fluent in Portuguese, Linda is a go-to agent for the Portuguese-speaking community across Southwestern Ontario. Contact Linda at linda@regoteam.com or 519-590-6571.",
                 instagram: "Linda Cabral | REALTOR®\n🏠 Resale & Condos | KW • Cambridge • Brantford\n🇵🇹 Fala Português!\n@corcoranhorizon | Rego Team\n📩 linda@regoteam.com",
                 linkedin_headline: "Bilingual (Portuguese/English) REALTOR® | Resale & Condos | Corcoran Horizon Realty | Kitchener-Waterloo, Cambridge & Brantford",
+                facebook_bio: "Linda Cabral is a bilingual REALTOR® with Corcoran Horizon Realty specializing in resale homes and condominiums across Kitchener-Waterloo, Cambridge, and Brantford. With 13 years of management experience and fluency in Portuguese and English, Linda guides first-time homebuyers, condo buyers, and investors through every step of the buying and selling process. Let Linda help you find your next home today.",
+                tiktok_bio: "Linda Cabral | REALTOR®\n🏠 Resale & Condos | KW\n🇵🇹 Bilingual Portuguese/English\n@corcoranhorizon | Rego Team",
                 keywords: ["Portuguese-speaking realtor", "condominiums KW", "resale homes", "first-time homebuyers", "Kitchener-Waterloo", "Cambridge", "Brantford"]
             },
             "william-forbes": {
@@ -2036,6 +2044,8 @@
                 after: "William Forbes is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in investment properties and downsizing in the Kitchener-Waterloo and Cambridge markets. He has 8 years of hands-on experience owning and operating mid-term rental properties, making him a trusted advisor for real estate investors, landlords, and newcomers to Canada seeking temporary housing. Born and raised in Kitchener and a lifelong Cambridge resident, William has deep local market knowledge across both cities. His background includes active investments in Canadian start-ups, and he achieved financial independence by age 25 through strategic real estate and business investing. William is fluent in Arabic and English, making him an excellent resource for Arabic-speaking buyers and sellers in the KW region. Whether you are purchasing your first rental property, exploring downsizing options, or building a real estate investment portfolio in Kitchener-Waterloo, William combines investor-level expertise with Corcoran's global brand reach.",
                 instagram: "William Forbes | REALTOR®\n💼 Investment Properties & Downsizing\n📍 Kitchener-Waterloo • Cambridge\n🏘 8yrs rental property owner\n🌍 Arabic & English\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Investment Property & Downsizing REALTOR® | Rental Property Owner | Corcoran Horizon Realty | Kitchener-Waterloo & Cambridge",
+                facebook_bio: "William Forbes is a REALTOR® with Corcoran Horizon Realty specializing in investment properties and downsizing across Kitchener-Waterloo and Cambridge. With 8 years of rental property ownership and bilingual Arabic/English skills, William guides investors, landlords, and downsizers to smart real estate decisions. Achieve your investment goals with William's expertise and support.",
+                tiktok_bio: "William Forbes | REALTOR®\n💼 Investment & Downsizing\n📍 KW & Cambridge\n🌍 Arabic & English\n@corcoranhorizon",
                 keywords: ["investment properties KW", "rental property", "downsizing", "Arabic-speaking realtor", "Kitchener-Waterloo", "Cambridge", "mid-term rentals"]
             },
             "patricia-inacio": {
@@ -2048,6 +2058,8 @@
                 after: "Patricia Inacio is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in pre-construction homes, luxury properties, and resale real estate across Kitchener-Waterloo and surrounding areas. As a member of the New Homes Team, Patricia has in-depth knowledge of upcoming pre-construction developments, builder incentives, and new community launches in the KW region. Before real estate, Patricia spent years as an Elementary School teacher — a background that sharpened her communication, patience, and ability to guide clients through complex decisions. She works with first-time buyers exploring pre-construction, luxury home seekers, and investors looking for resale opportunities in Southwestern Ontario.",
                 instagram: "Patricia Inacio | REALTOR®\n🏗 Pre-Construction & Luxury Homes\n📍 Kitchener-Waterloo & Surrounding Areas\n🎓 Former Teacher → New Homes Specialist\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Pre-Construction & Luxury REALTOR® | New Homes Team | Corcoran Horizon Realty | Kitchener-Waterloo",
+                facebook_bio: "Patricia Inacio is a REALTOR® with Corcoran Horizon Realty and the New Homes Team, specializing in pre-construction homes and luxury properties across Kitchener-Waterloo. As a former teacher, Patricia excels at guiding first-time buyers through complex decisions and explaining builder incentives. Discover your perfect new home or luxury property with Patricia today.",
+                tiktok_bio: "Patricia Inacio | REALTOR®\n🏗 Pre-Construction & Luxury\n📍 Kitchener-Waterloo\n🎓 New Homes Specialist\n@corcoranhorizon",
                 keywords: ["pre-construction homes KW", "luxury real estate", "new homes", "builder incentives", "Kitchener-Waterloo"]
             },
             "natalie-lloyd": {
@@ -2060,6 +2072,8 @@
                 after: "Natalie Lloyd is a REALTOR® with Corcoran Horizon Realty and the Rego Team, serving buyers, sellers, renters, and investors across Guelph, Waterloo, and Kitchener. With a background in retail management, Natalie brings strong client-service skills, active listening, and personalized guidance to every transaction. She has hands-on renovation experience from her own home projects, giving her a sharp eye for property potential, fixer-upper value, and renovation-ready homes.",
                 instagram: "Natalie Lloyd | REALTOR®\n🏠 Resale & Renovation-Ready Homes\n📍 Guelph • Waterloo • Kitchener\n🔨 Reno enthusiast | Eye for potential\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "REALTOR® | Renovation-Ready Homes & Resale | Corcoran Horizon Realty | Guelph, Waterloo & Kitchener",
+                facebook_bio: "Natalie Lloyd is a REALTOR® with Corcoran Horizon Realty serving buyers and sellers across Guelph, Waterloo, and Kitchener. With hands-on renovation experience and an eye for property potential, Natalie specializes in renovation-ready homes and resale properties. Let Natalie help you find your next home or sell your current property.",
+                tiktok_bio: "Natalie Lloyd | REALTOR®\n🏠 Resale & Renovation-Ready\n📍 Guelph • Waterloo • KW\n🔨 Reno Enthusiast\n@corcoranhorizon",
                 keywords: ["fixer-upper homes", "renovation-ready", "Guelph real estate", "Waterloo", "Kitchener", "first-time buyers"]
             },
             "rosie-tran-bennett": {
@@ -2072,6 +2086,8 @@
                 after: "Rosie Tran-Bennett is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in luxury homes and resale properties in the Kitchener-Waterloo region. Rosie guides buyers and sellers through every step of the transaction with a collaborative, transparent approach grounded in current market data. She works with move-up buyers, luxury home seekers, and sellers looking to maximize their property's value in today's market.",
                 instagram: "Rosie Tran-Bennett | REALTOR®\n✨ Luxury & Resale Homes\n📍 Kitchener-Waterloo Region\n🤝 Client-first, data-driven\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Luxury & Resale REALTOR® | Corcoran Horizon Realty | Kitchener-Waterloo",
+                facebook_bio: "Rosie Tran-Bennett is a REALTOR® with Corcoran Horizon Realty specializing in luxury and resale properties across Kitchener-Waterloo. With a data-driven, client-first approach, Rosie helps move-up buyers and luxury home seekers achieve their real estate goals. Contact Rosie for expert guidance in the KW market.",
+                tiktok_bio: "Rosie Tran-Bennett | REALTOR®\n✨ Luxury & Resale\n📍 Kitchener-Waterloo\n🤝 Data-Driven Realtor\n@corcoranhorizon",
                 keywords: ["luxury homes KW", "resale properties", "move-up buyers", "Kitchener-Waterloo"]
             },
             "sy-williams": {
@@ -2084,6 +2100,8 @@
                 after: "Sy Williams is a commercial real estate specialist with Corcoran Horizon Realty and the Rego Team, with over $100 million in completed commercial transactions since joining the team in 2015. He specializes in commercial properties, land acquisition for development, leasing, investment properties, and luxury real estate across Kitchener-Waterloo, Guelph, and as far as Ottawa, Ontario.",
                 instagram: "Sy Williams | Commercial REALTOR®\n🏢 $100M+ in Commercial Transactions\n📍 KW • Guelph • Ottawa\n📊 Land • Leasing • Investment\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Commercial Real Estate Specialist | $100M+ Transactions | Corcoran Horizon Realty | Kitchener-Waterloo, Guelph & Ottawa",
+                facebook_bio: "Sy Williams is a commercial real estate specialist with Corcoran Horizon Realty with $100M+ in completed transactions. He specializes in commercial properties, land acquisition, leasing, and investment across KW, Guelph, and Ottawa. Partner with Sy for your commercial real estate needs.",
+                tiktok_bio: "Sy Williams | Commercial REALTOR®\n🏢 $100M+ Commercial Deals\n📍 KW • Guelph • Ottawa\n📊 Land • Leasing • Investment\n@corcoranhorizon",
                 keywords: ["commercial real estate KW", "land acquisition", "commercial leasing", "$100 million", "Kitchener-Waterloo", "Guelph"]
             },
             "jillian-leclair": {
@@ -2096,6 +2114,8 @@
                 after: "Jillian Leclair is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in residential properties across Waterloo Region with a focus on architecture, design potential, and lifestyle-driven purchases. Born and raised in the region with time spent living in France, Jillian brings a European eye for design and quality to every property tour. She is fluent in French and conversational in Spanish, making her an excellent choice for francophone and multilingual clients in Southwestern Ontario. Before real estate, Jillian spent over 20 years as a high school languages teacher and was a top national sales representative for Stella & Dot.",
                 instagram: "Jillian Leclair | REALTOR®\n🏡 Architecture • Design • Lifestyle\n📍 Waterloo Region\n🇫🇷 Fluent in French | Conversational Spanish\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Residential REALTOR® | Architecture & Design Focus | French-Speaking | Corcoran Horizon Realty | Waterloo Region",
+                facebook_bio: "Jillian Leclair is a REALTOR® with Corcoran Horizon Realty specializing in residential properties with a focus on architecture and design potential across Waterloo Region. Fluent in French and conversational in Spanish, Jillian brings a European eye for quality and design to every home. Discover your perfect home with Jillian today.",
+                tiktok_bio: "Jillian Leclair | REALTOR®\n🏡 Architecture & Design\n📍 Waterloo Region\n🇫🇷 French & Spanish\n@corcoranhorizon",
                 keywords: ["French-speaking realtor", "architecture", "design potential", "Waterloo Region", "multilingual"]
             },
             "oben-necip": {
@@ -2108,6 +2128,8 @@
                 after: "Oben Necip is a registered real estate broker and Vice President of Sales and New Developments at Corcoran Horizon Realty, with over $1 billion in pre-construction home sales completed in the past three years. A second-generation real estate professional, Oben specializes in new developments, pre-construction sales, land acquisitions, luxury estates, and real estate investment strategy. He works with developers, builders, first-time homebuyers, and seasoned investors across Southwestern Ontario. Contact Oben at oben@corcoranhorizon.com or 289-925-7317.",
                 instagram: "Oben Necip | Broker & VP Sales\n🏗 $1B+ in Pre-Construction Sales\n📍 Southwestern Ontario\n💼 New Developments • Land • Luxury\n@corcoranhorizon",
                 linkedin_headline: "Registered Broker & VP of Sales | $1B+ Pre-Construction Sales | Corcoran Horizon Realty | Southwestern Ontario",
+                facebook_bio: "Oben Necip is a registered broker and VP of Sales at Corcoran Horizon Realty with $1B+ in pre-construction sales. Specializing in new developments, land acquisitions, and luxury estates across Southwestern Ontario, Oben partners with developers, builders, and investors. Contact Oben for your pre-construction and development projects.",
+                tiktok_bio: "Oben Necip | Broker & VP Sales\n🏗 $1B+ Pre-Construction\n📍 Southwestern Ontario\n💼 Land • Luxury • Developments\n@corcoranhorizon",
                 keywords: ["pre-construction sales", "$1 billion", "new developments", "land acquisitions", "luxury estates", "real estate broker"]
             },
             "lloyd-cruz": {
@@ -2216,11 +2238,27 @@
                 ]
             },
             {
+                id: "tiktok",
+                name: "TikTok",
+                badge: "You Update",
+                badgeType: "you-update",
+                bioType: "tiktok",
+                steps: [
+                    "Open TikTok and go to your profile",
+                    "Tap Edit Profile",
+                    "Replace your bio with the text provided",
+                    "Switch to a Business Account (if not already)",
+                    "Add your website link to your profile",
+                    "Create a pinned video introducing yourself as a REALTOR®",
+                    "Save and publish"
+                ]
+            },
+            {
                 id: "facebook",
                 name: "Facebook",
                 badge: "You Update",
                 badgeType: "you-update",
-                bioType: "full",
+                bioType: "facebook",
                 steps: [
                     "Go to your Business Page",
                     "Click About (left sidebar)",
@@ -2788,10 +2826,14 @@
             setTimeout(() => {
                 const bio = buildGEOBio(data);
                 const insta = buildInstagramBio(data);
+                const facebook = buildFacebookBio(data);
+                const tiktok = buildTikTokBio(data);
                 const linkedin = buildLinkedInHeadline(data);
 
                 previewText.textContent = bio;
                 document.getElementById("bb-preview-instagram").textContent = insta;
+                document.getElementById("bb-preview-facebook").textContent = facebook;
+                document.getElementById("bb-preview-tiktok").textContent = tiktok;
                 document.getElementById("bb-preview-linkedin").textContent = linkedin;
 
                 generating.classList.add("hidden");
@@ -2799,7 +2841,7 @@
                 extras.classList.remove("hidden");
 
                 // Store for save
-                bbGeneratedData = { bio, insta, linkedin, data };
+                bbGeneratedData = { bio, insta, facebook, tiktok, linkedin, data };
             }, 1500);
         }
 
@@ -2897,6 +2939,31 @@
             return lines.join("\n");
         }
 
+        function buildFacebookBio(d) {
+            let bio = `${d.name} is a ${d.title || "REALTOR®"} with Corcoran Horizon Realty`;
+            const allSpecs = [...d.specialties];
+            if (d.otherSpecialty) allSpecs.push(d.otherSpecialty);
+            if (allSpecs.length) bio += `, specializing in ${allSpecs.slice(0, 2).join(", ")}`;
+            const areaList = d.areas.split(",").map(a => a.trim()).filter(Boolean);
+            if (areaList.length) bio += ` across ${areaList.slice(0, 2).join(" and ")}`;
+            bio += ".";
+            if (d.background) bio += ` ${d.background}.`;
+            bio += ` Contact ${d.name.split(" ")[0]} today for expert real estate guidance.`;
+            return bio;
+        }
+
+        function buildTikTokBio(d) {
+            const lines = [];
+            lines.push(`${d.name} | ${d.title || "REALTOR®"}`);
+            const allSpecs = [...d.specialties];
+            if (d.otherSpecialty) allSpecs.push(d.otherSpecialty);
+            if (allSpecs.length) lines.push(`🏠 ${allSpecs.slice(0, 2).join(" & ")}`);
+            const areaList = d.areas.split(",").map(a => a.trim()).filter(Boolean);
+            if (areaList.length) lines.push(`📍 ${areaList.slice(0, 2).join(" & ")}`);
+            lines.push("@corcoranhorizon | Rego Team");
+            return lines.join("\n");
+        }
+
         function buildLinkedInHeadline(d) {
             const allSpecs = [...d.specialties];
             if (d.otherSpecialty) allSpecs.push(d.otherSpecialty);
@@ -2922,6 +2989,8 @@
                     before: d.currentBio || "",
                     after: bbGeneratedData.bio,
                     instagram: bbGeneratedData.insta,
+                    facebook_bio: bbGeneratedData.facebook,
+                    tiktok_bio: bbGeneratedData.tiktok,
                     linkedin_headline: bbGeneratedData.linkedin,
                     keywords: allSpecs.map(s => s.toLowerCase()),
                     status: "pending",
@@ -2938,6 +3007,8 @@
                     before: d.currentBio || "",
                     after: bbGeneratedData.bio,
                     instagram: bbGeneratedData.insta,
+                    facebook_bio: bbGeneratedData.facebook,
+                    tiktok_bio: bbGeneratedData.tiktok,
                     linkedin_headline: bbGeneratedData.linkedin,
                     keywords: allSpecs.map(s => s.toLowerCase())
                 };
@@ -3003,6 +3074,35 @@
                             <div class="bio-text-box" style="position: relative; white-space: pre-wrap;">
                                 ${instaBio}
                                 <button class="copy-btn" onclick="copyAndFeedback(this, \`${instaBio.replace(/`/g, "\\`")}\`)">Copy</button>
+                            </div>
+                        </div>
+                    `;
+                } else if (platform.bioType === "facebook") {
+                    const fbBio = agentData.facebook_bio || agentData.after;
+                    bioContent = `
+                        <div class="platform-section">
+                            <h4>Page Description / About</h4>
+                            <div class="bio-text-box" style="position: relative;">
+                                ${fbBio}
+                                <button class="copy-btn" onclick="copyAndFeedback(this, \`${fbBio.replace(/`/g, "\\`")}\`)">Copy</button>
+                            </div>
+                        </div>
+                        <div class="platform-section">
+                            <h4>Full Bio (for Page Info)</h4>
+                            <div class="bio-text-box" style="position: relative;">
+                                ${agentData.after}
+                                <button class="copy-btn" onclick="copyAndFeedback(this, \`${agentData.after.replace(/`/g, "\\`")}\`)">Copy</button>
+                            </div>
+                        </div>
+                    `;
+                } else if (platform.bioType === "tiktok") {
+                    const ttBio = agentData.tiktok_bio || "Your TikTok bio";
+                    bioContent = `
+                        <div class="platform-section">
+                            <h4>Bio to Paste</h4>
+                            <div class="bio-text-box" style="position: relative; white-space: pre-wrap;">
+                                ${ttBio}
+                                <button class="copy-btn" onclick="copyAndFeedback(this, \`${ttBio.replace(/`/g, "\\`")}\`)">Copy</button>
                             </div>
                         </div>
                     `;
