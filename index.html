@@ -2519,12 +2519,12 @@
                 badgeType: "you-update",
                 bioType: "full",
                 steps: [
-                    "Log in to your Realtor.ca account",
-                    "Go to your Agent Profile",
-                    "Replace your bio with the text provided",
-                    "Add these service cities (full names): Waterloo Region, Stratford, Kitchener, Cambridge, Guelph, and any others you serve",
-                    "Update your Specialties with your keywords",
-                    "Add all languages you speak",
+                    "Copy your GEO bio from above — this is your script",
+                    "Go to <a href='https://www.rfrolla.com' target='_blank'><strong>Rolla</strong></a> and create a new Personal Bio video",
+                    "Paste your GEO bio as the script and record your video (keep it under 60 seconds)",
+                    "Download the finished video from Rolla",
+                    "Log in to your <a href='https://www.realtor.ca' target='_blank'>Realtor.ca</a> account → My Account → Edit Profile",
+                    "Upload your bio video and your professional headshot photo",
                     "Save and publish"
                 ]
             },
@@ -3607,7 +3607,7 @@
 
                     let helpLink = '';
                     if (platform === 'Realtor.ca') {
-                        helpLink = '<div class="checklist-help">Log in to <a href="https://www.realtor.ca" target="_blank">REALTOR.ca</a> → My Account → Edit Profile → Upload your professional headshot photo.</div>';
+                        helpLink = '<div class="checklist-help">Use <a href="https://www.rfrolla.com" target="_blank"><strong>Rolla</strong></a> to record a Personal Bio video using your GEO bio as the script. Then log in to <a href="https://www.realtor.ca" target="_blank">REALTOR.ca</a> → My Account → Edit Profile → Upload your video + headshot photo.</div>';
                     }
 
                     checklistHTML += `
@@ -3717,7 +3717,7 @@
                 mismatches.forEach(p => {
                     body += `  ☐ ${p.name}`;
                     if (p.name === 'Realtor.ca') {
-                        body += ` — Log in to REALTOR.ca > My Account > Edit Profile > Upload your professional headshot`;
+                        body += ` — Use Rolla (rfrolla.com) to record a Personal Bio video using your GEO bio as the script, then upload the video + headshot to REALTOR.ca > My Account > Edit Profile`;
                     } else if (p.name === 'Corcoran.com') {
                         body += ` — Chelsea will handle this update`;
                     } else if (p.name === 'Corcoran Horizon') {
