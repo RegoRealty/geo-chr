@@ -780,7 +780,7 @@
            ══════════════════════════════════════════════ */
         .headshot-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
@@ -900,6 +900,23 @@
         .checklist-item input[type="checkbox"]:checked + label {
             text-decoration: line-through;
             color: #999;
+        }
+
+        .checklist-item {
+            flex-wrap: wrap;
+        }
+
+        .checklist-help {
+            width: 100%;
+            font-size: 0.8rem;
+            color: #666;
+            margin-left: 26px;
+            margin-top: 2px;
+        }
+
+        .checklist-help a {
+            color: #1B2A4A;
+            text-decoration: underline;
         }
 
         /* Bio Section Styling */
@@ -2031,8 +2048,10 @@
                 <div class="preferred-selector" id="preferred-selector-container"></div>
                 
                 <div class="update-checklist" id="headshot-checklist-container" style="display: none;"></div>
-                
-                <a href="https://www.realtor.ca" target="_blank" class="realtor-ca-link">Check Realtor.ca Headshot</a>
+
+                <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <button class="btn btn-info" id="email-checklist-btn" style="display: none;" onclick="emailAgentChecklist()">Email My Checklist</button>
+                </div>
             </div>
 
             <!-- Headshot Upload -->
@@ -2161,6 +2180,7 @@
                                 <th>Agent Name</th>
                                 <th>Bio Status</th>
                                 <th>Platform Progress</th>
+                                <th>Brand Audit</th>
                                 <th>GEO Score</th>
                                 <th>Last Updated</th>
                             </tr>
@@ -2261,11 +2281,12 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f9693546f_Sandra%20Koller.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697247e5ef48d52b1d85b73e_Cambridge%20Agent%20Headshots%20(15).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/fit-in/500x500/AgentApi/Realogy/5DD4B8E5-C89A-4858-B6EE-A1E18C2050D1/470C5758-4E71-46FA-AD88-1D92A8EB6C4B",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS638382405000000000/highres/1437129.jpg",
                 phone: "+15197296525",
                 email: "sandra@regoteam.com",
                 hasBio: true,
                 before: "Sandra Koller believes real estate is about far more than buying and selling homes. It's about helping people find a place of safety, stability, and belonging. Known for her honest, clear, and supportive approach, Sandra guides her clients through every step of the process with care, ensuring they feel informed, confident, and supported from start to finish. With over six years of experience, Sandra specializes in residential, rural, and countryside properties, with a strong focus on new construction and lifestyle-driven moves across Waterloo Region, Stratford, and surrounding Southwestern Ontario. Living on a farm and operating a family-run ranch, she brings firsthand insight into rural living and land considerations. Sandra holds an Honours BA in Legal Studies with a Minor in Management Studies, is fluent in English, Croatian, and Rusyn, and is a licensed REALTOR®. As part of Corcoran Horizon Realty and the Rego Team, she pairs local expertise with the reach of a globally recognized brand to deliver thoughtful, well-supported outcomes for her clients.",
-                after: "Sandra Koller is a licensed REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in residential, rural, and new construction properties across Waterloo Region, Stratford, and Southwestern Ontario. With over six years of real estate experience, Sandra helps buyers and sellers navigate countryside properties, hobby farms, and lifestyle-driven moves with a clear, supportive approach. She lives on a working farm and operates a family-run ranch, giving her firsthand expertise in rural land considerations, zoning, and agricultural properties. Sandra holds an Honours BA in Legal Studies with a Minor in Management Studies and is fluent in English, Croatian, and Rusyn — making her an ideal choice for multilingual clients in the KW region. Whether you are purchasing your first rural property, building new construction, or selling a countryside home in Southwestern Ontario, Sandra combines local market knowledge with the global reach of Corcoran to deliver confident, informed results.",
+                after: "Sandra Koller is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in residential, rural, and new construction properties across Waterloo Region, Stratford, and Southwestern Ontario. With over six years in real estate and firsthand experience living on a working farm, Sandra brings genuine insight into countryside properties, hobby farms, and agricultural land. Her clients appreciate her clear, honest communication and her knack for spotting the right property to match their lifestyle. Sandra holds an Honours BA in Legal Studies and is fluent in English, Croatian, and Rusyn. Reach out to Sandra at sandra@regoteam.com or 519-729-6525.",
                 instagram: "Sandra Koller | REALTOR®\n🏡 Rural, Countryside & New Construction\n📍 Waterloo Region • Stratford • SW Ontario\n🌾 Farm owner | Trilingual: EN/HR/RU\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Rural & New Construction REALTOR® | Corcoran Horizon Realty | Waterloo Region, Stratford & Southwestern Ontario",
                 facebook_bio: "Sandra Koller is a REALTOR® with Corcoran Horizon Realty specializing in rural, countryside, and new construction properties across Waterloo Region, Stratford, and Southwestern Ontario. With 6+ years of experience and firsthand expertise as a farm owner, Sandra helps buyers and sellers navigate hobby farms, lifestyle properties, and agricultural considerations. She's fluent in English, Croatian, and Rusyn. Contact Sandra today to find your perfect rural or countryside home.",
@@ -2277,11 +2298,12 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f96935430_Linda%20Cabral.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723de22906f86c2487db56_Cambridge%20Agent%20Headshots%20(6).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/6820F7A3-0A04-4714-8B6D-C40BBC6AC10F/D8E02695-570A-4BC1-AECD-55BC360A4A1F",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS638446429200000000/highres/1362277.jpg",
                 phone: "+15195906571",
                 email: "lindac@regoteam.com",
                 hasBio: true,
                 before: "Linda Cabral brings a wealth of knowledge and a background in management, having served as a General Manager for Homeoutfitters for 13 years. Her extensive experience in both real estate and management positions her as a professional who understands the nuances of the market and is dedicated to exceeding clients' expectations. Linda's area of expertise primarily focuses on the resale and condominium markets, serving the vibrant communities of KW, Cambridge, and Brantford.",
-                after: "Linda Cabral is a bilingual (Portuguese and English) REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in resale homes and condominiums across Kitchener-Waterloo, Cambridge, and Brantford. She brings 13 years of management experience as a former General Manager at Homeoutfitters, giving her strong negotiation, client service, and organizational skills that translate directly into real estate. Linda works with first-time homebuyers, condo buyers, and real estate investors looking for properties in the KW and Cambridge markets. Her hands-on approach includes guiding clients from initial search through closing, and connecting them with trusted mortgage brokers, home inspectors, and tradespeople. Fluent in Portuguese, Linda is a go-to agent for the Portuguese-speaking community across Southwestern Ontario. Contact Linda at linda@regoteam.com or 519-590-6571.",
+                after: "Linda Cabral is a bilingual REALTOR® with Corcoran Horizon Realty and the Rego Team, serving Kitchener-Waterloo, Cambridge, and Brantford. She specializes in resale homes and condominiums, with a sharp eye for helping first-time buyers and investors find the right fit. Before real estate, Linda spent 13 years as a General Manager at Homeoutfitters — experience that sharpened her negotiation skills and attention to detail. Fluent in Portuguese and English, she is a trusted go-to for the Portuguese-speaking community across Southwestern Ontario. Contact Linda at lindac@regoteam.com or 519-590-6571.",
                 instagram: "Linda Cabral | REALTOR®\n🏠 Resale & Condos | KW • Cambridge • Brantford\n🇵🇹 Fala Português!\n@corcoranhorizon | Rego Team\n📩 linda@regoteam.com",
                 linkedin_headline: "Bilingual (Portuguese/English) REALTOR® | Resale & Condos | Corcoran Horizon Realty | Kitchener-Waterloo, Cambridge & Brantford",
                 facebook_bio: "Linda Cabral is a bilingual REALTOR® with Corcoran Horizon Realty specializing in resale homes and condominiums across Kitchener-Waterloo, Cambridge, and Brantford. With 13 years of management experience and fluency in Portuguese and English, Linda guides first-time homebuyers, condo buyers, and investors through every step of the buying and selling process. Let Linda help you find your next home today.",
@@ -2293,11 +2315,12 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354fb_William%20Forbes.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697248a81d2cc689fbe1cb08_Cambridge%20Agent%20Headshots%20(18).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/E068FA0D-5765-4AD2-8B59-91DCED5A5CB3/8B2D6B0F-2B4E-4D79-AE6F-53A780D9AA57",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS638387754600000000/highres/1453437.jpg",
                 phone: "+15198419098",
                 email: "william@regoteam.com",
                 hasBio: true,
                 before: "William Forbes stands out as a real estate agent at Corcoran Horizon Realty - Rego Team, not just for his exceptional service but for his unwavering dedication to educating and guiding his clients through every step of their real estate journey. Specializing in the Kitchener-Waterloo area, William is particularly passionate about assisting investors and individuals looking to downsize.",
-                after: "William Forbes is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in investment properties and downsizing in the Kitchener-Waterloo and Cambridge markets. He has 8 years of hands-on experience owning and operating mid-term rental properties, making him a trusted advisor for real estate investors, landlords, and newcomers to Canada seeking temporary housing. Born and raised in Kitchener and a lifelong Cambridge resident, William has deep local market knowledge across both cities. His background includes active investments in Canadian start-ups, and he achieved financial independence by age 25 through strategic real estate and business investing. William is fluent in Arabic and English, making him an excellent resource for Arabic-speaking buyers and sellers in the KW region. Whether you are purchasing your first rental property, exploring downsizing options, or building a real estate investment portfolio in Kitchener-Waterloo, William combines investor-level expertise with Corcoran's global brand reach.",
+                after: "William Forbes is a REALTOR® with Corcoran Horizon Realty and the Rego Team, focused on investment properties and downsizing across Kitchener-Waterloo and Cambridge. A lifelong KW resident, William owns and operates mid-term rental properties — giving him hands-on investor experience most agents simply don't have. He achieved financial independence by age 25 through strategic real estate and now helps clients build their own portfolios with the same discipline. Fluent in Arabic and English, William is an excellent resource for newcomers to Canada and Arabic-speaking buyers. Reach out at william@regoteam.com or 519-841-9098.",
                 instagram: "William Forbes | REALTOR®\n💼 Investment Properties & Downsizing\n📍 Kitchener-Waterloo • Cambridge\n🏘 8yrs rental property owner\n🌍 Arabic & English\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Investment Property & Downsizing REALTOR® | Rental Property Owner | Corcoran Horizon Realty | Kitchener-Waterloo & Cambridge",
                 facebook_bio: "William Forbes is a REALTOR® with Corcoran Horizon Realty specializing in investment properties and downsizing across Kitchener-Waterloo and Cambridge. With 8 years of rental property ownership and bilingual Arabic/English skills, William guides investors, landlords, and downsizers to smart real estate decisions. Achieve your investment goals with William's expertise and support.",
@@ -2309,11 +2332,12 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65f9d17c2e24b546dc792aee_3167AA79-866C-46F7-A5E1-7FA296E4C74A.JPG",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697241e2b837f6717afdf8a1_Cambridge%20Agent%20Headshots%20(13).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/08D39BA5-8E9F-4C52-A9C1-8F54E0E0B9E9/191B6AB2-3724-4C00-0000-000000000000",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS638399881200000000/highres/1448229.jpg",
                 phone: "+15197165040",
                 email: "patricia@regoteam.com",
                 hasBio: true,
                 before: "Patricia Inacio embarked on her career journey as an Elementary School teacher before transitioning to the real estate sector, where she honed her expertise in luxury, resale, and investments. Specializing in these areas, she discovered her niche. Leveraging her years of experience and innate drive to cultivate robust relationships, Patricia excels in interpersonal interactions with every client she serves. Throughout her career, she has upheld a positive reputation and made a significant impact within the local community. As a realtor, Patricia\u2019s foremost objective is ensuring her clients\u2019 satisfaction, striving to make the buying or selling process enjoyable, seamless, and stress-free. She prides herself on being accessible to her clients, ready to address any questions or concerns they may have at any time of the day. Part of the New Homes Team, specializing in Pre-Construction properties, Patricia\u2019s passion for the KW and surrounding areas shines through, as she possesses intimate knowledge of the region. Embracing this shift in her career has felt both natural and exhilarating, especially with the unwavering support of the Rego Team. With her wealth of experience and innate ability to foster strong connections, Patricia remains dedicated to delivering exceptional service to each and every client she serves.",
-                after: "Patricia Inacio is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in pre-construction homes, luxury properties, and resale real estate across Kitchener-Waterloo and surrounding areas. As a member of the New Homes Team, Patricia has in-depth knowledge of upcoming pre-construction developments, builder incentives, and new community launches in the KW region. Before real estate, Patricia spent years as an Elementary School teacher — a background that sharpened her communication, patience, and ability to guide clients through complex decisions. She works with first-time buyers exploring pre-construction, luxury home seekers, and investors looking for resale opportunities in Southwestern Ontario.",
+                after: "Patricia Inacio is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in pre-construction homes, luxury properties, and resale across Kitchener-Waterloo. As part of the New Homes Team, Patricia has inside knowledge of upcoming developments, builder incentives, and new community launches. Before entering real estate, she spent years as an Elementary School teacher — a background that shows in her patience, clarity, and ability to guide clients through complex decisions. Whether you are exploring pre-construction or searching for your next luxury home, Patricia makes the process feel approachable. Contact her at patricia@regoteam.com or 519-716-5040.",
                 instagram: "Patricia Inacio | REALTOR®\n🏗 Pre-Construction & Luxury Homes\n📍 Kitchener-Waterloo & Surrounding Areas\n🎓 Former Teacher → New Homes Specialist\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Pre-Construction & Luxury REALTOR® | New Homes Team | Corcoran Horizon Realty | Kitchener-Waterloo",
                 facebook_bio: "Patricia Inacio is a REALTOR® with Corcoran Horizon Realty and the New Homes Team, specializing in pre-construction homes and luxury properties across Kitchener-Waterloo. As a former teacher, Patricia excels at guiding first-time buyers through complex decisions and explaining builder incentives. Discover your perfect new home or luxury property with Patricia today.",
@@ -2325,11 +2349,12 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354fa_Natalie%20(2).jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697240900d5364dd45922737_Cambridge%20Agent%20Headshots%20(9).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/5C52307D-BCF3-45F2-85C5-BE2B4F001A70/45078CB6-289C-4F29-B96E-88161BDE182B",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS638385084600000000/highres/1451737.jpg",
                 phone: "+15194043479",
                 email: "natalie@regoteam.com",
                 hasBio: true,
                 before: "Natalie Lloyd chose real estate because she believes a home should be a place of comfort, security, and warmth. With personal experience of both the joy of creating a home and the stresses of starting over, Natalie understands how overwhelming the process can be. Whether buying, selling, renting, or investing, she is dedicated to making the journey easier for her clients. Her goal is to listen to each client\u2019s story and provide the guidance they need every step of the way. Having lived in Guelph, Waterloo, and Kitchener, Natalie has developed a deep appreciation for the unique qualities of each region. Her background in retail management has equipped her with the skills to actively listen, offer personalized experiences, and understand diverse client needs. This enables her to tailor real estate solutions that align with her clients\u2019 aspirations. Natalie\u2019s passion for homes goes beyond her career\u2014it\u2019s personal. Her hands-on experience with her own renovation projects has given her an eye for potential, allowing her to see possibilities that others may overlook. She helps her clients discover the untapped potential in every property.",
-                after: "Natalie Lloyd is a REALTOR® with Corcoran Horizon Realty and the Rego Team, serving buyers, sellers, renters, and investors across Guelph, Waterloo, and Kitchener. With a background in retail management, Natalie brings strong client-service skills, active listening, and personalized guidance to every transaction. She has hands-on renovation experience from her own home projects, giving her a sharp eye for property potential, fixer-upper value, and renovation-ready homes.",
+                after: "Natalie Lloyd is a REALTOR® with Corcoran Horizon Realty and the Rego Team, serving buyers, sellers, and investors across Guelph, Waterloo, and Kitchener. What sets Natalie apart is her passion for renovation — she has completed her own home projects, giving her an eye for untapped property potential that others miss. With a background in retail management, she brings strong listening skills and a personalized approach to every client relationship. If you are looking for a fixer-upper, a renovation-ready home, or simply someone who sees possibility in every property, Natalie is your agent. Reach out at natalie@regoteam.com or 519-404-3479.",
                 instagram: "Natalie Lloyd | REALTOR®\n🏠 Resale & Renovation-Ready Homes\n📍 Guelph • Waterloo • Kitchener\n🔨 Reno enthusiast | Eye for potential\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "REALTOR® | Renovation-Ready Homes & Resale | Corcoran Horizon Realty | Guelph, Waterloo & Kitchener",
                 facebook_bio: "Natalie Lloyd is a REALTOR® with Corcoran Horizon Realty serving buyers and sellers across Guelph, Waterloo, and Kitchener. With hands-on renovation experience and an eye for property potential, Natalie specializes in renovation-ready homes and resale properties. Let Natalie help you find your next home or sell your current property.",
@@ -2341,11 +2366,12 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f96935431_Rosie%20Tran-Bennett_.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/6972474c2bd79e4aca88dc35_Cambridge%20Agent%20Headshots%20(14).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/80E79149-A459-4CC5-B741-A86A4A5C2D8C/128014B0-2A52-4D34-A5C2-2373E0F58564",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS637890995400000000/highres/1416700.jpg",
                 phone: "+12263392125",
                 email: "rosie@regoteam.com",
                 hasBio: true,
                 before: "Rosie Tran-Bennett is known for her friendly, approachable nature and her ability to make the real estate process feel easy and even a little fun. With a strong work ethic, empathy, and a genuine love for helping people, Rosie creates a collaborative environment that guides clients through every step of buying or selling. She takes the time to truly get to know her clients, ensuring that every interaction is open, honest, and transparent. Her goal is to make the experience as smooth as possible, all while aligning expectations with today\u2019s market realities. Specializing in luxury and resale properties, Rosie is committed to delivering exceptional service and ensuring her clients achieve their real estate goals with confidence.",
-                after: "Rosie Tran-Bennett is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in luxury homes and resale properties in the Kitchener-Waterloo region. Rosie guides buyers and sellers through every step of the transaction with a collaborative, transparent approach grounded in current market data. She works with move-up buyers, luxury home seekers, and sellers looking to maximize their property's value in today's market.",
+                after: "Rosie Tran-Bennett is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in luxury and resale properties in Kitchener-Waterloo. Known for her warm, approachable style, Rosie makes even the most stressful transactions feel manageable. She grounds every recommendation in current market data, keeping expectations honest and aligned with today's conditions. Move-up buyers and luxury home seekers appreciate her collaborative approach and genuine care. Reach out to Rosie at rosie@regoteam.com or 226-339-2125.",
                 instagram: "Rosie Tran-Bennett | REALTOR®\n✨ Luxury & Resale Homes\n📍 Kitchener-Waterloo Region\n🤝 Client-first, data-driven\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Luxury & Resale REALTOR® | Corcoran Horizon Realty | Kitchener-Waterloo",
                 facebook_bio: "Rosie Tran-Bennett is a REALTOR® with Corcoran Horizon Realty specializing in luxury and resale properties across Kitchener-Waterloo. With a data-driven, client-first approach, Rosie helps move-up buyers and luxury home seekers achieve their real estate goals. Contact Rosie for expert guidance in the KW market.",
@@ -2357,11 +2383,12 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354d8_Sy%20Williams.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69724844ef6ac87b683b1d92_Cambridge%20Agent%20Headshots%20(17).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/FD9F91F0-6D75-44F2-8EE4-09A499173FA2/B1EBA4E1-5466-4908-9B95-B6DDE3CF519E",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS636868591800000000/highres/1278796.jpg",
                 phone: "+12262185947",
                 email: "sy@regoteam.com",
                 hasBio: true,
                 before: "Sy Williams is a highly skilled and experienced commercial real estate professional, who has been a vital member of the Rego Team since 2015. He specializes in commercial real estate, land and luxury real estate properties, and has a proven track record for successfully completing transactions involving both buyers and sellers. Sy Williams has successfully transacted in properties worth over $100,000,000 in the commercial real estate. Sy Williams focus is primarily in the KW region. Sy has transacted as far as Ottawa, Ontario successfully acquiring land for development. Sy Williams is a lifelong resident of the KW region, and he brings in-depth knowledge as well as a large database of clients for the local market to all his transactions. He has a keen eye for identifying opportunities and providing his clients with strategic insights into the commercial real estate landscape. Sy\u2019s expertise extends to various aspects, including land development, leasing, and investment properties. Sy\u2019s professionalism, integrity, and dedication to his clients have earned him a stellar reputation in the industry. He works tirelessly to ensure that his clients\u2019 needs are met and their objectives are achieved. With Sy on your side, you can be assured of receiving the best possible advice and guidance when it comes to buying or selling commercial real estate in the Guelph and KW region.",
-                after: "Sy Williams is a commercial real estate specialist with Corcoran Horizon Realty and the Rego Team, with over $100 million in completed commercial transactions since joining the team in 2015. He specializes in commercial properties, land acquisition for development, leasing, investment properties, and luxury real estate across Kitchener-Waterloo, Guelph, and as far as Ottawa, Ontario.",
+                after: "Sy Williams is a commercial real estate specialist with Corcoran Horizon Realty and the Rego Team. Since 2015, he has closed over $100 million in commercial transactions — spanning land acquisitions, leasing, investment properties, and luxury real estate. A lifelong Kitchener-Waterloo resident, Sy brings deep local knowledge and a large network of clients to every deal. His reach extends across Guelph and as far as Ottawa for land development opportunities. Contact Sy at sy@regoteam.com or 226-218-5947.",
                 instagram: "Sy Williams | Commercial REALTOR®\n🏢 $100M+ in Commercial Transactions\n📍 KW • Guelph • Ottawa\n📊 Land • Leasing • Investment\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Commercial Real Estate Specialist | $100M+ Transactions | Corcoran Horizon Realty | Kitchener-Waterloo, Guelph & Ottawa",
                 facebook_bio: "Sy Williams is a commercial real estate specialist with Corcoran Horizon Realty with $100M+ in completed transactions. He specializes in commercial properties, land acquisition, leasing, and investment across KW, Guelph, and Ottawa. Partner with Sy for your commercial real estate needs.",
@@ -2373,11 +2400,12 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/66e48dbd812667c4593c9c49_Jillian_Headshot_2024.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723d797d110d44d20c75be_Cambridge%20Agent%20Headshots%20(5).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/3A2F7B8C-1234-4567-ABCD-000000000000/placeholder",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS638738678400000000/highres/1469100.jpg",
                 phone: "+15192772580",
                 email: "jillian@regoteam.com",
                 hasBio: true,
                 before: "Jillian Leclair brings her French flair and a passion for real estate, architecture and design to the Rego Team at Corcoran Horizon Realty. Jillian understands the importance your home plays in your life. Her passion for food, wine, design and entertaining is sure to find fresh and unique possibilities for your new property and the exciting lifestyle that comes with it. Born and raised in Waterloo Region, Jillian values the wonderful lifestyle Ontario provides but her time living in France also means she has a European eye for detail, quality and that special \u201Cje ne sais quoi\u201D. Hospitality, a joy for life and a desire to make those around her appreciated means she offers unparalleled service to her real estate clients. Her love for architecture and design ensure her clients see the extraordinary possibilities in the properties they tour regardless of their budget desires. Sometimes luxury is found the simplest of things with the right touch. Before transitioning to real estate, Jillian spent over 20 years as a high school languages teacher. This experience sharpened her skills in problem-solving, emotional intelligence, and managing diverse personalities\u2014qualities that are vital in real estate. In addition, Jillian\u2019s time as a top national sales representative for Stella Dot and her background in the hotel industry have given her a strong foundation in customer service, professionalism, and attention to detail. Outside of work, Jillian is passionate about travel and outdoor activities such as skiing, swimming, and backcountry canoeing. Fluent in French and conversational in Spanish, she enjoys the richness that comes with connecting across cultures. She is also involved in her local community and takes pride in building long-term relationships with her clients, offering them expert guidance every step of the way.",
-                after: "Jillian Leclair is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in residential properties across Waterloo Region with a focus on architecture, design potential, and lifestyle-driven purchases. Born and raised in the region with time spent living in France, Jillian brings a European eye for design and quality to every property tour. She is fluent in French and conversational in Spanish, making her an excellent choice for francophone and multilingual clients in Southwestern Ontario. Before real estate, Jillian spent over 20 years as a high school languages teacher and was a top national sales representative for Stella & Dot.",
+                after: "Jillian Leclair is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in residential properties across Waterloo Region. Jillian brings a European eye for architecture and design, shaped by time living in France. Before real estate, she spent over 20 years as a high school languages teacher and earned recognition as a top national sales representative for Stella & Dot. Fluent in French and conversational in Spanish, she is an ideal choice for multilingual clients who value design, quality, and that special je ne sais quoi. Contact Jillian at jillian@regoteam.com or 519-277-2580.",
                 instagram: "Jillian Leclair | REALTOR®\n🏡 Architecture • Design • Lifestyle\n📍 Waterloo Region\n🇫🇷 Fluent in French | Conversational Spanish\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "Residential REALTOR® | Architecture & Design Focus | French-Speaking | Corcoran Horizon Realty | Waterloo Region",
                 facebook_bio: "Jillian Leclair is a REALTOR® with Corcoran Horizon Realty specializing in residential properties with a focus on architecture and design potential across Waterloo Region. Fluent in French and conversational in Spanish, Jillian brings a European eye for quality and design to every home. Discover your perfect home with Jillian today.",
@@ -2389,11 +2417,12 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f96935483_Oben%20Necip.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697241f0a041dbd9c164a6ba_Cambridge%20Agent%20Headshots%20(12).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/A1B2C3D4-5678-9012-ABCD-000000000000/placeholder",
+                realtorCaHeadshotUrl: "",
                 phone: "289-925-7317",
                 email: "oben@corcoranhorizon.com",
                 hasBio: true,
                 before: "Oben Necip is a seasoned real estate professional with over six years of experience in the industry. Currently holding the position of Vice President of Sales and New Developments. Oben is also a registered real estate broker, exemplifying his unwavering commitment to professionalism and excellence within the field. As a second-generation real estate expert, Oben takes great pride in continuing a family legacy and carrying forward a profound passion for the industry. His primary areas of expertise encompass New Developments, land acquisitions, and luxury estates, and his impressive track record includes the successful sale of over $1 billion worth of Pre Construction homes in the past three years. What distinguishes Oben is his extensive knowledge of real estate investing, recognizing that real estate transactions are not merely purchases or sales but crucial investments in one\u2019s financial future. His experience empowers clients, whether they are seasoned investors or first-time homebuyers, to make well-informed decisions aligned with their financial objectives. Before embarking on his real estate journey, Oben Necip held the prestigious role as Head of Global Security for a world-renowned technology company. This background equips him with a unique skill set, allowing him to adapt to the dynamic real estate landscape and deliver innovative solutions for his clients. Oben\u2019s mission is clear: to collaborate closely with clients and partners, ensuring that their success and wealth-building objectives are not only met but exceeded. His work is centered around client satisfaction and financial prosperity, and he approaches every relationship as a partnership focused on achieving real estate aspirations.",
-                after: "Oben Necip is a registered real estate broker and Vice President of Sales and New Developments at Corcoran Horizon Realty, with over $1 billion in pre-construction home sales completed in the past three years. A second-generation real estate professional, Oben specializes in new developments, pre-construction sales, land acquisitions, luxury estates, and real estate investment strategy. He works with developers, builders, first-time homebuyers, and seasoned investors across Southwestern Ontario. Contact Oben at oben@corcoranhorizon.com or 289-925-7317.",
+                after: "Oben Necip is a registered broker and Vice President of Sales and New Developments at Corcoran Horizon Realty. A second-generation real estate professional, Oben has completed over $1 billion in pre-construction home sales in the past three years alone. He specializes in new developments, land acquisitions, and luxury estates across Southwestern Ontario. Before real estate, Oben served as Head of Global Security for a world-renowned technology company — a background that sharpened his strategic thinking and ability to adapt in any market. Contact Oben at oben@corcoranhorizon.com or 289-925-7317.",
                 instagram: "Oben Necip | Broker & VP Sales\n🏗 $1B+ in Pre-Construction Sales\n📍 Southwestern Ontario\n💼 New Developments • Land • Luxury\n@corcoranhorizon",
                 linkedin_headline: "Registered Broker & VP of Sales | $1B+ Pre-Construction Sales | Corcoran Horizon Realty | Southwestern Ontario",
                 facebook_bio: "Oben Necip is a registered broker and VP of Sales at Corcoran Horizon Realty with $1B+ in pre-construction sales. Specializing in new developments, land acquisitions, and luxury estates across Southwestern Ontario, Oben partners with developers, builders, and investors. Contact Oben for your pre-construction and development projects.",
@@ -2405,6 +2434,7 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/6931eec1802e79501db81a41_CHR%20Website%20Headshots%20(2).png",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723dd010a135fb3ca014a0_Cambridge%20Agent%20Headshots%20(7).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/5AB6AF71-68A2-493F-A3E8-4EB012F735CD/FAB8F620-12D3-4627-9DE4-20566E9CE829",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS636868756800000000/highres/1238864.jpg",
                 phone: "+15195898788",
                 email: "lloyd@regoteam.com",
                 hasBio: false
@@ -2414,6 +2444,7 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354e1_Nick.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/697240814b592be5fa84a297_Cambridge%20Agent%20Headshots%20(10).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/NICK-PLACEHOLDER/NICK-PLACEHOLDER",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS636517087800000000/highres/1278801.jpg",
                 phone: "+15195895862",
                 email: "nick@regoteam.com",
                 hasBio: false
@@ -2423,6 +2454,7 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/6931edf72a30b5f135818af9_CHR%20Website%20Headshots.png",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723caa0caf4b1af9f78cb2_Cambridge%20Agent%20Headshots%20(3).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/B0E20D98-2EC3-4D82-A50D-906933762216/F03D3918-AED2-42EC-A84C-CAC7796DC69D",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS636868595400000000/highres/1212062.jpg",
                 phone: "+15195004653",
                 email: "humberto@regoteam.com",
                 hasBio: false
@@ -2432,11 +2464,12 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354f5_Chanel.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723c278db818ab4691586e_Cambridge%20Agent%20Headshots%20(1).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/CHANEL-PLACEHOLDER/CHANEL-PLACEHOLDER",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS638300701200000000/highres/1442145.jpg",
                 phone: "+15199984423",
                 email: "chanel@regorealty.ca",
                 hasBio: true,
                 before: "My name is Chanel Silva and I have been working in the Real Estate industry for four years now. I started my real estate career as an Inside Sales Agent where I gained a great deal of experience in customer service and facilitating real estate transactions. I am currently a licensed Real Estate Agent who is proudly serving the Waterloo Region, with a focus on new-developments, condo sales, and residential homes. My educational background includes a diploma from Conestoga College and a Bachelor\u2019s degree from the University of Waterloo in Sociology and Legal Studies. My experience as an ISA allowed me the unique experience of assisting a variety of clients throughout their real estate journey. My philosophy is and will always be a client focused approach, where the needs of the client is always the priority. Building relationships and developing trust with my clients is the foundation to achieving successful results and obtaining overall client satisfaction. I take pride in being a responsive and informative Realtor, who is always available to support, educate, and guide clients throughout every step of the process.",
-                after: "Chanel Silva is a REALTOR\u00AE with Corcoran Horizon Realty and the Rego Team, specializing in new developments, condo sales, and residential homes across the Waterloo Region. With four years of experience in the real estate industry\u2014including her start as an Inside Sales Agent\u2014Chanel brings hands-on knowledge of the full transaction process, from initial inquiry through closing. She holds a diploma from Conestoga College and a Bachelor\u2019s degree in Sociology and Legal Studies from the University of Waterloo, giving her a strong foundation in client relations, community dynamics, and contract navigation. Chanel\u2019s client-first philosophy means every decision is guided by her clients\u2019 needs and goals. Whether you are a first-time buyer exploring new-construction condos in Kitchener-Waterloo, a growing family searching for residential homes, or an investor evaluating pre-construction opportunities, Chanel provides responsive, transparent, and knowledgeable guidance at every step. Contact Chanel at chanel@regorealty.ca or 519-998-4423.",
+                after: "Chanel Silva is a REALTOR® with Corcoran Horizon Realty and the Rego Team, specializing in new developments, condo sales, and residential homes across Waterloo Region. Chanel started her career as an Inside Sales Agent, gaining hands-on experience with the full transaction process before becoming a licensed agent. She holds a Bachelor's degree in Sociology and Legal Studies from the University of Waterloo, giving her a strong foundation in client relations and contract navigation. Her client-first philosophy means every decision is guided by your goals, not hers. Reach out to Chanel at chanel@regorealty.ca or 519-998-4423.",
                 instagram: "Chanel Silva | REALTOR\u00AE\n\uD83C\uDFE0 New Developments \u2022 Condos \u2022 Residential\n\uD83D\uDCCD Waterloo Region\n\uD83C\uDF93 UWaterloo \u2022 Conestoga\n@corcoranhorizon | Rego Team",
                 linkedin_headline: "REALTOR\u00AE | New Developments & Condo Sales | Corcoran Horizon Realty | Waterloo Region",
                 facebook_bio: "Chanel Silva is a REALTOR\u00AE with Corcoran Horizon Realty specializing in new developments, condo sales, and residential homes across the Waterloo Region. With a University of Waterloo degree and four years of industry experience, Chanel delivers responsive, client-first service to buyers, sellers, and investors. Reach out to Chanel for expert guidance on your next home purchase.",
@@ -2448,6 +2481,7 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354f0_DSC05463.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/6972401da041dbd9c16409b3_Cambridge%20Agent%20Headshots%20(8).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/4256D999-CB17-4C94-B282-B582020F9308/7E5FB167-9604-46EC-83E6-F15111E5D6C3",
+                realtorCaHeadshotUrl: "",
                 phone: "+15192409270",
                 email: "nareg@yproperty.ca",
                 hasBio: false
@@ -2457,6 +2491,7 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f969354da_Shivdeep.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69724811a2cd0efcc84851aa_Cambridge%20Agent%20Headshots%20(16).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/EDC3F7F5-2180-4BE5-B4FF-435A20BBA771/A2A059A1-2900-4D71-A087-5B161C4B8A7F",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS637314706200000000/highres/1303354.jpg",
                 phone: "+15194973297",
                 email: "shivdeep@regoteam.com",
                 hasBio: false
@@ -2466,6 +2501,7 @@
                 headshotUrl: "https://cdn.prod.website-files.com/65a02a04ebe0bd3f969352f1/65a02a04ebe0bd3f96935433_Jen.jpg",
                 chrHeadshotUrl: "https://cdn.prod.website-files.com/65aa8c7037586e48f4b24463/69723d24ee724132867dc6cc_Cambridge%20Agent%20Headshots%20(4).png",
                 corcoranHeadshotUrl: "https://media-cloud.corcoranlabs.com/AgentApi/Realogy/JEN-PLACEHOLDER/JEN-PLACEHOLDER",
+                realtorCaHeadshotUrl: "https://cdn.realtor.ca/individuals/TS636868755000000000/highres/1339528.jpg",
                 phone: "",
                 email: "jennifer@regoteam.com",
                 hasBio: false
@@ -3158,69 +3194,68 @@
             if (d.otherSpecialty) allSpecs.push(d.otherSpecialty);
             const specList = allSpecs.join(", ").toLowerCase();
 
-            // Parse areas into a clean list
             const areaList = d.areas.split(",").map(a => a.trim()).filter(Boolean);
             const areaText = areaList.length > 2
                 ? areaList.slice(0, -1).join(", ") + ", and " + areaList[areaList.length - 1]
                 : areaList.join(" and ");
 
-            // Build sentences
             let sentences = [];
 
-            // Sentence 1: Name, title, brokerage, specialties, areas
-            let s1 = `${d.name} is a ${d.title} with Corcoran Horizon Realty and the Rego Team`;
-            if (allSpecs.length > 0) {
-                s1 += `, specializing in ${specList}`;
-            }
-            s1 += ` across ${areaText}.`;
-            sentences.push(s1);
+            // Opener: Name, title, brokerage
+            sentences.push(`${d.name} is a ${d.title} with Corcoran Horizon Realty and the Rego Team, serving ${areaText}.`);
 
-            // Sentence 2: Experience
-            if (d.years) {
-                sentences.push(`With ${d.years} years of real estate experience, ${firstName} helps ${d.clients.length > 0 ? d.clients.map(c => c.toLowerCase()).join(", ") : "buyers and sellers"} navigate the ${areaList[0] || "local"} market with confidence.`);
-            } else if (d.clients.length > 0) {
-                sentences.push(`${firstName} works with ${d.clients.map(c => c.toLowerCase()).join(", ")} looking for properties in ${areaText}.`);
+            // Specialties + experience (combined, concise)
+            if (allSpecs.length > 0 && d.years) {
+                sentences.push(`With ${d.years} years in the industry, ${firstName} specializes in ${specList}.`);
+            } else if (allSpecs.length > 0) {
+                sentences.push(`${firstName} specializes in ${specList}.`);
+            } else if (d.years) {
+                sentences.push(`${firstName} brings ${d.years} years of real estate experience to every client relationship.`);
             }
 
-            // Location specialization
-            if (d.location) {
-                sentences.push(`${firstName} has deep knowledge of ${d.location}, helping clients find opportunities in these high-demand areas.`);
+            // Clients (vary structure — don't start with name)
+            if (d.clients.length > 0) {
+                const clientList = d.clients.map(c => c.toLowerCase()).join(", ");
+                sentences.push(`Known for a hands-on, client-first approach, ${firstName} works closely with ${clientList}.`);
             }
 
-            // Sentence 3: Background
+            // Background (personal touch — tell a mini-story)
             if (d.background) {
-                sentences.push(`Before real estate, ${firstName} built a career in ${d.background}, bringing transferable skills in negotiation, client service, and market analysis to every transaction.`);
+                sentences.push(`Before entering real estate, ${firstName} gained valuable experience in ${d.background} — skills that now translate into sharp negotiation and attentive client service.`);
             }
 
-            // Sentence 4: Languages
+            // Highlight / differentiator (personal touch)
+            if (d.highlight) {
+                const cleaned = d.highlight.endsWith(".") ? d.highlight : d.highlight + ".";
+                sentences.push(cleaned);
+            }
+
+            // Languages (only if provided, keep it tight)
             if (d.languages) {
                 const langs = d.languages.split(",").map(l => l.trim()).filter(Boolean);
                 if (langs.length === 1) {
-                    sentences.push(`Fluent in ${langs[0]} and English, ${firstName} is an excellent resource for ${langs[0]}-speaking buyers and sellers in the region.`);
-                } else if (langs.length > 1) {
+                    sentences.push(`Fluent in ${langs[0]} and English, ${firstName} proudly serves the ${langs[0]}-speaking community.`);
+                } else {
                     const langText = langs.slice(0, -1).join(", ") + " and " + langs[langs.length - 1];
-                    sentences.push(`${firstName} speaks ${langText} in addition to English, making them an ideal choice for multilingual clients.`);
+                    sentences.push(`${firstName} speaks ${langText} in addition to English.`);
                 }
             }
 
-            // Sentence 5: Credentials
+            // Credentials (short)
             if (d.credentials) {
-                sentences.push(`${firstName} holds the ${d.credentials} designation${d.credentials.includes(",") ? "s" : ""}, reflecting a commitment to professional excellence and specialized knowledge.`);
+                sentences.push(`${firstName} holds the ${d.credentials} designation.`);
             }
 
-            // Sentence 6: Highlight / differentiator
-            if (d.highlight) {
-                sentences.push(`${d.highlight.endsWith(".") ? d.highlight : d.highlight + "."}`);
-            }
-
-            // Sentence 7: CTA with contact
-            let cta = `Whether you are buying, selling, or investing in ${areaList[0] || "the local market"}, ${firstName} combines local expertise with the global reach of Corcoran to deliver results.`;
-            if (d.email || d.phone) {
-                cta += ` Contact ${firstName}`;
-                if (d.email) cta += ` at ${d.email}`;
-                if (d.email && d.phone) cta += ` or`;
-                if (d.phone) cta += ` ${d.phone}`;
-                cta += ".";
+            // CTA (short, no run-on)
+            let cta = `Reach out to ${firstName}`;
+            if (d.email && d.phone) {
+                cta += ` at ${d.email} or ${d.phone}.`;
+            } else if (d.email) {
+                cta += ` at ${d.email}.`;
+            } else if (d.phone) {
+                cta += ` at ${d.phone}.`;
+            } else {
+                cta += ` to get started.`;
             }
             sentences.push(cta);
 
@@ -3245,15 +3280,17 @@
         }
 
         function buildFacebookBio(d) {
+            const firstName = d.name.split(" ")[0];
             let bio = `${d.name} is a ${d.title || "REALTOR®"} with Corcoran Horizon Realty`;
             const allSpecs = [...d.specialties];
             if (d.otherSpecialty) allSpecs.push(d.otherSpecialty);
-            if (allSpecs.length) bio += `, specializing in ${allSpecs.slice(0, 2).join(", ")}`;
+            if (allSpecs.length) bio += ` specializing in ${allSpecs.slice(0, 2).join(" and ").toLowerCase()}`;
             const areaList = d.areas.split(",").map(a => a.trim()).filter(Boolean);
             if (areaList.length) bio += ` across ${areaList.slice(0, 2).join(" and ")}`;
             bio += ".";
-            if (d.background) bio += ` ${d.background}.`;
-            bio += ` Contact ${d.name.split(" ")[0]} today for expert real estate guidance.`;
+            if (d.background) bio += ` With a background in ${d.background}, ${firstName} brings a unique perspective to every deal.`;
+            if (d.highlight) bio += ` ${d.highlight.endsWith('.') ? d.highlight : d.highlight + '.'}`;
+            bio += ` Reach out to ${firstName} today.`;
             return bio;
         }
 
@@ -3518,7 +3555,8 @@
             const platforms = [
                 { name: "Rego Team", url: agent.headshotUrl || "", key: "regoteam" },
                 { name: "Corcoran Horizon", url: agent.chrHeadshotUrl || "", key: "chr" },
-                { name: "Corcoran.com", url: agent.corcoranHeadshotUrl || "", key: "corcoran" }
+                { name: "Corcoran.com", url: agent.corcoranHeadshotUrl || "", key: "corcoran" },
+                { name: "Realtor.ca", url: agent.realtorCaHeadshotUrl || "", key: "realtorca" }
             ];
             
             let gridHTML = '';
@@ -3566,21 +3604,32 @@
                 mismatches.forEach(platform => {
                     const storageKey = `headshot_checklist_${agent.name}_${platform}`;
                     const isChecked = localStorage.getItem(storageKey) === 'true';
-                    
+
+                    let helpLink = '';
+                    if (platform === 'Realtor.ca') {
+                        helpLink = '<div class="checklist-help">Log in to <a href="https://www.realtor.ca" target="_blank">REALTOR.ca</a> → My Account → Edit Profile → Upload your professional headshot photo.</div>';
+                    }
+
                     checklistHTML += `
                         <div class="checklist-item">
                             <input type="checkbox" id="check_${agent.name}_${platform}"
                                    ${isChecked ? 'checked' : ''}
                                    onchange="saveHeadshotChecklist('${agent.name}', '${platform}', this.checked)">
                             <label for="check_${agent.name}_${platform}">${platform}</label>
+                            ${helpLink}
                         </div>
                     `;
                 });
-                
+
                 checklistHTML += `</div>`;
                 checklistContainer.innerHTML = checklistHTML;
+                // Show the email button
+                const emailBtn = document.getElementById('email-checklist-btn');
+                if (emailBtn) emailBtn.style.display = 'inline-block';
             } else {
                 checklistContainer.style.display = 'none';
+                const emailBtn = document.getElementById('email-checklist-btn');
+                if (emailBtn) emailBtn.style.display = 'none';
             }
         }
         
@@ -3595,6 +3644,98 @@
         function saveHeadshotChecklist(agentName, platform, isChecked) {
             const storageKey = `headshot_checklist_${agentName}_${platform}`;
             localStorage.setItem(storageKey, isChecked ? 'true' : 'false');
+
+            // Check if ALL checklist items are now complete
+            checkBrandAuditCompletion(agentName);
+        }
+
+        function checkBrandAuditCompletion(agentName) {
+            const agent = findAgentByName(agentName);
+            if (!agent) return;
+
+            const platforms = [
+                { name: "Rego Team", url: agent.headshotUrl || "", key: "regoteam" },
+                { name: "Corcoran Horizon", url: agent.chrHeadshotUrl || "", key: "chr" },
+                { name: "Corcoran.com", url: agent.corcoranHeadshotUrl || "", key: "corcoran" },
+                { name: "Realtor.ca", url: agent.realtorCaHeadshotUrl || "", key: "realtorca" }
+            ];
+
+            const mismatches = platforms.filter(p => !p.url || p.url.includes('placeholder') || p.url.includes('PLACEHOLDER')).map(p => p.name);
+
+            // If no mismatches, brand audit is inherently complete
+            if (mismatches.length === 0) return;
+
+            // Check if all mismatch items are checked off
+            const allChecked = mismatches.every(platform => {
+                const storageKey = `headshot_checklist_${agentName}_${platform}`;
+                return localStorage.getItem(storageKey) === 'true';
+            });
+
+            if (allChecked) {
+                // Save to Firestore
+                const slug = slugify(agentName);
+                const db = firebase.firestore();
+                db.collection("agents").doc(slug).set({
+                    brandAuditComplete: true,
+                    brandAuditCompletedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true }).then(() => {
+                    showAlert("Brand audit complete! Chelsea has been notified and will update DASH.", "success");
+                }).catch(err => {
+                    console.error("Error saving brand audit:", err);
+                });
+            }
+        }
+
+        function emailAgentChecklist(agentIdOverride) {
+            const agent = agentIdOverride ? AGENT_SEED_DATA[agentIdOverride] : currentAgent;
+            if (!agent) return;
+
+            const platforms = [
+                { name: "Rego Team", url: agent.headshotUrl || "", key: "regoteam" },
+                { name: "Corcoran Horizon", url: agent.chrHeadshotUrl || "", key: "chr" },
+                { name: "Corcoran.com", url: agent.corcoranHeadshotUrl || "", key: "corcoran" },
+                { name: "Realtor.ca", url: agent.realtorCaHeadshotUrl || "", key: "realtorca" }
+            ];
+
+            const mismatches = platforms.filter(p => !p.url || p.url.includes('placeholder') || p.url.includes('PLACEHOLDER'));
+            const matched = platforms.filter(p => p.url && !p.url.includes('placeholder') && !p.url.includes('PLACEHOLDER'));
+
+            const firstName = agent.name.split(' ')[0];
+            const subject = encodeURIComponent(`Action Required: Brand Consistency Audit - ${agent.name}`);
+
+            let body = `Hi ${firstName},\n\n`;
+            body += `As part of our GEO (Generative Engine Optimization) initiative, we're ensuring brand consistency across all platforms. Here's your Brand Consistency Audit checklist:\n\n`;
+
+            if (matched.length > 0) {
+                body += `PLATFORMS WITH YOUR HEADSHOT (${matched.length}/4):\n`;
+                matched.forEach(p => { body += `  ✓ ${p.name}\n`; });
+                body += `\n`;
+            }
+
+            if (mismatches.length > 0) {
+                body += `PLATFORMS THAT NEED YOUR PHOTO UPDATED (${mismatches.length}):\n`;
+                mismatches.forEach(p => {
+                    body += `  ☐ ${p.name}`;
+                    if (p.name === 'Realtor.ca') {
+                        body += ` — Log in to REALTOR.ca > My Account > Edit Profile > Upload your professional headshot`;
+                    } else if (p.name === 'Corcoran.com') {
+                        body += ` — Chelsea will handle this update`;
+                    } else if (p.name === 'Corcoran Horizon') {
+                        body += ` — Chelsea will handle this update`;
+                    }
+                    body += `\n`;
+                });
+                body += `\n`;
+            }
+
+            body += `IMPORTANT: Use the SAME professional headshot across all platforms for brand consistency.\n\n`;
+            body += `Once you've updated your platforms, go to your GEO Portal and check off each item:\n`;
+            body += `https://regorealty.github.io/geo-chr/\n\n`;
+            body += `When your checklist is 100% complete, I'll be notified automatically and will update DASH.\n\n`;
+            body += `Thanks!\nChelsea Lahey\nTechnology Manager, Corcoran Horizon Realty`;
+
+            const mailto = `mailto:${agent.email}?subject=${subject}&body=${encodeURIComponent(body)}`;
+            window.open(mailto, '_blank');
         }
 
         function initHeadshotUploadHandler() {
@@ -3746,7 +3887,8 @@
                 approved: agents.filter(a => a.status === "approved").length,
                 pending: agents.filter(a => a.status === "pending").length,
                 edits: agents.filter(a => a.status === "edits_requested").length,
-                noBio: agents.filter(a => !a.hasBio).length
+                noBio: agents.filter(a => !a.hasBio).length,
+                brandAuditDone: agents.filter(a => a.brandAuditComplete).length
             };
 
             const statsBar = document.getElementById("stats-bar");
@@ -3771,6 +3913,10 @@
                     <div class="number">${stats.noBio}</div>
                     <div class="label">No Bio on File</div>
                 </div>
+                <div class="stat-card">
+                    <div class="number">${stats.brandAuditDone}</div>
+                    <div class="label">Brand Audit Done</div>
+                </div>
             `;
         }
 
@@ -3789,10 +3935,14 @@
                 const geoGrade = agent.geoAudit?.grade ?? "";
                 const geoDisplay = geoScore !== "—" ? `<strong>${geoScore}</strong> <span style="font-size: 0.8rem; color: #666;">(${geoGrade})</span>` : "—";
                 const headshotThumb = agent.headshotUrl ? `<img src="${agent.headshotUrl}" alt="" style="width:32px;height:32px;border-radius:50%;object-fit:cover;margin-right:8px;vertical-align:middle;">` : `<span style="display:inline-block;width:32px;height:32px;border-radius:50%;background:#ddd;margin-right:8px;vertical-align:middle;"></span>`;
+                const brandAuditStatus = agent.brandAuditComplete
+                    ? `<span class="status-badge approved" title="Completed ${agent.brandAuditCompletedAt ? new Date(agent.brandAuditCompletedAt.toDate()).toLocaleDateString() : ''}">✓ Done</span>`
+                    : `<span class="status-badge pending">Pending</span>`;
                 row.innerHTML = `
                     <td>${headshotThumb}<strong>${agent.name}</strong></td>
                     <td><span class="status-badge ${getStatusClass(agent.status)}">${getStatusLabel(agent.status)}</span></td>
                     <td>${agent.hasBio ? progressText : "N/A"}</td>
+                    <td>${brandAuditStatus}</td>
                     <td>${geoDisplay}</td>
                     <td>${agent.updatedAt ? new Date(agent.updatedAt.toDate()).toLocaleDateString() : "—"}</td>
                 `;
@@ -3813,7 +3963,7 @@
 
                 // Details row
                 const detailsRow = document.createElement("tr");
-                detailsRow.innerHTML = `<td colspan="4"><div class="agent-details" id="details-${agent.id}"></div></td>`;
+                detailsRow.innerHTML = `<td colspan="6"><div class="agent-details" id="details-${agent.id}"></div></td>`;
                 tbody.appendChild(detailsRow);
 
                 const detailsDiv = detailsRow.querySelector(".agent-details");
@@ -3860,6 +4010,15 @@
             }).join("");
 
             html += `<div style="display: flex; flex-direction: column; gap: 0.5rem;">${platformList}</div>`;
+
+            // Brand Audit Status
+            html += `<h3>Brand Consistency Audit</h3>`;
+            if (agent.brandAuditComplete) {
+                html += `<div class="success-message">✓ Brand audit completed${agent.brandAuditCompletedAt ? ' on ' + new Date(agent.brandAuditCompletedAt.toDate()).toLocaleDateString() : ''} — update DASH</div>`;
+            } else {
+                html += `<p style="color: #e67e22; font-weight: 500;">⏳ Agent has not yet completed their brand consistency checklist</p>`;
+                html += `<button class="btn btn-info" style="margin-top: 0.5rem;" onclick="emailAgentChecklist('${agent.id}')">Email Checklist to ${agent.name.split(' ')[0]}</button>`;
+            }
 
             // Headshot
             html += `<h3>Headshot</h3>`;
