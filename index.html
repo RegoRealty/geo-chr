@@ -3237,7 +3237,14 @@
                     updatedAt: new Date()
                 }, { merge: true });
 
-                showAlert("Edit request submitted.", "success");
+                // Email Chelsea
+                const subject = encodeURIComponent(`GEO Bio — Edit Request from ${currentAgent.name}`);
+                let body = `${currentAgent.name} has requested edits to their GEO bio.\n\n`;
+                body += `Edit Notes:\n${notes}\n\n`;
+                body += `— GEO Portal Notification`;
+                window.open(`mailto:clahey@corcoranhorizon.com?subject=${subject}&body=${encodeURIComponent(body)}`, '_blank');
+
+                showAlert("Edit request submitted. Email opened to notify Chelsea.", "success");
                 document.getElementById("edit-modal-overlay").classList.remove("active");
                 document.getElementById("edit-textarea").value = "";
                 if (isAdmin) { showAdminView(); } else { showAgentView(); }
@@ -3259,7 +3266,14 @@
                     updatedAt: new Date()
                 }, { merge: true });
 
-                showAlert("Bio declined.", "success");
+                // Email Chelsea
+                const subject = encodeURIComponent(`GEO Bio — Declined by ${currentAgent.name}`);
+                let body = `${currentAgent.name} has declined their GEO bio.\n\n`;
+                if (reason) { body += `Reason:\n${reason}\n\n`; }
+                body += `— GEO Portal Notification`;
+                window.open(`mailto:clahey@corcoranhorizon.com?subject=${subject}&body=${encodeURIComponent(body)}`, '_blank');
+
+                showAlert("Bio declined. Email opened to notify Chelsea.", "success");
                 document.getElementById("decline-modal-overlay").classList.remove("active");
                 document.getElementById("decline-textarea").value = "";
                 if (isAdmin) { showAdminView(); } else { showAgentView(); }
@@ -3828,25 +3842,27 @@
                 }
 
                 const imgHTML = isUnavailable
-                    ? `<div style="width:100%;height:120px;background:#f0f0f0;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:0.85rem;">No Photo</div>`
-                    : `<img src="${platform.url}" alt="${platform.name}" style="width:100%;height:120px;object-fit:cover;border-radius:6px;">`;
+                    ? '<div style="width:100%;aspect-ratio:3/4;background:#f0f0f0;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:0.85rem;">No Photo</div>'
+                    : '<img src="' + platform.url + '" alt="' + platform.name + '" style="width:100%;height:auto;border-radius:6px;display:block;">';
+
+                const safeUrl = platform.url.replace(/'/g, "\\'");
+                const safeName = (agent.name + ' - ' + platform.name).replace(/'/g, "\\'");
 
                 const visitBtn = platform.profileUrl
-                    ? `<a href="${platform.profileUrl}" target="_blank" class="platform-visit-btn">Visit Profile</a>`
-                    : `<span style="display:inline-block;margin-top:8px;padding:6px 14px;background:#ccc;color:#fff;border-radius:6px;font-size:0.82rem;font-weight:600;">No Profile</span>`;
+                    ? '<a href="' + platform.profileUrl + '" target="_blank" style="display:inline-block;margin-top:8px;padding:8px 16px;background:#2A7F8E;color:#fff;border-radius:6px;text-decoration:none;font-size:0.85rem;font-weight:600;">Visit Profile</a>'
+                    : '<span style="display:inline-block;margin-top:8px;padding:8px 16px;background:#ccc;color:#fff;border-radius:6px;font-size:0.85rem;font-weight:600;">No Profile</span>';
 
                 const dlBtn = !isUnavailable
-                    ? `<button class="platform-dl-btn" onclick="downloadPreferredHeadshot('${platform.url}', '${agent.name} - ${platform.name}')">Download Photo</button>`
+                    ? '<button style="display:inline-block;margin-top:6px;padding:7px 14px;background:#2EAD6D;color:#fff;border:none;border-radius:6px;font-size:0.82rem;font-weight:600;cursor:pointer;" onclick="downloadPreferredHeadshot(\'' + safeUrl + '\', \'' + safeName + '\')">Download Photo</button>'
                     : '';
 
-                gridHTML += `
-                    <div class="platform-link-card">
-                        ${imgHTML}
-                        <div style="font-weight:700;margin-top:8px;font-size:0.9rem;color:#1B2A4A;">${platform.name}</div>
-                        ${visitBtn}
-                        ${dlBtn}
-                    </div>
-                `;
+                gridHTML += '<div class="platform-link-card">' +
+                    imgHTML +
+                    '<div style="font-weight:700;margin-top:8px;font-size:0.9rem;color:#1B2A4A;">' + platform.name + '</div>' +
+                    visitBtn +
+                    '<br>' +
+                    dlBtn +
+                    '</div>';
             });
             
             grid.innerHTML = gridHTML;
@@ -3953,12 +3969,8 @@
         }
 
         function initWizard() {
-            const saved = localStorage.getItem('wizard_current_step');
-            if (saved) {
-                goToWizardStep(parseInt(saved));
-            } else {
-                goToWizardStep(1);
-            }
+            // Always start at step 1 when loading a new agent
+            goToWizardStep(1);
         }
 
         // ══════════════════════════════════════════════
