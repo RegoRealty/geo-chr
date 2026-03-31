@@ -636,30 +636,194 @@
         }
 
         /* ══════════════════════════════════════════════
-           TIMELINE
+           WIZARD STEPPER
            ══════════════════════════════════════════════ */
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+        .wizard-stepper {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 2rem;
+            position: relative;
         }
-
-        .timeline-item {
-            background-color: #F0F8F3;
-            border-left: 4px solid #2EAD6D;
-            padding: 1.5rem;
-            border-radius: 6px;
+        .wizard-step-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+            cursor: pointer;
         }
-
-        .timeline-item h4 {
-            color: #1B2A4A;
-            margin-bottom: 0.5rem;
+        .wizard-step-indicator::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            width: 100%;
+            height: 3px;
+            background: #ddd;
+            z-index: 0;
+        }
+        .wizard-step-indicator:last-child::after {
+            display: none;
+        }
+        .wizard-step-indicator.completed::after {
+            background: #2EAD6D;
+        }
+        .wizard-step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #ddd;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
             font-size: 0.95rem;
+            z-index: 1;
+            border: 3px solid #ddd;
+            transition: all 0.3s;
         }
-
-        .timeline-item p {
+        .wizard-step-indicator.active .wizard-step-number {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(42, 127, 142, 0.35);
+        }
+        .wizard-step-indicator.completed .wizard-step-number {
+            background: #2EAD6D;
+            color: #fff;
+            border-color: #2EAD6D;
+        }
+        .wizard-step-title {
+            margin-top: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #888;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .wizard-step-indicator.active .wizard-step-title {
+            color: var(--primary);
+        }
+        .wizard-step-indicator.completed .wizard-step-title {
+            color: #2EAD6D;
+        }
+        .wizard-panel {
+            display: none;
+        }
+        .wizard-panel.active {
+            display: block;
+        }
+        .wizard-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        .wizard-nav .btn {
+            min-width: 140px;
+        }
+        .wizard-nav .btn-back {
+            background: #f0f0f0;
             color: #555;
+            border: 1px solid #ddd;
+        }
+        .wizard-nav .btn-back:hover {
+            background: #e0e0e0;
+        }
+        .wizard-nav .btn-next {
+            background: var(--primary);
+            color: #fff;
+        }
+        .wizard-nav .btn-next:hover {
+            background: #1f5a68;
+        }
+        /* Platform link cards for brand audit */
+        .platform-link-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .platform-link-card {
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 0.75rem;
+            text-align: center;
+            transition: all 0.2s;
+            background: #fff;
+        }
+        .platform-link-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .platform-link-card a.platform-visit-btn {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 14px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .platform-link-card a.platform-visit-btn:hover {
+            background: #1f5a68;
+        }
+        .platform-link-card .platform-dl-btn {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 5px 12px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .platform-link-card .platform-dl-btn:hover {
+            background: #238a56;
+        }
+        .headshot-upload-alt {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background: #f8f9fa;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .headshot-upload-alt:hover {
+            border-color: var(--primary);
+        }
+        .headshot-upload-alt label {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
             font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        @media (max-width: 768px) {
+            .platform-link-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .wizard-step-title {
+                font-size: 0.68rem;
+            }
+            .wizard-step-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.85rem;
+            }
         }
 
         /* ══════════════════════════════════════════════
@@ -1996,152 +2160,157 @@
                 </div>
             </div>
 
-            <!-- What Is This -->
-            <div class="card">
-                <div class="collapsible-header" id="what-is-this-header">
-                    <h2>
-                        <span class="collapsible-toggle"></span>
-                        What Is This?
-                    </h2>
+            <!-- WIZARD STEPPER -->
+            <div class="wizard-stepper" id="wizard-stepper">
+                <div class="wizard-step-indicator active" onclick="goToWizardStep(1)">
+                    <div class="wizard-step-number">1</div>
+                    <div class="wizard-step-title">Bio Review</div>
                 </div>
-                <div class="collapsible-content" id="what-is-this-content">
-                    <p><strong>AI Search Engines Are Here</strong></p>
-                    <p>ChatGPT, Gemini, Perplexity, and other AI search engines now recommend real estate agents based on online bios. They're not searching your MLS — they're searching the web for agent profiles.</p>
-                    <p><strong>Your Bio Just Got Optimized</strong></p>
-                    <p>We've rewritten your bio to be GEO-optimized (Generative Engine Optimized). That means we've structured it so that when someone asks an AI "Who's a good real estate agent in Kitchener?" or "Find me a rural property specialist," the AI finds <em>you</em> and recommends you. It's the new SEO.</p>
-                    <p><strong>Your Job: Approve & Update Your Platforms</strong></p>
-                    <p>We've created your optimized bio below. Review it, approve it, then copy-paste it into your platforms (Realtor.ca, LinkedIn, Instagram, Facebook, Google Business, etc.). Chelsea handles your website and DASH — you focus on the platforms you control. Together, we make sure the AI knows who you are.</p>
+                <div class="wizard-step-indicator" onclick="goToWizardStep(2)">
+                    <div class="wizard-step-number">2</div>
+                    <div class="wizard-step-title">Brand Consistency</div>
                 </div>
-            </div>
-
-            <!-- Bio Card -->
-            <div class="card">
-                <h2>Your Bio — Before & After</h2>
-                <div class="bio-grid">
-                    <div class="bio-column before">
-                        <div class="bio-header before">Current Bio</div>
-                        <div class="bio-content" id="agent-bio-before"></div>
-                    </div>
-                    <div class="bio-column after">
-                        <div class="bio-header after">GEO-Optimized Bio</div>
-                        <div class="bio-content" id="agent-bio-after"></div>
-                        <button class="btn btn-info" style="margin-top: 0.75rem; font-size: 0.85rem;" onclick="copyBioToClipboard()">Copy Bio</button>
-                    </div>
+                <div class="wizard-step-indicator" onclick="goToWizardStep(3)">
+                    <div class="wizard-step-number">3</div>
+                    <div class="wizard-step-title">Contact Info</div>
                 </div>
-                <div class="bio-actions" id="bio-actions">
-                    <button class="btn btn-primary" id="approve-btn">✓ Approve Bio</button>
-                    <button class="btn btn-secondary" id="request-edits-btn">✎ Request Edits</button>
-                    <button class="btn btn-outline" id="decline-btn">Decline</button>
-                </div>
-                <div id="approved-message" class="approved-badge hidden">
-                    ✓ Approved
+                <div class="wizard-step-indicator" onclick="goToWizardStep(4)">
+                    <div class="wizard-step-number">4</div>
+                    <div class="wizard-step-title">Platform Updates</div>
                 </div>
             </div>
 
-
-            <!-- Brand Consistency Audit -->
-            <div class="card brand-consistency-section" id="headshot-audit-section">
-                <h3>Brand Consistency Audit - Headshots</h3>
-                <p style="margin-bottom: 1.5rem; color: #666;">Compare your headshots across all platforms below. Click a platform name to visit your profile, or download any headshot directly.</p>
-                
-                <div class="headshot-grid" id="headshot-comparison-grid"></div>
-                
-                <div class="preferred-selector" id="preferred-selector-container"></div>
-                
-                <div class="update-checklist" id="headshot-checklist-container" style="display: none;"></div>
-
-                <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                    <button class="btn btn-info" id="email-checklist-btn" style="display: none;" onclick="emailAgentChecklist()">Email My Checklist</button>
-                </div>
-            </div>
-
-
-            <!-- Contact & Socials -->
-            <div class="card">
-                <h2>Your Contact & Social Info</h2>
-                <div class="contact-note">
-                    We need your current social handles and contact info to ensure everything is consistent across platforms. Please fill in or confirm the info below.
-                </div>
-                <form class="contact-form" id="contact-form">
-                    <div class="form-group-row">
-                        <label for="phone">Phone</label>
-                        <div class="form-input-wrapper">
-                            <input type="text" id="phone" placeholder="(519) 555-0000">
-                            <span class="edit-icon">✎</span>
+            <!-- ═══ STEP 1: BIO REVIEW ═══ -->
+            <div class="wizard-panel active" id="wizard-step-1">
+                <div class="card">
+                    <h2>Step 1: Review Your GEO-Optimized Bio</h2>
+                    <p style="color: #666; margin-bottom: 1rem;">AI search engines like ChatGPT, Gemini, and Perplexity now recommend agents based on online bios. We've rewritten yours to be GEO-optimized so the AI finds <em>you</em> first. Review it below, then approve, request edits, or decline.</p>
+                    <div class="bio-grid">
+                        <div class="bio-column before">
+                            <div class="bio-header before">Current Bio</div>
+                            <div class="bio-content" id="agent-bio-before"></div>
+                        </div>
+                        <div class="bio-column after">
+                            <div class="bio-header after">GEO-Optimized Bio</div>
+                            <div class="bio-content" id="agent-bio-after"></div>
+                            <button class="btn btn-info" style="margin-top: 0.75rem; font-size: 0.85rem;" onclick="copyBioToClipboard()">Copy Bio</button>
                         </div>
                     </div>
-                    <div class="form-group-row">
-                        <label for="email">Email</label>
-                        <div class="form-input-wrapper">
-                            <input type="email" id="email" placeholder="you@regoteam.com">
-                            <span class="edit-icon">✎</span>
-                        </div>
+                    <div class="bio-actions" id="bio-actions">
+                        <button class="btn btn-primary" id="approve-btn">Approve Bio</button>
+                        <button class="btn btn-secondary" id="request-edits-btn">Request Edits</button>
+                        <button class="btn btn-outline" id="decline-btn">Decline</button>
                     </div>
-                    <div class="form-group-row">
-                        <label for="instagram">Instagram Handle</label>
-                        <div class="form-input-wrapper">
-                            <input type="text" id="instagram" placeholder="@yourhandle">
-                            <span class="edit-icon">✎</span>
-                        </div>
+                    <div id="approved-message" class="approved-badge hidden">
+                        Approved
                     </div>
-                    <div class="form-group-row">
-                        <label for="linkedin">LinkedIn URL</label>
-                        <div class="form-input-wrapper">
-                            <input type="url" id="linkedin" placeholder="linkedin.com/in/yourname">
-                            <span class="edit-icon">✎</span>
-                        </div>
-                    </div>
-                    <div class="form-group-row">
-                        <label for="facebook">Facebook Page URL</label>
-                        <div class="form-input-wrapper">
-                            <input type="url" id="facebook" placeholder="facebook.com/yourpage">
-                            <span class="edit-icon">✎</span>
-                        </div>
-                    </div>
-                    <button type="button" class="save-contact-btn" id="save-contact-btn">Save Contact Info</button>
-                    <div id="contact-saved-message" class="contact-saved-confirmation hidden">
-                        ✓ Saved!
-                    </div>
-                </form>
-            </div>
-
-            <!-- Platform Checklist -->
-            <div class="card">
-                <h2>Platform-by-Platform Checklist</h2>
-                <p style="color: #666; margin-bottom: 1.5rem; font-size: 0.95rem;">
-                    Once you approve your bio, copy-paste it into these platforms. Track your progress below.
-                </p>
-                <div id="platform-checklist-message" class="alert"></div>
-                <div class="accordion" id="platforms-accordion"></div>
-            </div>
-
-            <!-- Timeline -->
-            <div class="card">
-                <h2>Timeline</h2>
-                <div class="timeline-grid">
-                    <div class="timeline-item">
-                        <h4>By April 6</h4>
-                        <p>Approve your bio</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>By April 10</h4>
-                        <p>Update Realtor.ca & LinkedIn (highest impact)</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>By April 13</h4>
-                        <p>Update all other platforms</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h4>Chelsea Handles</h4>
-                        <p>Website & DASH updates</p>
-                    </div>
+                </div>
+                <div class="wizard-nav">
+                    <div></div>
+                    <button class="btn btn-next" onclick="goToWizardStep(2)">Next: Brand Consistency →</button>
                 </div>
             </div>
 
-            <!-- Help -->
-            <div class="card">
-                <h2>Need Help?</h2>
-                <p>Contact Chelsea Lahey at <strong>clahey@corcoranhorizon.com</strong></p>
+            <!-- ═══ STEP 2: BRAND CONSISTENCY ═══ -->
+            <div class="wizard-panel" id="wizard-step-2">
+                <div class="card brand-consistency-section" id="headshot-audit-section">
+                    <h2>Step 2: Brand Consistency — Headshots</h2>
+                    <p style="margin-bottom: 1.5rem; color: #666;">Your headshot should match across every platform. Visit your profiles below, download your headshot, or upload a new one.</p>
+
+                    <div class="platform-link-cards" id="headshot-comparison-grid"></div>
+
+                    <div class="headshot-upload-alt">
+                        <p style="margin: 0 0 6px; font-weight: 600; color: #333;">Have a new headshot?</p>
+                        <p style="margin: 0 0 8px; color: #666; font-size: 0.88rem;">Upload it here and we'll update your profiles for you.</p>
+                        <label for="headshot-upload-input">Choose Photo</label>
+                        <input type="file" id="headshot-upload-input" accept="image/*" style="display:none;" onchange="handleWizardHeadshotUpload(this)">
+                        <div id="headshot-upload-preview" style="margin-top: 10px;"></div>
+                    </div>
+
+                    <div class="preferred-selector" id="preferred-selector-container"></div>
+
+                    <div class="update-checklist" id="headshot-checklist-container" style="display: none;"></div>
+
+                    <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                        <button class="btn btn-info" id="email-checklist-btn" style="display: none;" onclick="emailAgentChecklist()">Email My Checklist</button>
+                    </div>
+                </div>
+                <div class="wizard-nav">
+                    <button class="btn btn-back" onclick="goToWizardStep(1)">← Back</button>
+                    <button class="btn btn-next" onclick="goToWizardStep(3)">Next: Contact Info →</button>
+                </div>
+            </div>
+
+            <!-- ═══ STEP 3: CONTACT INFO ═══ -->
+            <div class="wizard-panel" id="wizard-step-3">
+                <div class="card">
+                    <h2>Step 3: Confirm Your Contact & Socials</h2>
+                    <p style="color: #666; margin-bottom: 1.25rem;">We need your current contact info and social handles to keep everything consistent. Please confirm or update below.</p>
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group-row">
+                            <label for="phone">Phone</label>
+                            <div class="form-input-wrapper">
+                                <input type="text" id="phone" placeholder="(519) 555-0000">
+                                <span class="edit-icon">✎</span>
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label for="email">Email</label>
+                            <div class="form-input-wrapper">
+                                <input type="email" id="email" placeholder="you@regoteam.com">
+                                <span class="edit-icon">✎</span>
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label for="instagram">Instagram Handle</label>
+                            <div class="form-input-wrapper">
+                                <input type="text" id="instagram" placeholder="@yourhandle">
+                                <span class="edit-icon">✎</span>
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label for="linkedin">LinkedIn URL</label>
+                            <div class="form-input-wrapper">
+                                <input type="url" id="linkedin" placeholder="linkedin.com/in/yourname">
+                                <span class="edit-icon">✎</span>
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label for="facebook">Facebook Page URL</label>
+                            <div class="form-input-wrapper">
+                                <input type="url" id="facebook" placeholder="facebook.com/yourpage">
+                                <span class="edit-icon">✎</span>
+                            </div>
+                        </div>
+                        <button type="button" class="save-contact-btn" id="save-contact-btn">Save Contact Info</button>
+                        <div id="contact-saved-message" class="contact-saved-confirmation hidden">
+                            Saved!
+                        </div>
+                    </form>
+                </div>
+                <div class="wizard-nav">
+                    <button class="btn btn-back" onclick="goToWizardStep(2)">← Back</button>
+                    <button class="btn btn-next" onclick="goToWizardStep(4)">Next: Platform Updates →</button>
+                </div>
+            </div>
+
+            <!-- ═══ STEP 4: PLATFORM CHECKLIST ═══ -->
+            <div class="wizard-panel" id="wizard-step-4">
+                <div class="card">
+                    <h2>Step 4: Update Your Platforms</h2>
+                    <p style="color: #666; margin-bottom: 1.5rem;">
+                        Copy-paste your approved bio into each platform below. Chelsea handles your website and DASH — you focus on the ones you control. Check off each platform as you go.
+                    </p>
+                    <div id="platform-checklist-message" class="alert"></div>
+                    <div class="accordion" id="platforms-accordion"></div>
+                </div>
+                <div class="wizard-nav">
+                    <button class="btn btn-back" onclick="goToWizardStep(3)">← Back</button>
+                    <div></div>
+                </div>
+                <div class="card" style="margin-top: 1rem; text-align: center; padding: 1.25rem;">
+                    <p style="margin: 0; color: #666;">Need help? Contact Chelsea Lahey at <strong>clahey@corcoranhorizon.com</strong></p>
+                </div>
             </div>
         </div>
 
@@ -2978,15 +3147,6 @@
                 statusText.textContent = "Please review your bio below and approve or request edits by April 6.";
             }
 
-            // Render what is this collapsible
-            const whatHeader = document.getElementById("what-is-this-header");
-            const whatContent = document.getElementById("what-is-this-content");
-            whatHeader.addEventListener("click", () => {
-                const toggle = whatHeader.querySelector(".collapsible-toggle");
-                whatContent.classList.toggle("closed");
-                toggle.classList.toggle("closed");
-            });
-
             // Render bios
             document.getElementById("agent-bio-before").textContent = effectiveAgent.before || "(No previous bio on file)";
             document.getElementById("agent-bio-after").textContent = effectiveAgent.after;
@@ -3029,6 +3189,9 @@
             loadHeadshotPreview(agentData);
             loadContactInfo(agentData);
             initContactFormHandlers();
+
+            // Initialize wizard
+            initWizard();
         }
 
         async function approveBio() {
@@ -3659,35 +3822,29 @@
 
             platforms.forEach((platform, idx) => {
                 const isUnavailable = !platform.url || platform.url.includes('placeholder') || platform.url.includes('PLACEHOLDER');
-                const isSelected = localStorage.getItem(`preferred_headshot_${agent.name}`) === platform.key;
 
                 if (isUnavailable) {
                     mismatches.push(platform.name);
                 }
 
-                const labelHTML = platform.profileUrl
-                    ? `<a href="${platform.profileUrl}" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;" onclick="event.stopPropagation();">${platform.name}</a>`
-                    : platform.name;
+                const imgHTML = isUnavailable
+                    ? `<div style="width:100%;height:120px;background:#f0f0f0;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:0.85rem;">No Photo</div>`
+                    : `<img src="${platform.url}" alt="${platform.name}" style="width:100%;height:120px;object-fit:cover;border-radius:6px;">`;
 
                 const visitBtn = platform.profileUrl
-                    ? `<a href="${platform.profileUrl}" target="_blank" class="btn" style="font-size: 0.7rem; padding: 4px 8px; margin-top: 6px; display: inline-block; text-decoration: none; background: var(--primary); color: #fff; border-radius: 4px;" onclick="event.stopPropagation();">Visit Profile</a>`
-                    : '';
+                    ? `<a href="${platform.profileUrl}" target="_blank" class="platform-visit-btn">Visit Profile</a>`
+                    : `<span style="display:inline-block;margin-top:8px;padding:6px 14px;background:#ccc;color:#fff;border-radius:6px;font-size:0.82rem;font-weight:600;">No Profile</span>`;
 
                 const dlBtn = !isUnavailable
-                    ? `<button class="btn" style="font-size: 0.7rem; padding: 4px 8px; margin-top: 4px; background: var(--accent); color: #fff; border: none; border-radius: 4px; cursor: pointer;" onclick="event.stopPropagation(); downloadPreferredHeadshot('${platform.url}', '${agent.name} - ${platform.name}')">Download</button>`
+                    ? `<button class="platform-dl-btn" onclick="downloadPreferredHeadshot('${platform.url}', '${agent.name} - ${platform.name}')">Download Photo</button>`
                     : '';
 
                 gridHTML += `
-                    <div class="headshot-item ${isSelected ? 'selected' : ''} ${isUnavailable ? 'unavailable' : ''}"
-                         onclick="setPreferredHeadshot('${agent.name}', '${platform.key}')">
-                        <div class="headshot-image">
-                            ${isUnavailable ? 'Not Available' : `<img src="${platform.url}" alt="${platform.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">`}
-                        </div>
-                        <div class="headshot-label">${labelHTML}</div>
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                            ${visitBtn}
-                            ${dlBtn}
-                        </div>
+                    <div class="platform-link-card">
+                        ${imgHTML}
+                        <div style="font-weight:700;margin-top:8px;font-size:0.9rem;color:#1B2A4A;">${platform.name}</div>
+                        ${visitBtn}
+                        ${dlBtn}
                     </div>
                 `;
             });
@@ -3755,6 +3912,92 @@
             if (agent) {
                 displayHeadshotAudit(agent);
             }
+        }
+
+        // ══════════════════════════════════════════════
+        // WIZARD NAVIGATION
+        // ══════════════════════════════════════════════
+        let currentWizardStep = 1;
+
+        function goToWizardStep(step) {
+            // Save current step
+            currentWizardStep = step;
+            localStorage.setItem('wizard_current_step', step);
+
+            // Update panels
+            document.querySelectorAll('.wizard-panel').forEach(p => p.classList.remove('active'));
+            const panel = document.getElementById(`wizard-step-${step}`);
+            if (panel) panel.classList.add('active');
+
+            // Update indicators
+            document.querySelectorAll('.wizard-step-indicator').forEach((ind, idx) => {
+                ind.classList.remove('active');
+                if (idx + 1 < step) {
+                    ind.classList.add('completed');
+                } else if (idx + 1 === step) {
+                    ind.classList.add('active');
+                    ind.classList.remove('completed');
+                } else {
+                    ind.classList.remove('completed');
+                }
+            });
+
+            // Mark visited steps as completed
+            for (let i = 1; i < step; i++) {
+                const ind = document.querySelectorAll('.wizard-step-indicator')[i - 1];
+                if (ind) ind.classList.add('completed');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function initWizard() {
+            const saved = localStorage.getItem('wizard_current_step');
+            if (saved) {
+                goToWizardStep(parseInt(saved));
+            } else {
+                goToWizardStep(1);
+            }
+        }
+
+        // ══════════════════════════════════════════════
+        // WIZARD HEADSHOT UPLOAD
+        // ══════════════════════════════════════════════
+        function handleWizardHeadshotUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                showAlert('Please select an image file.', 'error');
+                return;
+            }
+            const preview = document.getElementById('headshot-upload-preview');
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = `
+                    <img src="${e.target.result}" style="max-width:150px;max-height:150px;border-radius:8px;margin-top:8px;border:2px solid var(--primary);">
+                    <p style="color: var(--accent); font-weight:600; margin-top:6px; font-size:0.88rem;">Photo received — Chelsea will update your profiles.</p>
+                `;
+                // Upload to Firebase if available
+                if (typeof firebase !== 'undefined' && currentAgent) {
+                    const slug = getAgentSlug(currentAgent.name);
+                    try {
+                        const storageRef = firebase.storage().ref('headshots/' + slug + '.jpg');
+                        storageRef.put(file).then(snapshot => {
+                            return snapshot.ref.getDownloadURL();
+                        }).then(downloadURL => {
+                            db.collection('agents').doc(slug).set({
+                                newHeadshotUrl: downloadURL,
+                                headshotUploadedAt: firebase.firestore.FieldValue.serverTimestamp()
+                            }, { merge: true });
+                            showAlert('Headshot uploaded! Chelsea will review and update your profiles.', 'success');
+                        }).catch(err => {
+                            console.log('Upload note:', err.message);
+                        });
+                    } catch(e) { console.log('Storage not configured'); }
+                }
+            };
+            reader.readAsDataURL(file);
         }
 
         function copyBioToClipboard() {
