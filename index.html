@@ -2002,164 +2002,6 @@
             </div>
 
             <!-- BIO BUILDER (for agents without a bio) -->
-            <div id="bio-builder-section" class="hidden">
-                <!-- WHY GEO Card -->
-                <div class="card">
-                    <h2>Why Do You Need a GEO-Optimized Bio?</h2>
-                    <p><strong>AI is changing how clients find agents.</strong> When someone asks ChatGPT, Gemini, or Perplexity "Who's the best real estate agent in Kitchener for first-time buyers?" — the AI reads agent bios across the web and recommends whoever is the best match.</p>
-                    <p>A regular bio won't cut it. A <strong>GEO-optimized bio</strong> (Generative Engine Optimized) is structured with the right keywords, specialties, and location signals so that AI search engines find <em>you</em> and recommend <em>you</em> over the competition.</p>
-                    <p>Think of it like <strong>SEO, but for AI.</strong> The agents who update their bios now will be the ones AI recommends first. Use the Bio Builder below to create yours in under 5 minutes.</p>
-                </div>
-
-                <div class="card bio-builder">
-                    <div class="bio-builder-intro">
-                        <h2>Build Your GEO-Optimized Bio</h2>
-                        <p>Answer a few quick questions and we'll generate a professional, AI-search-optimized bio for you.</p>
-                    </div>
-
-                    <div class="bio-builder-progress" id="bb-progress"></div>
-
-                    <!-- Step 1: Basics -->
-                    <div class="bio-builder-step active" id="bb-step-1">
-                        <h3>Step 1: The Basics</h3>
-                        <p class="step-subtitle">Let's start with who you are and what you do.</p>
-
-                        <label for="bb-title">Your title / role</label>
-                        <select id="bb-title">
-                            <option value="">Select...</option>
-                            <option value="REALTOR®">REALTOR®</option>
-                            <option value="Broker">Broker</option>
-                        </select>
-
-                        <label for="bb-years">Years in real estate</label>
-                        <input type="text" id="bb-years" placeholder="e.g., 5, 10+, 15">
-
-                        <label>What do you specialize in? (select all that apply)</label>
-                        <div class="bb-chip-group" id="bb-specialties">
-                            <div class="bb-chip" data-val="Resale Homes">Resale Homes</div>
-                            <div class="bb-chip" data-val="Condominiums">Condos</div>
-                            <div class="bb-chip" data-val="Pre-Construction">Pre-Construction</div>
-                            <div class="bb-chip" data-val="Luxury Homes">Luxury Homes</div>
-                            <div class="bb-chip" data-val="Investment Properties">Investment Properties</div>
-                            <div class="bb-chip" data-val="Commercial">Commercial</div>
-                            <div class="bb-chip" data-val="Rural/Countryside">Rural / Countryside</div>
-                            <div class="bb-chip" data-val="New Construction">New Construction</div>
-                            <div class="bb-chip" data-val="First-Time Buyers">First-Time Buyers</div>
-                            <div class="bb-chip" data-val="Downsizing">Downsizing</div>
-                            <div class="bb-chip" data-val="Land/Development">Land / Development</div>
-                            <div class="bb-chip" data-val="Rentals">Rentals</div>
-                            <div class="bb-chip" data-val="Leasing">Leasing</div>
-                        </div>
-
-                        <label for="bb-other-specialty">Other specialty (optional)</label>
-                        <input type="text" id="bb-other-specialty" placeholder="e.g., Waterfront, Fixer-uppers, Student housing">
-
-                    </div>
-
-                    <!-- Step 2: Areas & Clients -->
-                    <div class="bio-builder-step" id="bb-step-2">
-                        <h3>Step 2: Your Market</h3>
-                        <p class="step-subtitle">Where do you work and who do you serve?</p>
-
-                        <label for="bb-areas">Areas you serve</label>
-                        <input type="text" id="bb-areas" placeholder="e.g., Kitchener-Waterloo, Cambridge, Guelph">
-                        <div class="bb-field-hint">Separate multiple areas with commas</div>
-
-                        <label for="bb-location">Where do you specialize?</label>
-                        <input type="text" id="bb-location" placeholder="e.g., Downtown Kitchener, Uptown Waterloo, South Cambridge">
-                        <div class="bb-field-hint">Specific neighbourhoods, communities, or sub-markets you focus on</div>
-
-                        <label>Who are your typical clients? (select all that apply)</label>
-                        <div class="bb-chip-group" id="bb-clients">
-                            <div class="bb-chip" data-val="First-time homebuyers">First-time buyers</div>
-                            <div class="bb-chip" data-val="Move-up buyers">Move-up buyers</div>
-                            <div class="bb-chip" data-val="Investors">Investors</div>
-                            <div class="bb-chip" data-val="Sellers">Sellers</div>
-                            <div class="bb-chip" data-val="Developers">Developers</div>
-                            <div class="bb-chip" data-val="Newcomers to Canada">Newcomers to Canada</div>
-                            <div class="bb-chip" data-val="Downsizers">Downsizers</div>
-                            <div class="bb-chip" data-val="Luxury home seekers">Luxury buyers</div>
-                            <div class="bb-chip" data-val="Commercial tenants/buyers">Commercial clients</div>
-                        </div>
-                    </div>
-
-                    <!-- Step 3: Background & Languages -->
-                    <div class="bio-builder-step" id="bb-step-3">
-                        <h3>Step 3: Your Background</h3>
-                        <p class="step-subtitle">What makes you unique? This is what helps AI recommend YOU over other agents.</p>
-
-                        <label for="bb-current-bio">Your current bio (paste it here)</label>
-                        <textarea id="bb-current-bio" placeholder="Paste your existing bio from Realtor.ca, your website, or wherever you have one. Leave blank if you don't have one yet." style="min-height: 120px;"></textarea>
-                        <div class="bb-field-hint">This becomes your "before" so you can compare it with the new GEO version</div>
-
-                        <label for="bb-background">Previous career or relevant experience</label>
-                        <textarea id="bb-background" placeholder="e.g., 'Former accountant with 10 years in finance' or 'Managed a construction company for 8 years'"></textarea>
-
-                        <label for="bb-languages">Languages spoken (besides English)</label>
-                        <input type="text" id="bb-languages" placeholder="e.g., Portuguese, French, Arabic, Spanish">
-                        <div class="bb-field-hint">Leave blank if English only</div>
-
-                        <label for="bb-credentials">Designations or certifications (optional)</label>
-                        <input type="text" id="bb-credentials" placeholder="e.g., SRS, ABR, Certified Luxury Home Marketing Specialist">
-
-                        <label for="bb-highlight">Anything else that sets you apart?</label>
-                        <textarea id="bb-highlight" placeholder="e.g., 'I own rental properties myself' or 'Born and raised in KW' or 'I've completed $50M in sales'"></textarea>
-                    </div>
-
-                    <!-- Step 4: Contact -->
-                    <div class="bio-builder-step" id="bb-step-4">
-                        <h3>Step 4: Contact Info</h3>
-                        <p class="step-subtitle">Optional — we can include your contact details in the bio for maximum discoverability.</p>
-
-                        <label for="bb-email">Your email</label>
-                        <input type="text" id="bb-email" placeholder="you@regoteam.com">
-
-                        <label for="bb-phone">Your phone</label>
-                        <input type="text" id="bb-phone" placeholder="(519) 555-0000">
-                    </div>
-
-                    <!-- Step 5: Preview -->
-                    <div class="bio-builder-step" id="bb-step-5">
-                        <h3>Your GEO-Optimized Bio</h3>
-                        <p class="step-subtitle">Here's what we generated. Review it, then approve or regenerate.</p>
-
-                        <div class="bb-generating hidden" id="bb-generating">
-                            <div class="spinner"></div>
-                            <p>Generating your GEO-optimized bio...</p>
-                        </div>
-
-                        <div class="bio-builder-preview" id="bb-preview-text"></div>
-
-                        <div id="bb-extras" class="hidden" style="margin-top: 1.5rem;">
-                            <h3 style="margin-top: 1rem;">Instagram Bio</h3>
-                            <div class="bio-builder-preview" id="bb-preview-instagram" style="white-space: pre-line;"></div>
-
-                            <h3 style="margin-top: 1rem;">Facebook Page Bio</h3>
-                            <div class="bio-builder-preview" id="bb-preview-facebook"></div>
-
-                            <h3 style="margin-top: 1rem;">TikTok Bio</h3>
-                            <div class="bio-builder-preview" id="bb-preview-tiktok" style="white-space: pre-wrap;"></div>
-
-                            <h3 style="margin-top: 1rem;">LinkedIn Headline</h3>
-                            <div class="bio-builder-preview" id="bb-preview-linkedin"></div>
-                        </div>
-
-                        <div class="bio-builder-preview-actions">
-                            <button class="btn btn-primary bb-btn-next" id="bb-approve-bio">Approve & Save Bio</button>
-                            <button class="btn btn-secondary bb-btn-back" id="bb-regenerate">Regenerate</button>
-                            <button class="btn btn-outline bb-btn-back" id="bb-edit-answers">Edit My Answers</button>
-                        </div>
-                    </div>
-
-                    <!-- Navigation -->
-                    <div class="bio-builder-nav" id="bb-nav">
-                        <button class="bb-btn-back hidden" id="bb-back-btn">Back</button>
-                        <div style="flex:1"></div>
-                        <button class="bb-btn-next" id="bb-next-btn">Next</button>
-                    </div>
-                </div>
-            </div>
-
             <!-- WIZARD STEPPER -->
             <div class="wizard-stepper" id="wizard-stepper">
                 <div class="wizard-step-indicator active" onclick="goToWizardStep(1)">
@@ -2180,31 +2022,167 @@
                 </div>
             </div>
 
-            <!-- ═══ STEP 1: BIO REVIEW ═══ -->
+            <!-- ═══ STEP 1: BIO REVIEW / BIO BUILDER ═══ -->
             <div class="wizard-panel active" id="wizard-step-1">
-                <div class="card">
-                    <h2>Step 1: Review Your GEO-Optimized Bio</h2>
-                    <p style="color: #666; margin-bottom: 1rem;">AI search engines like ChatGPT, Gemini, and Perplexity now recommend agents based on online bios. We've rewritten yours to be GEO-optimized so the AI finds <em>you</em> first. Review it below, then approve, request edits, or decline.</p>
-                    <div class="bio-grid">
-                        <div class="bio-column before">
-                            <div class="bio-header before">Current Bio</div>
-                            <div class="bio-content" id="agent-bio-before"></div>
+
+                <!-- PATH A: Bio Review (agents WITH a bio) -->
+                <div id="step1-bio-review">
+                    <div class="card">
+                        <h2>Step 1: Review Your GEO-Optimized Bio</h2>
+                        <p style="color: #666; margin-bottom: 1rem;">AI search engines like ChatGPT, Gemini, and Perplexity now recommend agents based on online bios. We've rewritten yours to be GEO-optimized so the AI finds <em>you</em> first. Review it below, then approve, request edits, or decline.</p>
+                        <div class="bio-grid">
+                            <div class="bio-column before">
+                                <div class="bio-header before">Current Bio</div>
+                                <div class="bio-content" id="agent-bio-before"></div>
+                            </div>
+                            <div class="bio-column after">
+                                <div class="bio-header after">GEO-Optimized Bio</div>
+                                <div class="bio-content" id="agent-bio-after"></div>
+                                <button class="btn btn-info" style="margin-top: 0.75rem; font-size: 0.85rem;" onclick="copyBioToClipboard()">Copy Bio</button>
+                            </div>
                         </div>
-                        <div class="bio-column after">
-                            <div class="bio-header after">GEO-Optimized Bio</div>
-                            <div class="bio-content" id="agent-bio-after"></div>
-                            <button class="btn btn-info" style="margin-top: 0.75rem; font-size: 0.85rem;" onclick="copyBioToClipboard()">Copy Bio</button>
+                        <div class="bio-actions" id="bio-actions">
+                            <button class="btn btn-primary" id="approve-btn">Approve Bio</button>
+                            <button class="btn btn-secondary" id="request-edits-btn">Request Edits</button>
+                            <button class="btn btn-outline" id="decline-btn">Decline</button>
                         </div>
-                    </div>
-                    <div class="bio-actions" id="bio-actions">
-                        <button class="btn btn-primary" id="approve-btn">Approve Bio</button>
-                        <button class="btn btn-secondary" id="request-edits-btn">Request Edits</button>
-                        <button class="btn btn-outline" id="decline-btn">Decline</button>
-                    </div>
-                    <div id="approved-message" class="approved-badge hidden">
-                        Approved
+                        <div id="approved-message" class="approved-badge hidden">
+                            Approved
+                        </div>
                     </div>
                 </div>
+
+                <!-- PATH B: Bio Builder (agents WITHOUT a bio) -->
+                <div id="step1-bio-builder" class="hidden">
+                    <div class="card">
+                        <h2>Step 1: Build Your GEO-Optimized Bio</h2>
+                        <p style="color: #666; margin-bottom: 0.5rem;"><strong>AI is changing how clients find agents.</strong> ChatGPT, Gemini, and Perplexity now recommend agents based on their online bios. A GEO-optimized bio makes sure the AI finds <em>you</em> first.</p>
+                        <p style="color: #666; margin-bottom: 1rem;">Answer a few quick questions below and we'll generate a professional, AI-search-optimized bio for you in under 5 minutes.</p>
+                    </div>
+
+                    <div class="card bio-builder">
+                        <div class="bio-builder-progress" id="bb-progress"></div>
+
+                        <!-- BB Step 1: Basics -->
+                        <div class="bio-builder-step active" id="bb-step-1">
+                            <h3>The Basics</h3>
+                            <p class="step-subtitle">Let's start with who you are and what you do.</p>
+                            <label for="bb-title">Your title / role</label>
+                            <select id="bb-title">
+                                <option value="">Select...</option>
+                                <option value="REALTOR®">REALTOR®</option>
+                                <option value="Broker">Broker</option>
+                            </select>
+                            <label for="bb-years">Years in real estate</label>
+                            <input type="text" id="bb-years" placeholder="e.g., 5, 10+, 15">
+                            <label>What do you specialize in? (select all that apply)</label>
+                            <div class="bb-chip-group" id="bb-specialties">
+                                <div class="bb-chip" data-val="Resale Homes">Resale Homes</div>
+                                <div class="bb-chip" data-val="Condominiums">Condos</div>
+                                <div class="bb-chip" data-val="Pre-Construction">Pre-Construction</div>
+                                <div class="bb-chip" data-val="Luxury Homes">Luxury Homes</div>
+                                <div class="bb-chip" data-val="Investment Properties">Investment Properties</div>
+                                <div class="bb-chip" data-val="Commercial">Commercial</div>
+                                <div class="bb-chip" data-val="Rural/Countryside">Rural / Countryside</div>
+                                <div class="bb-chip" data-val="New Construction">New Construction</div>
+                                <div class="bb-chip" data-val="First-Time Buyers">First-Time Buyers</div>
+                                <div class="bb-chip" data-val="Downsizing">Downsizing</div>
+                                <div class="bb-chip" data-val="Land/Development">Land / Development</div>
+                                <div class="bb-chip" data-val="Rentals">Rentals</div>
+                                <div class="bb-chip" data-val="Leasing">Leasing</div>
+                            </div>
+                            <label for="bb-other-specialty">Other specialty (optional)</label>
+                            <input type="text" id="bb-other-specialty" placeholder="e.g., Waterfront, Fixer-uppers, Student housing">
+                        </div>
+
+                        <!-- BB Step 2: Areas & Clients -->
+                        <div class="bio-builder-step" id="bb-step-2">
+                            <h3>Your Market</h3>
+                            <p class="step-subtitle">Where do you work and who do you serve?</p>
+                            <label for="bb-areas">Areas you serve</label>
+                            <input type="text" id="bb-areas" placeholder="e.g., Kitchener-Waterloo, Cambridge, Guelph">
+                            <div class="bb-field-hint">Separate multiple areas with commas</div>
+                            <label for="bb-location">Where do you specialize?</label>
+                            <input type="text" id="bb-location" placeholder="e.g., Downtown Kitchener, Uptown Waterloo, South Cambridge">
+                            <div class="bb-field-hint">Specific neighbourhoods, communities, or sub-markets you focus on</div>
+                            <label>Who are your typical clients? (select all that apply)</label>
+                            <div class="bb-chip-group" id="bb-clients">
+                                <div class="bb-chip" data-val="First-time homebuyers">First-time buyers</div>
+                                <div class="bb-chip" data-val="Move-up buyers">Move-up buyers</div>
+                                <div class="bb-chip" data-val="Investors">Investors</div>
+                                <div class="bb-chip" data-val="Sellers">Sellers</div>
+                                <div class="bb-chip" data-val="Developers">Developers</div>
+                                <div class="bb-chip" data-val="Newcomers to Canada">Newcomers to Canada</div>
+                                <div class="bb-chip" data-val="Downsizers">Downsizers</div>
+                                <div class="bb-chip" data-val="Luxury home seekers">Luxury buyers</div>
+                                <div class="bb-chip" data-val="Commercial tenants/buyers">Commercial clients</div>
+                            </div>
+                        </div>
+
+                        <!-- BB Step 3: Background & Languages -->
+                        <div class="bio-builder-step" id="bb-step-3">
+                            <h3>Your Background</h3>
+                            <p class="step-subtitle">What makes you unique? This is what helps AI recommend YOU over other agents.</p>
+                            <label for="bb-current-bio">Your current bio (paste it here)</label>
+                            <textarea id="bb-current-bio" placeholder="Paste your existing bio from Realtor.ca, your website, or wherever you have one. Leave blank if you don't have one yet." style="min-height: 120px;"></textarea>
+                            <div class="bb-field-hint">This becomes your "before" so you can compare it with the new GEO version</div>
+                            <label for="bb-background">Previous career or relevant experience</label>
+                            <textarea id="bb-background" placeholder="e.g., 'Former accountant with 10 years in finance' or 'Managed a construction company for 8 years'"></textarea>
+                            <label for="bb-languages">Languages spoken (besides English)</label>
+                            <input type="text" id="bb-languages" placeholder="e.g., Portuguese, French, Arabic, Spanish">
+                            <div class="bb-field-hint">Leave blank if English only</div>
+                            <label for="bb-credentials">Designations or certifications (optional)</label>
+                            <input type="text" id="bb-credentials" placeholder="e.g., SRS, ABR, Certified Luxury Home Marketing Specialist">
+                            <label for="bb-highlight">Anything else that sets you apart?</label>
+                            <textarea id="bb-highlight" placeholder="e.g., 'I own rental properties myself' or 'Born and raised in KW' or 'I've completed $50M in sales'"></textarea>
+                        </div>
+
+                        <!-- BB Step 4: Contact -->
+                        <div class="bio-builder-step" id="bb-step-4">
+                            <h3>Contact Info</h3>
+                            <p class="step-subtitle">Optional — we can include your contact details in the bio for maximum discoverability.</p>
+                            <label for="bb-email">Your email</label>
+                            <input type="text" id="bb-email" placeholder="you@regoteam.com">
+                            <label for="bb-phone">Your phone</label>
+                            <input type="text" id="bb-phone" placeholder="(519) 555-0000">
+                        </div>
+
+                        <!-- BB Step 5: Preview -->
+                        <div class="bio-builder-step" id="bb-step-5">
+                            <h3>Your GEO-Optimized Bio</h3>
+                            <p class="step-subtitle">Here's what we generated. Review it, then approve or regenerate.</p>
+                            <div class="bb-generating hidden" id="bb-generating">
+                                <div class="spinner"></div>
+                                <p>Generating your GEO-optimized bio...</p>
+                            </div>
+                            <div class="bio-builder-preview" id="bb-preview-text"></div>
+                            <div id="bb-extras" class="hidden" style="margin-top: 1.5rem;">
+                                <h3 style="margin-top: 1rem;">Instagram Bio</h3>
+                                <div class="bio-builder-preview" id="bb-preview-instagram" style="white-space: pre-line;"></div>
+                                <h3 style="margin-top: 1rem;">Facebook Page Bio</h3>
+                                <div class="bio-builder-preview" id="bb-preview-facebook"></div>
+                                <h3 style="margin-top: 1rem;">TikTok Bio</h3>
+                                <div class="bio-builder-preview" id="bb-preview-tiktok" style="white-space: pre-wrap;"></div>
+                                <h3 style="margin-top: 1rem;">LinkedIn Headline</h3>
+                                <div class="bio-builder-preview" id="bb-preview-linkedin"></div>
+                            </div>
+                            <div class="bio-builder-preview-actions">
+                                <button class="btn btn-primary bb-btn-next" id="bb-approve-bio">Approve & Save Bio</button>
+                                <button class="btn btn-secondary bb-btn-back" id="bb-regenerate">Regenerate</button>
+                                <button class="btn btn-outline bb-btn-back" id="bb-edit-answers">Edit My Answers</button>
+                            </div>
+                        </div>
+
+                        <!-- Bio Builder Navigation -->
+                        <div class="bio-builder-nav" id="bb-nav">
+                            <button class="bb-btn-back hidden" id="bb-back-btn">Back</button>
+                            <div style="flex:1"></div>
+                            <button class="bb-btn-next" id="bb-next-btn">Next</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wizard Nav (shared) -->
                 <div class="wizard-nav">
                     <div></div>
                     <button class="btn btn-next" onclick="goToWizardStep(2)">Next: Brand Consistency →</button>
@@ -3109,66 +3087,72 @@
             // Render welcome
             document.getElementById("agent-first-name").textContent = getFirstName(agent.name);
 
-            // If no bio and no generated bio, show Bio Builder
+            // Toggle Step 1 content: Bio Review vs Bio Builder
+            const step1Review = document.getElementById("step1-bio-review");
+            const step1Builder = document.getElementById("step1-bio-builder");
+            const wizardStep1Title = document.querySelector('#wizard-stepper .wizard-step-indicator:first-child .wizard-step-title');
+
             if (!effectiveAgent.hasBio) {
-                document.getElementById("bio-builder-section").classList.remove("hidden");
-                // Hide all the normal agent content cards
-                document.querySelectorAll("#agent-view > .card").forEach(c => c.classList.add("hidden"));
+                // No bio — show Bio Builder in step 1
+                step1Review.classList.add("hidden");
+                step1Builder.classList.remove("hidden");
+                if (wizardStep1Title) wizardStep1Title.textContent = "Build Bio";
                 document.getElementById("status-badge").textContent = "No Bio Yet";
                 document.getElementById("status-badge").className = "status-badge pending";
-                document.getElementById("status-text").textContent = "You don't have a GEO bio yet. Use the Bio Builder below to create one in minutes.";
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                document.getElementById("status-text").textContent = "You don't have a GEO bio yet. Use the Bio Builder in Step 1 to create one.";
                 initBioBuilder(agent);
-                return;
+            } else {
+                // Has bio — show Bio Review in step 1
+                step1Review.classList.remove("hidden");
+                step1Builder.classList.add("hidden");
+                if (wizardStep1Title) wizardStep1Title.textContent = "Bio Review";
             }
 
-            // Has bio — hide bio builder and show normal view
-            document.getElementById("bio-builder-section").classList.add("hidden");
-            document.querySelectorAll("#agent-view > .card").forEach(c => c.classList.remove("hidden"));
+            // Render status & bio actions (only for agents with bios)
+            if (effectiveAgent.hasBio) {
+                const statusBadge = document.getElementById("status-badge");
+                const statusText = document.getElementById("status-text");
+                if (agentData.status === "approved") {
+                    statusBadge.textContent = "Approved";
+                    statusBadge.className = "status-badge approved";
+                    statusText.textContent = "Your bio has been approved! Now update your platforms.";
+                } else if (agentData.status === "edits_requested") {
+                    statusBadge.textContent = "Edits Submitted";
+                    statusBadge.className = "status-badge edits";
+                    statusText.textContent = "Your edit request was submitted. Chelsea will revise your bio.";
+                } else if (agentData.status === "declined") {
+                    statusBadge.textContent = "Declined";
+                    statusBadge.className = "status-badge edits";
+                    statusText.textContent = "You declined this bio. Chelsea will reach out to discuss next steps.";
+                } else {
+                    statusBadge.textContent = "Pending Approval";
+                    statusBadge.className = "status-badge pending";
+                    statusText.textContent = "Please review your bio below and approve or request edits.";
+                }
 
-            // Render status
-            const statusBadge = document.getElementById("status-badge");
-            const statusText = document.getElementById("status-text");
-            if (agentData.status === "approved") {
-                statusBadge.textContent = "✓ Approved";
-                statusBadge.className = "status-badge approved";
-                statusText.textContent = "Your bio has been approved! Now update your platforms (due April 13).";
-            } else if (agentData.status === "edits_requested") {
-                statusBadge.textContent = "✎ Edits Submitted";
-                statusBadge.className = "status-badge edits";
-                statusText.textContent = `Your edit request was submitted. Chelsea will revise your bio.`;
-            } else if (agentData.status === "declined") {
-                statusBadge.textContent = "Declined";
-                statusBadge.className = "status-badge edits";
-                statusText.textContent = "You declined this bio. Chelsea will reach out to discuss next steps.";
-            } else {
-                statusBadge.textContent = "Pending Approval";
-                statusBadge.className = "status-badge pending";
-                statusText.textContent = "Please review your bio below and approve or request edits by April 6.";
-            }
+                // Render bios
+                document.getElementById("agent-bio-before").textContent = effectiveAgent.before || "(No previous bio on file)";
+                document.getElementById("agent-bio-after").textContent = effectiveAgent.after;
 
-            // Render bios
-            document.getElementById("agent-bio-before").textContent = effectiveAgent.before || "(No previous bio on file)";
-            document.getElementById("agent-bio-after").textContent = effectiveAgent.after;
+                // Render actions
+                const bioActions = document.getElementById("bio-actions");
+                const approvedMessage = document.getElementById("approved-message");
 
-            // Render actions
-            const bioActions = document.getElementById("bio-actions");
-            const approvedMessage = document.getElementById("approved-message");
+                if (agentData.status === "approved") {
+                    bioActions.classList.add("hidden");
+                    approvedMessage.classList.remove("hidden");
+                } else {
+                    bioActions.classList.remove("hidden");
+                    approvedMessage.classList.add("hidden");
 
-            if (agentData.status === "approved") {
-                bioActions.classList.add("hidden");
-                approvedMessage.classList.remove("hidden");
-            } else {
-                bioActions.classList.remove("hidden");
-                approvedMessage.classList.add("hidden");
-
-                document.getElementById("approve-btn").onclick = approveBio;
-                document.getElementById("request-edits-btn").onclick = () => {
-                    document.getElementById("edit-modal-overlay").classList.add("active");
-                };
-                document.getElementById("decline-btn").onclick = () => {
-                    document.getElementById("decline-modal-overlay").classList.add("active");
-                };
+                    document.getElementById("approve-btn").onclick = approveBio;
+                    document.getElementById("request-edits-btn").onclick = () => {
+                        document.getElementById("edit-modal-overlay").classList.add("active");
+                    };
+                    document.getElementById("decline-btn").onclick = () => {
+                        document.getElementById("decline-modal-overlay").classList.add("active");
+                    };
+                }
             }
 
             // Modal controls
